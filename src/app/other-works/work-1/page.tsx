@@ -29,7 +29,7 @@ export default function WaveSyncPage() {
             className="w-full rounded-lg shadow-2xl"
             poster="/images/wavesync-poster.jpg"
           >
-            <source src="/videos/WaveSync.mp4" type="video/mp4" />
+            <source src="/videos/WaveSync.mov" type="video/mov" />
             您的浏览器不支持视频播放。
           </video>
         </motion.div>
