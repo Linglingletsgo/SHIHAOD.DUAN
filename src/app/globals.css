@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 深色背景，除了首页外使用 #262626 */
+  --background: #000000;
+  --foreground: #e7e7e7;
 }
 
 @theme inline {
@@ -12,12 +13,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* 保持暗色主题为默认，不再依赖系统主题 */
 
 body {
   background: var(--background);

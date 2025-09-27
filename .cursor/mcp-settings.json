@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "nextjs-dev": {
+      "command": "node",
+      "args": ["./scripts/mcp-server.js"],
+      "cwd": "/Users/dominicduan/my-nextjs-app",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  },
+  "tools": {
+    "nextjs-component": {
+      "description": "Create React components with TypeScript and Tailwind CSS",
+      "server": "nextjs-dev"
+    },
+    "nextjs-page": {
+      "description": "Create Next.js pages with proper routing",
+      "server": "nextjs-dev"
+    },
+    "nextjs-api": {
+      "description": "Create API route handlers",
+      "server": "nextjs-dev"
+    },
+    "nextjs-performance": {
+      "description": "Analyze and optimize Next.js performance",
+      "server": "nextjs-dev"
+    }
+  }
+}

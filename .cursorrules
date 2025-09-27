@@ -1,0 +1,39 @@
+# Next.js Development Rules for MCP
+
+## Project Context
+This is a Next.js 15.5.4 project with TypeScript, Tailwind CSS, and React 19.
+
+## Development Guidelines
+
+### File Structure
+- Use `src/app/` directory structure (App Router)
+- Components go in `src/components/`
+- Utilities go in `src/lib/`
+- Types go in `src/types/`
+- Use `@/` alias for imports from src directory
+
+### Code Standards
+- Use TypeScript for all files
+- Prefer functional components with hooks
+- Use Tailwind CSS for styling
+- Follow Next.js best practices for SSR/SSG
+- Use proper TypeScript types and interfaces
+
+### MCP Integration
+- Always consider performance implications
+- Use Next.js built-in optimizations (Image, Link, etc.)
+- Implement proper error boundaries
+- Use React Server Components when appropriate
+- Optimize for Core Web Vitals
+
+### Development Commands
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build for production with Turbopack
+- `npm run lint` - Run ESLint
+
+### AI Assistant Behavior
+- Always provide complete, working code examples
+- Include proper TypeScript types
+- Suggest performance optimizations
+- Consider accessibility (a11y) requirements
+- Follow Next.js 15 and React 19 patterns

@@ -1,0 +1,53 @@
+{
+  "mcpServers": {
+    "nextjs-dev": {
+      "command": "node",
+      "args": ["./scripts/mcp-server.js"],
+      "env": {
+        "NODE_ENV": "development"
+      }
+    }
+  },
+  "tools": {
+    "nextjs": {
+      "description": "Next.js development tools and utilities",
+      "capabilities": [
+        "component-generation",
+        "route-management",
+        "api-development",
+        "performance-analysis",
+        "build-optimization"
+      ]
+    },
+    "typescript": {
+      "description": "TypeScript development support",
+      "capabilities": [
+        "type-generation",
+        "interface-definition",
+        "type-checking",
+        "refactoring"
+      ]
+    },
+    "tailwind": {
+      "description": "Tailwind CSS utilities",
+      "capabilities": [
+        "class-generation",
+        "responsive-design",
+        "theme-customization",
+        "component-styling"
+      ]
+    }
+  },
+  "context": {
+    "projectType": "nextjs",
+    "framework": "next@15.5.4",
+    "language": "typescript",
+    "styling": "tailwindcss",
+    "features": [
+      "app-router",
+      "server-components",
+      "turbopack",
+      "typescript"
+    ]
+  }
+}
