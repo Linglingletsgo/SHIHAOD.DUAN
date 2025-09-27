@@ -876,6 +876,16 @@ export default function AlbumPage() {
   const [duration, setDuration] = useState(0);
   const [audioRef, setAudioRef] = useState<HTMLAudioElement | null>(null);
 
+  // 清理音频资源 - 必须在所有条件语句之前
+  useEffect(() => {
+    return () => {
+      if (audioRef) {
+        audioRef.pause();
+        audioRef.src = '';
+      }
+    };
+  }, [audioRef]);
+
   if (!album) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
@@ -947,15 +957,6 @@ export default function AlbumPage() {
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  // 清理音频资源
-  useEffect(() => {
-    return () => {
-      if (audioRef) {
-        audioRef.pause();
-        audioRef.src = '';
-      }
-    };
-  }, []);
 
   return (
     <div className="min-h-screen bg-black">
