@@ -18,6 +18,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Shihao D. Duan",
   description: "Fashion Designer & Music Producer & Interdiscipline Artist \n LCF MA Fashion Futures 2025 & ZSTU BEng",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({
