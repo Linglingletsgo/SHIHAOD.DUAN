@@ -28,8 +28,11 @@ export default function WaveSyncPage() {
             controlsList="nodownload nofullscreen noremoteplayback"
             className="w-full rounded-lg shadow-2xl"
             poster="/images/wavesync-poster.jpg"
+            preload="metadata"
           >
-            <source src="/videos/WaveSync.mov" type="video/mov" />
+            <source src="/videos/WaveSync.mov" type="video/mp4" />
+            <source src="/videos/WaveSync.mov" type="video/quicktime" />
+            <source src="/videos/WaveSync.mov" type="video/x-msvideo" />
             您的浏览器不支持视频播放。
           </video>
         </motion.div>
