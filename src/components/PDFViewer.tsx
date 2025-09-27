@@ -106,7 +106,7 @@ const PDFViewer = ({
                     className="w-full rounded-lg shadow-lg"
                     poster="/images/video-poster.jpg"
                   >
-                    <source src={videoUrl} type="video/mp4" />
+                    <source src={videoUrl} type="video/quicktime" />
                     您的浏览器不支持视频播放。
                   </video>
                 </div>

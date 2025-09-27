@@ -99,6 +99,6 @@ dist
 tmp/
 temp/
 
-# Large files (over 50MB)
+# Large files (over 50MB) - old files
 public/videos/huan.mp4
 public/videos/WaveSync.mp4
