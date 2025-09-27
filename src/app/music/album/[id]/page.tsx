@@ -1073,7 +1073,6 @@ export default function AlbumPage() {
             <h2 className="text-2xl font-bold text-zinc-100 mb-6">Lyrics</h2>
             <LyricsBook 
               lyrics={currentSong?.lyrics || '请选择一首歌曲查看歌词'} 
-              songTitle={currentSong?.title || ''}
             />
           </div>
         </motion.div>
