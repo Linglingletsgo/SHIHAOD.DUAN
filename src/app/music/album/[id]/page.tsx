@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useParams, useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import SpotlightCard from '@/components/SpotlightCard';
 
 // TODO: 用户可以在这里编辑专辑数据
@@ -802,7 +803,7 @@ Know’in im ready to fly
 const AudioPlayer = ({ song, isPlaying, onPlayPause, onSeek, progress, currentTime, duration, formatTime }: {
   song: { id: number; title: string; duration: string; lyrics: string; src: string };
   isPlaying: boolean;
-  onPlayPause: (song: any) => void;
+  onPlayPause: (song: { id: number; title: string; duration: string; lyrics: string; src: string }) => void;
   onSeek: (e: React.MouseEvent<HTMLDivElement>) => void;
   progress: number;
   currentTime: number;
@@ -851,9 +852,8 @@ const AudioPlayer = ({ song, isPlaying, onPlayPause, onSeek, progress, currentTi
 );
 
 // TODO: 用户可以在这里编辑歌词本组件
-const LyricsBook = ({ lyrics, songTitle }: {
+const LyricsBook = ({ lyrics }: {
   lyrics: string;
-  songTitle: string;
 }) => (
   <div className="bg-zinc-800/50 rounded-lg p-6">
     <h3 className="text-zinc-100 font-semibold text-lg mb-4"></h3>
@@ -892,7 +892,7 @@ export default function AlbumPage() {
     );
   }
 
-  const handlePlayPause = (song: any) => {
+  const handlePlayPause = (song: { id: number; title: string; duration: string; lyrics: string; src: string }) => {
     if (currentSong?.id === song.id && audioRef) {
       if (isPlaying) {
         audioRef.pause();
@@ -955,7 +955,7 @@ export default function AlbumPage() {
         audioRef.src = '';
       }
     };
-  }, [audioRef]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-black">
@@ -990,9 +990,11 @@ export default function AlbumPage() {
               >
                 <div className="w-full h-full rounded-xl overflow-hidden">
                   {/* 专辑封面 - 纯图片正方形卡片 */}
-                  <img 
+                  <Image 
                     src={album.cover} 
                     alt={album.title}
+                    width={400}
+                    height={400}
                     className="w-full h-full object-cover"
                     style={{ 
                       width: '100%',

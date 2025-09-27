@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import SpotlightCard from '@/components/SpotlightCard';
 
 // TODO: 用户可以在这里编辑专辑数据
@@ -134,9 +135,11 @@ export default function MusicPage() {
                   {/* 专辑封面 - 强制正方形显示 */}
                   <div className="relative w-32 h-32 mb-4">
                     <div className="absolute inset-0 rounded-lg overflow-hidden bg-zinc-700">
-                      <img
+                      <Image
                         src={album.cover}
                         alt={album.title}
+                        width={128}
+                        height={128}
                         className="w-full h-full object-cover"
                         style={{
                           aspectRatio: '1/1',
