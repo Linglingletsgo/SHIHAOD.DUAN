@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ConditionalNavigation from "@/components/ConditionalNavigation";
 import SplashCursor from "@/components/SplashCursor";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({
         />
         <ConditionalNavigation />
         <main>{children}</main>
+        <Analytics />
       </body>
     </html>
   );
