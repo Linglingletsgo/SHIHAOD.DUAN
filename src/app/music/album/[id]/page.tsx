@@ -800,43 +800,137 @@ Know’in im ready to fly
           title: 'Egotism',
           duration: '2:28',
           src: '/audio/wodexinjiaorongziman/03 - Mo Ling - egotism.mp3',
-          lyrics: `知道我能够办到
-这染料像是甘草
-My blue night刻上蓝调
-I got a lot to find out
-用纸笔划出栈道
-久病患缠不患药
-药是你前程曼妙
+          lyrics: `EGOTISM, Changing Your Life
+关了比赛
+(The game is off)
+这是你犯下的罪过你没办法抵赖
+(This is your sin - there is no way to deny)
+I can't deny我并不在乎
+(I don't really care)
+能够主动的表现欲
+(The urge to perform, to step forward)
+拙劣的卖弄
+(The clumsy show-off)
+优雅的灵魂
+(Elegant soul)
+把鲁莽都还给我外公
+(Return all the recklessness to my grandpa)
+记得Joanna的话
+(Remember Joanna's words)
+我变得智慧
+(I became wise)
+I be like 光 我拨动了日晷
+(I be like light, moving the sundial)
 
-我的话没法说的浅显
-心里面长出来了原野
-风与月铺满我的眼睑
-灵感是喷发时的泉眼
- 被冰冷覆盖
-填的是初生时的负债
-I solo for my moonlight
-36度凝结成固态
-从房间生长到户外
-我的心灵安根驻寨
-生长到云间雾外
-Know’in im ready to fly
+EGOTISM 我的生命开的花
+(EGOTISM - the bloom of my life)
+Social darwin 生的根发的芽
+(Social Darwinism - the roots and budding shoots)
+我有lofi soul 过曝是我的手法
+(I've got a lofi soul - overexposure is my expression)
+我人声得有噪点 离不开这支SM58
+(My vocal needs its noise, can't part with this SM58)
+小时候四十平里 我噩梦太久了
+(In forty square meters of childhood, the nightmare ran too long)
+初高中我想删除 我要rebirth in future
+(I wanted to erase my middle and high school - to be reborn in the future)
+别怪我说走就走 生命不能有败仗
+(Don't blame me for leaving - life can't afford a lost battle)
+我必须得先离开 去面对惊涛骇浪
+(I had to leave, to face the monstrous waves)
+这就是生活 情绪 逼你享受波动
+(This is life, emotion, forcing you to enjoy the fluctuation)
+我不迷信努力 这是才华的作用
+(I don't worship effort - it is my talent working)
+The future where I rebirth 明明我是对的
+(In the future where I'm reborn, I know I was right)
+I will be my lord 宽恕我的罪过
+(I will be my lord - forgive my sins)
+他说他也想家 想昨日海棠花
+(He says he misses home too - past crabapple blossoms)
+我不怕被了解 所以我不能说谎话
+(I'm not afraid to be known - so I can't lie)
+I'd rather be evil 有些事总得放下
+(I'd rather be evil - some things must be released)
+放下了ego 一瞬间就会长大
+(Drop the ego - and you grow in an instant)
 
-飞往我的山 飞往我的海
-飞往我的河流和云海
-飞往我的自由时的喜悦
-心里面长出来了一切
-我的话 被风吹走
-吹展我的眉头
-心灵会下雨配松针酒
-也无言语也不再回首
-挥挥手 我的玫瑰花
-风吹走 四海为家
-吹我到黄河飞飞沙
-终归星宿 我回回家
-挥挥手 流年以求
-巍巍抖 她点起头
-不管我的血脉随谁淌
-我在娓娓讲我的水北流` // TODO: 用户可以在这里编辑歌词
+EGOTISM, Changing Your Life
+关了比赛
+(The game is off)
+这是你犯下的罪过你没办法抵赖
+(This is your sin - there is no way to deny)
+I can't deny我并不在乎
+(I don't really care)
+能够主动的表现欲
+(The urge to perform, to step forward)
+拙劣的卖弄
+(The clumsy show-off)
+优雅
+(Elegance)
+把鲁莽都还给我外公
+(Return all the recklessness to my grandpa)
+记得Joanna的话
+(Remember Joanna's words)
+我变得智慧
+(I became wise)
+I be like 光 我拨动了日晷
+(I be like light, moving the sundial)
+
+EGOTISM 我有游戏规则
+(EGOTISM - I have rules of my game)
+这是我执行的标准化就真的对吗
+(Is the standardization I am implementing really correct)
+我想要解构自己可自尊像是贝壳
+(I want to deconstruct myself, but self-esteem clings like a shell)
+迎合patriarch being tough 也会累的
+(Catering to the patriarch and being tough also make you tired)
+她看清我的窘迫 眼睛里泪光涌落
+(She saw my distress; tears welled in my eyes)
+总是我没法忍受平静才说 I want a war
+(I always say I want a war after I can no longer bear the quiet)
+上次我straight outta north 人情没法捅破
+(Last time I straight outta North, but I could not pierce the web of favors)
+我说我能够原谅他们 EGOTISM
+(I said I could forgive them. EGOTISM)
+Evolution been ever proven
+Forever loved 这是奇谈谬论
+('Forever loved' - what an absurd fable)
+你想来了就来你想开了就走
+(You can come when you want, you can leave when you're done)
+我的心也搬不空 It's being stolen
+(Anyway, my heart won't empty even if it's being stolen)
+My born star Upward 黄金
+(My born star. Upward. Golden)
+发光之前 你先得学会旁听
+(Before you shine, you must first learn to listen)
+如果生活是赛场 这是天赐的良机
+(If life were an arena, this would be a god-given chance)
+但生活不是赛场
+(But life is not an arena)
+Lord, will you come to me
+
+EGOTISM, Changing Your Life
+关了比赛
+(The game is off)
+这是你犯下的罪过你没办法抵赖
+(This is your sin - there is no way to deny)
+I can't deny我并不在乎
+(I don't really care)
+能够主动的表现欲
+(The urge to perform, to step forward)
+拙劣的卖弄
+(The clumsy show-off)
+优雅
+(Elegance)
+把鲁莽都还给我外公
+(Return all the recklessness to my grandpa)
+记得Joanna的话
+(Remember Joanna's words)
+我变得智慧
+(I became wise)
+I be like 光 我拨动了日晷
+(I be like light, moving the sundial)` // TODO: 用户可以在这里编辑歌词
         }
     ]
   }
