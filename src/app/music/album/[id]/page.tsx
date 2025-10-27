@@ -804,7 +804,7 @@ Know’in im ready to fly
 关了比赛
 (The game is off)
 这是你犯下的罪过你没办法抵赖
-(This is your sin - there is no way to deny)
+(This is your sin - there's no way to deny)
 I can't deny我并不在乎
 (I don't really care)
 能够主动的表现欲
@@ -859,7 +859,7 @@ EGOTISM, Changing Your Life
 关了比赛
 (The game is off)
 这是你犯下的罪过你没办法抵赖
-(This is your sin - there is no way to deny)
+(This is your sin - there's no way to deny)
 I can't deny我并不在乎
 (I don't really care)
 能够主动的表现欲
@@ -893,7 +893,7 @@ EGOTISM 我有游戏规则
 (Last time I straight outta North, but I could not pierce the web of favors)
 我说我能够原谅他们 EGOTISM
 (I said I could forgive them. EGOTISM)
-Evolution been ever proven
+EvolutionBeen ever proven
 Forever loved 这是奇谈谬论
 ('Forever loved' - what an absurd fable)
 你想来了就来你想开了就走
@@ -914,7 +914,7 @@ EGOTISM, Changing Your Life
 关了比赛
 (The game is off)
 这是你犯下的罪过你没办法抵赖
-(This is your sin - there is no way to deny)
+(This is your sin - there's no way to deny)
 I can't deny我并不在乎
 (I don't really care)
 能够主动的表现欲
