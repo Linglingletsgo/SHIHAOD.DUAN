@@ -800,7 +800,43 @@ Know’in im ready to fly
           title: 'Egotism',
           duration: '2:28',
           src: '/audio/wodexinjiaorongziman/03 - Mo Ling - egotism.mp3',
-          lyrics: '' // TODO: 用户可以在这里编辑歌词
+          lyrics: `知道我能够办到
+这染料像是甘草
+My blue night刻上蓝调
+I got a lot to find out
+用纸笔划出栈道
+久病患缠不患药
+药是你前程曼妙
+
+我的话没法说的浅显
+心里面长出来了原野
+风与月铺满我的眼睑
+灵感是喷发时的泉眼
+ 被冰冷覆盖
+填的是初生时的负债
+I solo for my moonlight
+36度凝结成固态
+从房间生长到户外
+我的心灵安根驻寨
+生长到云间雾外
+Know’in im ready to fly
+
+飞往我的山 飞往我的海
+飞往我的河流和云海
+飞往我的自由时的喜悦
+心里面长出来了一切
+我的话 被风吹走
+吹展我的眉头
+心灵会下雨配松针酒
+也无言语也不再回首
+挥挥手 我的玫瑰花
+风吹走 四海为家
+吹我到黄河飞飞沙
+终归星宿 我回回家
+挥挥手 流年以求
+巍巍抖 她点起头
+不管我的血脉随谁淌
+我在娓娓讲我的水北流` // TODO: 用户可以在这里编辑歌词
         }
     ]
   }
