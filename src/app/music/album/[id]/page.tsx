@@ -794,6 +794,13 @@ Know’in im ready to fly
 巍巍抖 她点起头
 不管我的血脉随谁淌
 我在娓娓讲我的水北流` // TODO: 用户可以在这里编辑歌词
+        },
+        {
+          id: 10,
+          title: 'Egotism',
+          duration: '2:28',
+          src: '/audio/wodexinjiaorongziman/03 - Mo Ling - egotism.mp3',
+          lyrics: '' // TODO: 用户可以在这里编辑歌词
         }
     ]
   }
@@ -1080,4 +1087,3 @@ export default function AlbumPage() {
     </div>
   );
 }
-
