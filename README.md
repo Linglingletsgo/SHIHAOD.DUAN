@@ -1,3 +1,11 @@
+## 所有资源仅供学习参考，禁止商业使用。
+## All resources are for learning reference only and commercial use is prohibited.
+www.dominicduan.com
+Instagram: moling025
+CloudMusic: 张嗣泳
+Email: lingonthebeat@gmail.com
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
