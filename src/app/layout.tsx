@@ -19,9 +19,9 @@ export const metadata: Metadata = {
   title: "Shihao D. Duan",
   description: "Fashion Designer & Music Producer & Interdiscipline Artist \n LCF MA Fashion Futures 2025 & ZSTU BEng",
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: '/icons/wechat_2025-09-27_182913_401.png',
+    shortcut: '/icons/wechat_2025-09-27_182913_401.png',
+    apple: '/icons/wechat_2025-09-27_182913_401.png',
   },
 };
 
