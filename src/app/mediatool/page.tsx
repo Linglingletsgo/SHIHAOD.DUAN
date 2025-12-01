@@ -460,28 +460,19 @@ function Downloader() {
     setResult(null);
 
     try {
-      // Use Cobalt API - supports YouTube, Bilibili, TikTok, Twitter, and 50+ platforms
-      // Free and open-source: https://github.com/imputnet/cobalt
-      const res = await fetch('https://api.cobalt.tools/api/json', {
+      // Call our Next.js API proxy which calls Cobalt API server-side
+      const res = await fetch('/api/resolve_url', {
         method: 'POST',
         headers: {
-          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          url: url,
-          vCodec: 'h264',
-          vQuality: '720',
-          aFormat: 'best',
-          filenamePattern: 'classic',
-          isAudioOnly: false,
-        }),
+        body: JSON.stringify({ url }),
       });
 
       const data = await res.json();
       
-      if (data.status === 'error' || data.status === 'rate-limit') {
-        throw new Error(data.text || 'Failed to resolve URL');
+      if (!res.ok || data.error) {
+        throw new Error(data.error || 'Failed to resolve URL');
       }
 
       // Cobalt returns different response structures
