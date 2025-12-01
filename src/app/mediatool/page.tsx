@@ -21,9 +21,10 @@ export default function MediaToolPage() {
       });
 
       try {
+        const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.10/dist/esm';
         await ffmpeg.load({
-          coreURL: await toBlobURL(`https://unpkg.com/@ffmpeg/core@0.12.10/dist/esm/ffmpeg-core.js`, 'text/javascript'),
-          wasmURL: await toBlobURL(`https://unpkg.com/@ffmpeg/core@0.12.10/dist/esm/ffmpeg-core.wasm`, 'application/wasm'),
+          coreURL: await toBlobURL(baseURL + '/ffmpeg-core.js', 'text/javascript'),
+          wasmURL: await toBlobURL(baseURL + '/ffmpeg-core.wasm', 'application/wasm'),
         });
         ffmpegRef.current = ffmpeg;
         setLoaded(true);
