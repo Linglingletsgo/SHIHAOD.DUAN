@@ -23,7 +23,6 @@ class handler(BaseHTTPRequestHandler):
                 'format': 'best',
                 'quiet': True,
                 'no_warnings': True,
-                'extract_flat': True, # Don't download, just extract info
             }
 
             with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -39,7 +38,8 @@ class handler(BaseHTTPRequestHandler):
                     'url': video.get('url'),
                     'thumbnail': video.get('thumbnail'),
                     'duration': video.get('duration'),
-                    'ext': video.get('ext')
+                    'ext': video.get('ext'),
+                    'webpage_url': video.get('webpage_url')
                 }
 
                 self.send_response(200)

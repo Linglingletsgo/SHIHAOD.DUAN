@@ -535,8 +535,7 @@ function Downloader() {
             <div className="pt-4 border-t border-neutral-700 flex justify-end">
                  <a
                     href={result.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download
                     className="bg-white text-black hover:bg-gray-200 px-6 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors"
                 >
                     <Download className="w-4 h-4" /> Download Media
