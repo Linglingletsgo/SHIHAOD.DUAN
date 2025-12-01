@@ -11,6 +11,7 @@ const Navigation = () => {
     { href: '/home', label: '首页 HOME' },
     { href: '/music', label: '张嗣泳 ALBUMS' },
     { href: '/misc', label: '杂 MISC' },
+    { href: '/tools', label: '工具 TOOLS' },
     { href: '/about', label: '关于 ABOUT' },
   ];
 
