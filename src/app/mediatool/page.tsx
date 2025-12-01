@@ -7,6 +7,37 @@ import { Upload, Download, Play, FileVideo, Loader2, AlertCircle, CheckCircle2 }
 
 export default function MediaToolPage() {
   const [activeTab, setActiveTab] = useState<'converter' | 'downloader'>('converter');
+  const ffmpegRef = useRef<FFmpeg | null>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  // Load FFmpeg when component mounts or tab changes to downloader
+  useEffect(() => {
+    const loadFFmpeg = async () => {
+      if (ffmpegRef.current) return; // FFmpeg already loaded
+
+      const ffmpeg = new FFmpeg();
+      ffmpeg.on('log', ({ message }) => {
+        console.log(message);
+      });
+
+      try {
+        await ffmpeg.load({
+          coreURL: await toBlobURL(`https://unpkg.com/@ffmpeg/core@0.12.10/dist/esm/ffmpeg-core.js`, 'text/javascript'),
+          wasmURL: await toBlobURL(`https://unpkg.com/@ffmpeg/core@0.12.10/dist/esm/ffmpeg-core.wasm`, 'application/wasm'),
+        });
+        ffmpegRef.current = ffmpeg;
+        setLoaded(true);
+      } catch (error) {
+        console.error('Failed to load FFmpeg:', error);
+      }
+    };
+
+    // Only load FFmpeg if the downloader tab is active or if it's the initial load for converter
+    // The VideoProcessor component will handle its own loading if it's the active tab initially
+    if (activeTab === 'downloader' || activeTab === 'converter') { // Load for both, but VideoProcessor has its own logic
+      loadFFmpeg();
+    }
+  }, [activeTab]);
   
   return (
     <div className="min-h-screen bg-black text-white p-8 font-sans">
@@ -15,7 +46,7 @@ export default function MediaToolPage() {
           <h1 className="text-4xl font-bold mb-4 text-white">
             Media Tools
           </h1>
-          <p className="text-gray-400"></p>
+          <p className="text-gray-400">Professional media processing in your browser</p>
         </header>
 
         <div className="flex justify-center mb-8">
@@ -44,7 +75,7 @@ export default function MediaToolPage() {
         </div>
 
         <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8 backdrop-blur-sm">
-          {activeTab === 'converter' ? <VideoProcessor /> : <Downloader />}
+          {activeTab === 'converter' ? <VideoProcessor /> : <M3U8Downloader ffmpeg={ffmpegRef.current!} loaded={loaded} />}
         </div>
       </div>
     </div>
@@ -447,124 +478,148 @@ interface VideoResult {
   error?: string;
 }
 
-function Downloader() {
-  const [url, setUrl] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<VideoResult | null>(null);
+ // M3U8 Downloader Component
+const M3U8Downloader = ({ ffmpeg, loaded }: { ffmpeg: FFmpeg; loaded: boolean }) => {
+  const [m3u8Url, setM3u8Url] = useState('');
+  const [downloading, setDownloading] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
 
-  const handleResolve = async () => {
-    if (!url) return;
-    setLoading(true);
+  const handleDownload = async () => {
+    if (!m3u8Url || !loaded) return;
+    
+    setDownloading(true);
     setError(null);
-    setResult(null);
+    setProgress(0);
+    setSuccess(false);
 
     try {
-      // Call our Next.js API proxy which calls Cobalt API server-side
-      const res = await fetch('/api/resolve_url', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ url }),
-      });
+      // Download M3U8 using ffmpeg
+      await ffmpeg.exec([
+        '-i', m3u8Url,
+        '-c', 'copy',
+        '-bsf:a', 'aac_adtstoasc',
+        'output.mp4'
+      ]);
 
-      const data = await res.json();
-      
-      if (!res.ok || data.error) {
-        throw new Error(data.error || 'Failed to resolve URL');
-      }
+      // Get the output file
+      const data = await ffmpeg.readFile('output.mp4');
+      const buffer = new Uint8Array(data as Uint8Array).buffer;
+      const blob = new Blob([buffer], { type: 'video/mp4' });
+      const url = URL.createObjectURL(blob);
 
-      // Cobalt returns different response structures
-      let downloadUrl = '';
-      let thumbnail = undefined;
-      
-      if (data.status === 'redirect' || data.status === 'tunnel' || data.status === 'stream') {
-        // Direct download URL
-        downloadUrl = data.url;
-      } else if (data.status === 'picker') {
-        // Multiple quality options (use first one)
-        downloadUrl = data.picker[0].url;
-        thumbnail = data.picker[0].thumb;
-      } else {
-        throw new Error('Unexpected response format from Cobalt API');
-      }
+      // Trigger download
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `video_${Date.now()}.mp4`;
+      a.click();
 
-      setResult({
-        title: data.filename || 'Media file',
-        url: downloadUrl,
-        thumbnail: thumbnail,
-        duration: undefined,
-        ext: 'mp4',
-      });
+      URL.revokeObjectURL(url);
+      setSuccess(true);
+      setProgress(100);
     } catch (err) {
-      const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
-      setError(errorMessage);
+      console.error('M3U8 download error:', err);
+      setError(err instanceof Error ? err.message : 'Failed to download M3U8 stream');
     } finally {
-      setLoading(false);
+      setDownloading(false);
     }
   };
 
   return (
     <div className="space-y-6">
-       <div className="text-center space-y-2">
-        <h2 className="text-2xl font-semibold">Media Link Extractor</h2>
+      <div className="text-center space-y-2">
+        <h2 className="text-2xl font-semibold">M3U8 Stream Downloader</h2>
         <p className="text-sm text-gray-400">
-            Powered by Cobalt API. Supports 50+ platforms including YouTube, Bilibili, TikTok, and more.
+            Download and convert M3U8 live streams to MP4 format using FFmpeg in your browser
         </p>
       </div>
 
-      <div className="flex gap-2">
-        <input
-            type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            placeholder="Paste media URL (YouTube, Bilibili, TikTok, Twitter, etc.)..."
-            className="flex-1 bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 outline-none focus:border-blue-500 transition-colors"
-        />
-        <button
-            onClick={handleResolve}
-            disabled={loading || !url}
-            className="bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed text-white px-6 rounded-lg font-medium transition-colors flex items-center gap-2"
-        >
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Resolve'}
-        </button>
+      {!loaded && (
+        <div className="bg-yellow-900/20 border border-yellow-600/50 rounded-xl p-4 text-yellow-400 text-sm">
+          Please wait for FFmpeg to load before downloading
+        </div>
+      )}
+
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-300 mb-2">
+            M3U8 URL
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={m3u8Url}
+              onChange={(e) => setM3u8Url(e.target.value)}
+              placeholder="https://example.com/stream/playlist.m3u8"
+              className="flex-1 bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 outline-none focus:border-blue-500 transition-colors"
+              disabled={downloading}
+            />
+            <button
+              onClick={handleDownload}
+              disabled={!m3u8Url || !loaded || downloading}
+              className="bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-700 disabled:cursor-not-allowed text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center gap-2"
+            >
+              {downloading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Downloading...
+                </>
+              ) : (
+                <>
+                  <Download className="w-4 h-4" />
+                  Download
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {downloading && (
+          <div className="bg-neutral-800/50 rounded-xl p-4 space-y-2">
+            <div className="flex justify-between text-sm">
+              <span className="text-gray-400">Processing stream...</span>
+              <span className="text-gray-300">{progress}%</span>
+            </div>
+            <div className="w-full bg-neutral-700 rounded-full h-2">
+              <div 
+                className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+        )}
+
+        {error && (
+          <div className="bg-red-900/20 border border-red-600/50 rounded-xl p-4 flex items-start gap-3">
+            <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="font-medium text-red-400">Download Failed</p>
+              <p className="text-sm text-red-300 mt-1">{error}</p>
+            </div>
+          </div>
+        )}
+
+        {success && (
+          <div className="bg-green-900/20 border border-green-600/50 rounded-xl p-4 flex items-start gap-3">
+            <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+            <div className="flex-1">
+              <p className="font-medium text-green-400">Download Complete!</p>
+              <p className="text-sm text-green-300 mt-1">Your video has been downloaded successfully</p>
+            </div>
+          </div>
+        )}
+
+        <div className="bg-neutral-900/50 border border-neutral-800 rounded-xl p-4 space-y-2">
+          <h3 className="font-medium text-sm text-gray-300">How to find M3U8 URLs:</h3>
+          <ol className="text-sm text-gray-400 space-y-1 list-decimal list-inside">
+            <li>Open browser Developer Tools (F12)</li>
+            <li>Go to Network tab and filter by "m3u8"</li>
+            <li>Play the video on the website</li>
+            <li>Copy the M3U8 URL from the network requests</li>
+          </ol>
+        </div>
       </div>
-
-      {error && (
-        <div className="bg-red-900/20 border border-red-900/50 text-red-200 p-4 rounded-lg flex items-center gap-3">
-            <AlertCircle className="w-5 h-5" />
-            <span>{error}</span>
-        </div>
-      )}
-
-      {result && (
-        <div className="bg-neutral-800/50 rounded-xl p-6 space-y-4 animate-in fade-in slide-in-from-bottom-4">
-            <div className="flex gap-4">
-                {result.thumbnail && (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img src={result.thumbnail} alt="Thumbnail" className="w-32 h-24 object-cover rounded-lg bg-neutral-800" />
-                )}
-                <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-lg truncate" title={result.title}>{result.title || 'Unknown Title'}</h3>
-                    <div className="flex gap-2 mt-2 text-sm text-gray-400">
-                        {result.duration && <span>{Math.floor(result.duration / 60)}:{(result.duration % 60).toString().padStart(2, '0')}</span>}
-                        {result.ext && <span className="uppercase px-1.5 py-0.5 bg-neutral-700 rounded text-xs">{result.ext}</span>}
-                    </div>
-                </div>
-            </div>
-            
-            <div className="pt-4 border-t border-neutral-700 flex justify-end">
-                 <a
-                    href={result.url}
-                    download
-                    className="bg-white text-black hover:bg-gray-200 px-6 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors"
-                >
-                    <Download className="w-4 h-4" /> Download Media
-                </a>
-            </div>
-        </div>
-      )}
     </div>
   );
-}
+};
