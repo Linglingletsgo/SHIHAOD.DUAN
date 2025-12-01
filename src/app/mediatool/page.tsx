@@ -460,21 +460,52 @@ function Downloader() {
     setResult(null);
 
     try {
-      const res = await fetch('/api/resolve_url', {
+      // Use Cobalt API - supports YouTube, Bilibili, TikTok, Twitter, and 50+ platforms
+      // Free and open-source: https://github.com/imputnet/cobalt
+      const res = await fetch('https://api.cobalt.tools/api/json', {
         method: 'POST',
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ url }),
+        body: JSON.stringify({
+          url: url,
+          vCodec: 'h264',
+          vQuality: '720',
+          aFormat: 'best',
+          filenamePattern: 'classic',
+          isAudioOnly: false,
+        }),
       });
 
       const data = await res.json();
       
-      if (!res.ok) {
-        throw new Error(data.error || 'Failed to resolve URL');
+      if (data.status === 'error' || data.status === 'rate-limit') {
+        throw new Error(data.text || 'Failed to resolve URL');
       }
 
-      setResult(data);
+      // Cobalt returns different response structures
+      let downloadUrl = '';
+      let thumbnail = undefined;
+      
+      if (data.status === 'redirect' || data.status === 'tunnel' || data.status === 'stream') {
+        // Direct download URL
+        downloadUrl = data.url;
+      } else if (data.status === 'picker') {
+        // Multiple quality options (use first one)
+        downloadUrl = data.picker[0].url;
+        thumbnail = data.picker[0].thumb;
+      } else {
+        throw new Error('Unexpected response format from Cobalt API');
+      }
+
+      setResult({
+        title: data.filename || 'Media file',
+        url: downloadUrl,
+        thumbnail: thumbnail,
+        duration: undefined,
+        ext: 'mp4',
+      });
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
       setError(errorMessage);
@@ -488,7 +519,7 @@ function Downloader() {
        <div className="text-center space-y-2">
         <h2 className="text-2xl font-semibold">Media Link Extractor</h2>
         <p className="text-sm text-gray-400">
-            Extract direct download links from various platforms.
+            Powered by Cobalt API. Supports 50+ platforms including YouTube, Bilibili, TikTok, and more.
         </p>
       </div>
 
@@ -497,7 +528,7 @@ function Downloader() {
             type="text"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            placeholder="Paste media URL here (e.g., YouTube, Twitter, TikTok)..."
+            placeholder="Paste media URL (YouTube, Bilibili, TikTok, Twitter, etc.)..."
             className="flex-1 bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 outline-none focus:border-blue-500 transition-colors"
         />
         <button
