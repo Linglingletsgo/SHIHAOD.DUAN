@@ -23,7 +23,7 @@ export default function HomePage() {
         >
           <DecryptedText
             text="FASHION LAB"
-            speed={180}
+            speed={90}
             maxIterations={15}
             className="text-2xl md:text-3xl font-bold text-zinc-100 cursor-pointer font-mono text-left"
             animateOn="view"
@@ -47,7 +47,7 @@ export default function HomePage() {
             >
               <DecryptedText
                 text="幻"
-                speed={200}
+                speed={100}
                 maxIterations={12}
                 className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
                 animateOn="view"
@@ -63,7 +63,7 @@ export default function HomePage() {
             >
               <DecryptedText
                 text="墙"
-                speed={220}
+                speed={110}
                 maxIterations={12}
                 className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
                 animateOn="view"
@@ -79,7 +79,7 @@ export default function HomePage() {
             >
               <DecryptedText
                 text="灵"
-                speed={280}
+                speed={140}
                 maxIterations={12}
                 className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
                 animateOn="view"
@@ -95,7 +95,7 @@ export default function HomePage() {
             >
               <DecryptedText
                 text="根"
-                speed={320}
+                speed={160}
                 maxIterations={12}
                 className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
                 animateOn="view"
@@ -114,7 +114,7 @@ export default function HomePage() {
         >
           <DecryptedText
             text="OTHER WORKS"
-            speed={240}
+            speed={120}
             maxIterations={15}
             className="text-2xl md:text-3xl font-bold text-zinc-100 font-mono text-left"
             animateOn="view"
@@ -138,7 +138,7 @@ export default function HomePage() {
             >
               <DecryptedText
                 text="WaveSync"
-                speed={400}
+                speed={200}
                 maxIterations={12}
                 className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
                 animateOn="view"
