@@ -510,10 +510,33 @@ export default function SpectraFilmPage() {
                     onChange={(e) => setProfileId(e.target.value)}
                     className="w-full bg-zinc-900/50 text-zinc-100 border border-zinc-800 rounded-xl px-5 py-4 text-sm font-medium appearance-none cursor-pointer focus:outline-none focus:border-zinc-600 hover:border-zinc-700 transition-all font-sans"
                   >
-                    {profilesList.map((id) => (
-                      <option key={id} value={id}>
-                        {getProfileLabel(id)}
-                      </option>
+                    {Object.entries(
+                      profilesList.reduce((acc, id) => {
+                        let category = "Color Negative (Consumer)";
+                        if (id.includes("portra") || id.includes("ektar") || id.includes("pro_400h")) {
+                          category = "Color Negative (Pro)";
+                        } else if (id.includes("provia") || id.includes("velvia") || id.includes("ektachrome")) {
+                          category = "Slide / Reversal";
+                        } else if (id.includes("vision3")) {
+                          category = "Motion Picture";
+                        }
+                        
+                        if (!acc[category]) acc[category] = [];
+                        acc[category].push(id);
+                        return acc;
+                      }, {} as Record<string, string[]>)
+                    ).sort(([a], [b]) => {
+                      // Custom sort order
+                      const order = ["Color Negative (Pro)", "Color Negative (Consumer)", "Slide / Reversal", "Motion Picture"];
+                      return order.indexOf(a) - order.indexOf(b);
+                    }).map(([category, ids]) => (
+                      <optgroup key={category} label={category} className="bg-zinc-900 text-zinc-500 text-[10px] font-bold tracking-widest uppercase">
+                        {ids.map((id) => (
+                          <option key={id} value={id} className="bg-zinc-900 text-zinc-100 text-sm py-2">
+                            {getProfileLabel(id)}
+                          </option>
+                        ))}
+                      </optgroup>
                     ))}
                   </select>
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-500">
