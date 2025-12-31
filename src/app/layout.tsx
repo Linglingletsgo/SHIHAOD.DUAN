@@ -31,20 +31,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <SplashCursor 
-          SPLAT_RADIUS={0.05}
-          SPLAT_FORCE={1500}
-          DENSITY_DISSIPATION={3.0}
-          VELOCITY_DISSIPATION={2.0}
-          COLOR_UPDATE_SPEED={3}
-        />
-        <ConditionalNavigation />
-        <main>{children}</main>
-        <Analytics />
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body className="antialiased" suppressHydrationWarning>
+        <div className={`${geistSans.variable} ${geistMono.variable}`}>
+          <SplashCursor 
+            SPLAT_RADIUS={0.05}
+            SPLAT_FORCE={1500}
+            DENSITY_DISSIPATION={3.0}
+            VELOCITY_DISSIPATION={2.0}
+            COLOR_UPDATE_SPEED={3}
+          />
+          <ConditionalNavigation />
+          <main>{children}</main>
+          <Analytics />
+        </div>
       </body>
     </html>
   );

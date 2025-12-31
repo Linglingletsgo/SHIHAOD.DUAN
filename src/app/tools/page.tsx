@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FileVideo, MessageSquare } from 'lucide-react';
+import { FileVideo, MessageSquare, Film } from 'lucide-react';
 
 export default function ToolsPage() {
   const tools = [
@@ -12,6 +12,14 @@ export default function ToolsPage() {
       icon: FileVideo,
       href: '/mediatool',
       gradient: 'from-white to-white',
+      available: true,
+    },
+    {
+      id: 'spectrafilm',
+      name: 'Spectrafilm',
+      icon: Film,
+      href: '/spectrafilm',
+      gradient: 'from-zinc-500 to-zinc-800',
       available: true,
     },
     {
