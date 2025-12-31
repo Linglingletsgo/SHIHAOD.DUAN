@@ -28,7 +28,7 @@ export function applyRedHalation(
   b: number, 
   options: HalationOptions
 ): [number, number, number] {
-  const { strength, radius, threshold = 0.6 } = options;
+  const { strength, threshold = 0.6 } = options;
   
   // Halation is primarily in the RED channel
   // and happens in bright areas (highlights)

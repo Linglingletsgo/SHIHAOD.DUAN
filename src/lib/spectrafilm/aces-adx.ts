@@ -14,76 +14,11 @@
  */
 
 type Vector3 = [number, number, number];
-type Matrix3x3 = number[][];
 
-/**
- * Channel Dependent Density to Channel Independent Density
- * Accounts for film dye inter-image effects
- */
-const CDD_TO_CID: Matrix3x3 = [
-  [0.75573, 0.05901, 0.16134],
-  [0.22197, 0.96928, 0.07406],
-  [0.02230, -0.02829, 0.76460]
-];
 
-/**
- * Relative Exposure to ACES (AP0 primaries)
- * Derived from spectral measurements
- */
-const EXP_TO_ACES: Matrix3x3 = [
-  [0.72286, 0.11923, 0.01427],
-  [0.12630, 0.76418, 0.08213],
-  [0.15084, 0.11659, 0.90359]
-];
 
-/**
- * Density to Relative Log Exposure calibration LUT
- * [CID, LogE] pairs
- * Based on Kodak film measurements
- */
-const DENSITY_TO_LOG_EXPOSURE_LUT: [number, number][] = [
-  [-0.190000000000000, -6.000000000000000],
-  [0.010000000000000, -2.721718645000000],
-  [0.028000000000000, -2.521718645000000],
-  [0.054000000000000, -2.321718645000000],
-  [0.095000000000000, -2.121718645000000],
-  [0.145000000000000, -1.921718645000000],
-  [0.220000000000000, -1.721718645000000],
-  [0.300000000000000, -1.521718645000000],
-  [0.400000000000000, -1.321718645000000],
-  [0.500000000000000, -1.121718645000000],
-  [0.600000000000000, -0.926545676714876]
-];
 
-const REF_PT = (7120.0 - 1520.0) / 8000.0 * (100.0 / 55.0) - Math.log10(0.18);
 
-/**
- * Matrix-vector multiplication
- */
-function multiplyMatrixVector(matrix: Matrix3x3, vec: Vector3): Vector3 {
-  return [
-    matrix[0][0] * vec[0] + matrix[0][1] * vec[1] + matrix[0][2] * vec[2],
-    matrix[1][0] * vec[0] + matrix[1][1] * vec[1] + matrix[1][2] * vec[2],
-    matrix[2][0] * vec[0] + matrix[2][1] * vec[1] + matrix[2][2] * vec[2]
-  ];
-}
-
-/**
- * 1D LUT interpolation
- */
-function interpolate1D(lut: [number, number][], x: number): number {
-  if (x <= lut[0][0]) return lut[0][1];
-  if (x >= lut[lut.length - 1][0]) return lut[lut.length - 1][1];
-  
-  for (let i = 0; i < lut.length - 1; i++) {
-    if (x >= lut[i][0] && x < lut[i + 1][0]) {
-      const t = (x - lut[i][0]) / (lut[i + 1][0] - lut[i][0]);
-      return lut[i][1] + t * (lut[i + 1][1] - lut[i][1]);
-    }
-  }
-  
-  return lut[lut.length - 1][1];
-}
 
 /**
  * Convert negative film CMY density to display sRGB

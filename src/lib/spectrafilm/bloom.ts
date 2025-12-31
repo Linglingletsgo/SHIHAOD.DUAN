@@ -20,7 +20,6 @@ function boxBlur(data: Float32Array, width: number, height: number, radius: numb
   if (radius < 1) return data;
   
   const output = new Float32Array(data.length);
-  const size = width * height;
   
   // Horizontal pass
   for (let y = 0; y < height; y++) {
@@ -93,6 +92,12 @@ function downsample(data: Float32Array, width: number, height: number): { data: 
   return { data: output, w: nw, h: nh };
 }
 
+interface PyramidLevel {
+  data: Float32Array;
+  w: number;
+  h: number;
+}
+
 /**
  * Apply Pyramid Bloom to the entire image buffer
  * 
@@ -133,8 +138,8 @@ export function applyPyramidBloom(
   }
 
   // 2. Create Pyramid
-  const levels: any[] = [];
-  let current: any = { data: highlightData, w: width, h: height };
+  const levels: PyramidLevel[] = [];
+  let current: PyramidLevel = { data: highlightData, w: width, h: height };
   
   for (let l = 0; l < weights.length; l++) {
     // Blur current level

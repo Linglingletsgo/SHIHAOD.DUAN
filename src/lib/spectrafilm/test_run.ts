@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import { SimulationEngine } from './engine';
-import { FilmProfile } from '../types';
+import { FilmProfile } from './types';
 
 const profilePath = path.join(process.cwd(), 'data/profiles/kodak_portra_400.json');
 

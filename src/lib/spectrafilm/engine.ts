@@ -1,5 +1,5 @@
 
-import { FilmProfile, Point } from '../types';
+import { FilmProfile, Point } from './types';
 import colorConstants from './data/color_constants.json';
 
 // --- Types ---
@@ -126,7 +126,7 @@ export class SimulationEngine {
     const zeroExp: Vector3 = [0,0,0];
     const logExpZero = this.expose(zeroExp, -20);
     const densityZero = this.develop(logExpZero); 
-    let computedBase = this.scan(densityZero);
+    const computedBase = this.scan(densityZero);
     
     const MIN_VALID_BASE = 0.01; 
     const isSlideFilm = this.filmType === 'reversal';

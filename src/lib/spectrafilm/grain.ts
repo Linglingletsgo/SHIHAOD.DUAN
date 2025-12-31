@@ -28,7 +28,7 @@ export function applyFilmGrain(
   b: number, 
   options: GrainOptions
 ): [number, number, number] {
-  const { iso, strength = 1.0, size = 1.0, monochrome = true } = options;
+  const { iso, strength = 1.0, monochrome = true } = options;
   
   // 1. Calculate base intensity/strength based on ISO
   // Power-law relationship: grain increases with ISO but plateaus
@@ -46,30 +46,7 @@ export function applyFilmGrain(
   
   if (amplitude <= 0) return [r, g, b];
   
-  // 3. Generate Clustered Noise (Silver Halide Approximation)
-  // Instead of per-pixel white noise, we use a multiscale approach to create "clumps"
-  const getClusteredNoise = (x: number, y: number, seed: number) => {
-    // Basic pseudo-random function
-    const hash = (n: number) => {
-      const v = Math.sin(n) * 43758.5453123;
-      return v - Math.floor(v);
-    };
 
-    // Low-frequency noise (clumps)
-    const scale1 = 0.5 * size;
-    const n1 = hash(Math.floor(x * scale1) + Math.floor(y * scale1) * 1234 + seed);
-    
-    // High-frequency noise (details)
-    const scale2 = 1.2 * size;
-    const n2 = hash(Math.floor(x * scale2) + Math.floor(y * scale2) * 5678 + seed * 2);
-    
-    return (n1 * 0.7 + n2 * 0.3 - 0.5) * 2.0;
-  };
-
-  // We need pixel coordinates for clustered noise
-  // Passing them as optional parameters or using a global state is hard in per-pixel loop.
-  // Proxy: use Math.random() as the seed for local clusters
-  const seed = Math.random() * 1000;
   
   if (monochrome) {
     const noise = (Math.random() - 0.5) * 2.0 * amplitude;
@@ -99,7 +76,7 @@ export function applyPhysicalGrain(
   x: number, y: number,
   options: GrainOptions
 ): [number, number, number] {
-  const { iso, strength = 1.0, size = 1.0, monochrome = true } = options;
+  const { iso, strength = 1.0, monochrome = true } = options;
   
   const isoFactor = Math.pow(iso / 200, 0.6);
   const baseStrength = 0.04 * strength * isoFactor;

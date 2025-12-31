@@ -16,9 +16,9 @@ import {
 } from "lucide-react";
 import { SimulationEngine } from "@/lib/spectrafilm/engine";
 import { FilmProfile } from "@/lib/spectrafilm/types";
-// @ts-ignore
+// @ts-expect-error - libraw-mini lacks types
 import UTIF from "utif";
-// @ts-ignore
+// @ts-expect-error - libraw-mini lacks types
 import { LibRaw } from "libraw-mini";
 import { applyToneMapping } from "@/lib/spectrafilm/tonemapping";
 import {
@@ -64,7 +64,7 @@ export default function SpectraFilmPage() {
         setProfilesList(["kodak_portra_400"]);
         if (!profileId) setProfileId("kodak_portra_400");
       });
-  }, []);
+  }, [profileId]);
 
   useEffect(() => {
     async function loadProfileData(id: string) {
@@ -124,14 +124,14 @@ export default function SpectraFilmPage() {
         ) {
           throw new Error("LibRaw open failed with code: " + openResult);
         }
-        const memImg = await libraw.getimage(
-          (progress: number, msg: string) => {}
-        );
+        const memImg = (await libraw.getimage(
+          () => {}
+        )) as { width: number; height: number; data: Uint8Array };
         if (!memImg || !memImg.data)
           throw new Error("LibRaw failed to decode image.");
         width = memImg.width;
         height = memImg.height;
-        const rawData = memImg.data;
+        const rawData = memImg.data as Uint8Array;
         const totalPixels = width * height;
         pixelData = new Float32Array(totalPixels * 4);
         for (let i = 0; i < totalPixels; i++) {
@@ -181,10 +181,9 @@ export default function SpectraFilmPage() {
       }
 
       const totalExposure = exposure + autoExposureBias;
-      let inputSatSum = 0,
-        outputSatSum = 0,
-        satAfterInvert = 0,
-        pixelCount = 0;
+      let inputSatSum = 0;
+      let satAfterInvert = 0;
+      let pixelCount = 0;
 
       const getSaturation = (r: number, g: number, b: number): number => {
         const max = Math.max(r, g, b),
@@ -349,9 +348,9 @@ export default function SpectraFilmPage() {
         radius: 2.0,
       });
       for (let i = 0; i < pixelData.length; i += 4) {
-        let R_l = bloomedBuffer[i],
-          G_l = bloomedBuffer[i + 1],
-          B_l = bloomedBuffer[i + 2];
+        const R_l = bloomedBuffer[i];
+        const G_l = bloomedBuffer[i + 1];
+        const B_l = bloomedBuffer[i + 2];
         let R_d, G_d, B_d;
         if (useLinear || !useACES) {
           R_d = Math.pow(Math.max(0, Math.min(1, R_l)), 1 / 2.2);
