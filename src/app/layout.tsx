@@ -35,8 +35,8 @@ export default function RootLayout({
       <body className="antialiased" suppressHydrationWarning>
         <div className={`${geistSans.variable} ${geistMono.variable}`}>
           <SplashCursor 
-            SPLAT_RADIUS={0.05}
-            SPLAT_FORCE={1500}
+            SPLAT_RADIUS={0.01}
+            SPLAT_FORCE={1000}
             DENSITY_DISSIPATION={3.0}
             VELOCITY_DISSIPATION={2.0}
             COLOR_UPDATE_SPEED={3}
