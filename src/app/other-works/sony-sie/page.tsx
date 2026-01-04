@@ -24,14 +24,33 @@ export default function SonySIEPage() {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <iframe 
-            src="https://www.youtube.com/embed/mkeYKIexlx8" 
-            title="LCF CC SonySIE Project" 
+            src="https://www.youtube.com/embed/mkeYKIexlx8?si=eQiLjIL50RJi7PE5" 
+            title="YouTube video player" 
             frameBorder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerPolicy="strict-origin-when-cross-origin" 
             allowFullScreen
             className="w-full h-full rounded-lg shadow-2xl"
           ></iframe>
+        </motion.div>
+
+        <motion.div 
+          className="text-center mt-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+            <p className="text-zinc-500 text-sm mb-3">
+                如果视频无法播放 (Refused to connect)，请点击下方链接查看
+            </p>
+            <a 
+                href="https://youtu.be/mkeYKIexlx8" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-2 border border-zinc-800 bg-zinc-900/50 rounded-full hover:bg-zinc-800 transition-all text-zinc-400 hover:text-white text-sm hover:scale-105"
+            >
+                在 YouTube 上观看 →
+            </a>
         </motion.div>
       </div>
     </div>
