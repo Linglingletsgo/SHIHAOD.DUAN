@@ -931,7 +931,87 @@ I can't deny我并不在乎
 (I became wise)
 I be like 光 我拨动了日晷
 (I be like light, moving the sundial)` // TODO: 用户可以在这里编辑歌词
-        }
+        },
+        {
+          id: 11,
+          title: '中性变化',
+          duration: '2:12',
+          src: '/audio/wodexinjiaorongziman/中性变化.mp3',
+          lyrics: `我逐渐变得成熟
+是宽容人的低劣
+以前我眼神踌躇
+现在我装得机械
+我得大展宏图
+I'd make a ****ing billion
+我得让她心悦诚服
+不停改造我的基建
+我不该和她捆绑
+过去像是围挡
+有些话我说不出
+是她的心里纯良
+人格没法存档
+我不知往哪成长
+这是我生命的长度
+所以我才没法衡量
+我生命的长度
+我不会永远藏住
+一个主页没法囊括
+是不只有一条路
+是我能接纳别人
+我也想宽容自己
+我把它变多选题
+是我在追求效率
+别人不能理解的
+Babe now you knock it up
+You can test me I dont care
+翻看我心里的底色
+Memory be like Lollipop
+我可以 burn it up
+我的心像玻璃末
+看起来也是得体的
+你就别问我以后
+你就让我自己走
+我不希望改变你
+哪怕你能够治愈我
+自尊像是城墙
+这就是遗憾吗
+不停敲打我的门梁
+我打开窗户乘凉
+今天又不下雨
+怎么天空是灰的
+我走的太远
+你就 set me free
+你就 set me free
+这感觉我能体会
+就像沙滩不说话
+也想看着你飞
+你就 set me free
+这感觉我能体会
+就像天光不作答
+压弯你的脊椎
+去迎接万里晴空
+宁可你变坏我也不想你变平庸
+就像过去的日子我不再拿笔记录
+我不再表达观点我只做高雅艺术
+从人群中挤过我可以操弄笔墨
+不再点亮明灯任他被人流给洗落
+别人不能理解的
+Babe now you knock it up
+You can test me I dont care
+翻看我心里的底色
+Memory be like Lollipop
+我可以 burn it up
+我的心像玻璃末
+看起来也是得体的
+你就别问我以后
+你就让我自己走
+我不希望改变你
+哪怕你能够治愈我
+你就别问我以后
+你就别再质疑我
+我也不能改变你
+你也不能够治愈我` // TODO: 用户可以在这里编辑歌词
+        },
     ]
   }
 };

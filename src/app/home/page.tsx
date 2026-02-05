@@ -161,6 +161,22 @@ export default function HomePage() {
                 revealDirection="right"
               />
             </motion.div>
+
+            <motion.div
+              className="cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.location.href = 'https://digitalalchemy.dominicduan.com'}
+            >
+              <DecryptedText
+                text="Digital Alchemy"
+                speed={200}
+                maxIterations={12}
+                className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
+                animateOn="view"
+                revealDirection="right"
+              />
+            </motion.div>
           </div>
         </motion.div>
       </div>
