@@ -32,9 +32,9 @@ const albums = [
     cover: '/images/yekongduzou.png',
     songs: [
       { id: 3, title: '夜空独奏艺术家', duration: '4:05', src: '/audio/yekongduzou/夜空独奏艺术家.mp3' },
-      { id: 10, title: 'Limited Creativity', duration: '3:05', src: '/audio/yekongduzou/Limited Creativity.mp3' },
-      { id: 11, title: 'B Side 1', duration: '2:53', src: '/audio/yekongduzou/B Side 1.mp3' },
-      { id: 12, title: '一起面对海浪吧', duration: '3:03', src: '/audio/yekongduzou/一起面对海浪吧.mp3' }
+      { id: 4, title: 'Limited Creativity', duration: '3:05', src: '/audio/yekongduzou/Limited Creativity.mp3' },
+      { id: 5, title: 'B Side 1', duration: '2:53', src: '/audio/yekongduzou/B Side 1.mp3' },
+      { id: 6, title: '一起面对海浪吧', duration: '3:03', src: '/audio/yekongduzou/一起面对海浪吧.mp3' }
     ]
   },
   {
@@ -43,7 +43,7 @@ const albums = [
     artist: '2022-10-27',
     cover: '/images/suifengbaichilou.png',
     songs: [
-      { id: 4, title: '随风百尺楼', duration: '2:25', src: '/audio/suifengbaichilou/随风百尺楼.mp3' }
+      { id: 7, title: '随风百尺楼', duration: '2:25', src: '/audio/suifengbaichilou/随风百尺楼.mp3' }
     ]
   },
   {
@@ -52,7 +52,7 @@ const albums = [
     artist: '2023-01-06',
     cover: '/images/Ego to Ego.png',
     songs: [
-      { id: 5, title: 'Ego to Ego', duration: '3:01', src: '/audio/egotoego/Ego to Ego.mp3' }
+      { id: 8, title: 'Ego to Ego', duration: '3:01', src: '/audio/egotoego/Ego to Ego.mp3' }
     ]
   },
   {
@@ -61,7 +61,7 @@ const albums = [
     artist: '2023-07-26',
     cover: '/images/zhaimen.png',
     songs: [
-      { id: 6, title: '要进窄门', duration: '2:16', src: '/audio/yaojinzhaimen/要进窄门.mp3' }
+      { id: 9, title: '要进窄门', duration: '2:16', src: '/audio/yaojinzhaimen/要进窄门.mp3' }
     ]
   },
   {
@@ -70,7 +70,7 @@ const albums = [
     artist: '2024-08-13',
     cover: '/images/wulian.png',
     songs: [
-      { id: 7, title: '五联 Freestyle', duration: '2:17', src: '/audio/wulian/五联Freestyle.mp3' }
+      { id: 10, title: '五联 Freestyle', duration: '2:17', src: '/audio/wulian/五联Freestyle.mp3' }
     ]
   },
   {
@@ -79,10 +79,10 @@ const albums = [
     artist: '2025-08-26',
     cover: '/images/wodexinjiaorongziman.png',
     songs: [
-      { id: 8, title: '我的心骄荣自满 Intro', duration: '2:28', src: '/audio/wodexinjiaorongziman/01 - Mo Ling - 我的心骄荣自满重制.mp3' },
-      { id: 9, title: '长出来', duration: '2:31', src: '/audio/wodexinjiaorongziman/02 - Mo Ling - 长出来.mp3' },
-      { id: 10, title: 'Egotism', duration: '2:28', src: '/audio/wodexinjiaorongziman/03 - Mo Ling - egotism.mp3' },
-      { id: 11, title: '中性变化', duration: '2:12', src: '/audio/wodexinjiaorongziman/中性变化.mp3' }
+      { id: 11, title: '我的心骄荣自满 Intro', duration: '2:28', src: '/audio/wodexinjiaorongziman/01 - Mo Ling - 我的心骄荣自满重制.mp3' },
+      { id: 12, title: '长出来', duration: '2:31', src: '/audio/wodexinjiaorongziman/02 - Mo Ling - 长出来.mp3' },
+      { id: 13, title: 'Egotism', duration: '2:28', src: '/audio/wodexinjiaorongziman/03 - Mo Ling - egotism.mp3' },
+      { id: 14, title: '中性变化', duration: '2:12', src: '/audio/wodexinjiaorongziman/中性变化.mp3' }
     ]
   }
 ];

@@ -248,7 +248,7 @@ Rapper type shit我尽量都免除
 我把他们的太阳都吹灭` // TODO: 用户可以在这里编辑歌词
         },
         { 
-          id: 10, 
+          id: 4, 
           title: 'Limited Creativity', 
           duration: '3:05',
           src: '/audio/yekongduzou/Limited Creativity.mp3',
@@ -322,7 +322,7 @@ I'm limited confused 是不是什么都敢说
 如果这是真的应该 等我醒了说` // TODO: 用户可以在这里编辑歌词
         },
         { 
-          id: 11, 
+          id: 5, 
           title: 'B Side 1', 
           duration: '2:53',
           src: '/audio/yekongduzou/B Side 1.mp3',
@@ -396,7 +396,7 @@ Gotta boom boom gotta roll roll
 两手空空 gotta gogo` // TODO: 用户可以在这里编辑歌词
         },
         { 
-          id: 12, 
+          id: 6, 
           title: '一起面对海浪吧', 
           duration: '3:03',
           src: '/audio/yekongduzou/一起面对海浪吧.mp3',
@@ -469,7 +469,7 @@ Gotta boom boom gotta roll roll
     description: '“这次不会继续躲在楼上观景观。”',
     songs: [
         { 
-          id: 4, 
+          id: 7, 
           title: '随风百尺楼', 
           duration: '2:25',
           src: '/audio/suifengbaichilou/随风百尺楼.mp3',
@@ -518,7 +518,7 @@ Gotta boom boom gotta roll roll
     description: '“你眼泪滴的彩虹像是和神立的约。”',
     songs: [
         { 
-          id: 5, 
+          id: 8, 
           title: 'Ego to Ego', 
           duration: '3:01',
           src: '/audio/egotoego/Ego to Ego.mp3',
@@ -595,7 +595,7 @@ Gotta boom boom gotta roll roll
     description: 'My jesus 提醒我要进窄门',
     songs: [
         { 
-          id: 6, 
+          id: 9, 
           title: '要进窄门', 
           duration: '2:16',
           src: '/audio/yaojinzhaimen/要进窄门.mp3',
@@ -647,7 +647,7 @@ Oh my jesus 提醒我要进窄门` // TODO: 用户可以在这里编辑歌词
     description: '“我和你没办法分离这情况没办法预演。”',
     songs: [
         { 
-          id: 7, 
+          id: 10, 
           title: '五联 Freestyle', 
           duration: '2:17',
           src: '/audio/wulian/五联Freestyle.mp3',
@@ -702,7 +702,7 @@ Be the best writer 不止是在华语届
     description: '“不在这敲锣打鼓，以后我漂泊四海，不理解他们的苦痛我的心骄荣自满。”',
     songs: [
         { 
-          id: 8, 
+          id: 11, 
           title: '我的心骄荣自满 Intro', 
           duration: '2:28',
           src: '/audio/wodexinjiaorongziman/01 - Mo Ling - 我的心骄荣自满重制.mp3',
@@ -739,7 +739,7 @@ If i got a choice i wont take my child back
 我的心骄荣自满` // TODO: 用户可以在这里编辑歌词
         },
         { 
-          id: 9, 
+          id: 12, 
           title: '长出来', 
           duration: '2:31',
           src: '/audio/wodexinjiaorongziman/02 - Mo Ling - 长出来.mp3',
@@ -796,7 +796,7 @@ Know’in im ready to fly
 我在娓娓讲我的水北流` // TODO: 用户可以在这里编辑歌词
         },
         {
-          id: 10,
+          id: 13,
           title: 'Egotism',
           duration: '2:28',
           src: '/audio/wodexinjiaorongziman/03 - Mo Ling - egotism.mp3',
@@ -933,7 +933,7 @@ I be like 光 我拨动了日晷
 (I be like light, moving the sundial)` // TODO: 用户可以在这里编辑歌词
         },
         {
-          id: 11,
+          id: 14,
           title: '中性变化',
           duration: '2:12',
           src: '/audio/wodexinjiaorongziman/中性变化.mp3',
