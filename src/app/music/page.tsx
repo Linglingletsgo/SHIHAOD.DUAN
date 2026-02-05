@@ -84,6 +84,15 @@ const albums = [
       { id: 13, title: 'Egotism', duration: '2:28', src: '/audio/wodexinjiaorongziman/03 - Mo Ling - egotism.mp3' },
       { id: 14, title: '中性变化', duration: '2:12', src: '/audio/wodexinjiaorongziman/中性变化.mp3' }
     ]
+  },
+  {
+    id: 9,
+    title: '冬村 Freestyle',
+    artist: '2026-1-7',
+    cover: '/images/dongcun.png',
+    songs: [
+      { id: 15, title: '冬村 Freestyle', duration: '01:52', src: '/audio/dongcun/冬村.mp3' }
+    ]
   }
 ];
 

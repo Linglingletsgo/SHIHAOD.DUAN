@@ -1013,6 +1013,87 @@ Memory be like Lollipop
 你也不能够治愈我` // TODO: 用户可以在这里编辑歌词
         },
     ]
+  },
+  9: {
+    id: 9,
+    title: '冬村 Freestyle',
+    artist: '张嗣泳',
+    cover: '/images/dongcun.png',
+    year: '2026',
+    description: '夏令时最终日 The day i was 22',
+    songs: [
+        { 
+          id: 15, 
+          title: '冬村 Freestyle', 
+          duration: '01:52',
+          src: '/audio/dongcun/冬村.mp3',
+          lyrics: `采样： See Ya There- Genesis Owusu
+夏令时最终日
+The day i was 22
+换一处体会冬至
+用白天跟我换礼物
+Kinda love with season
+我和夜晚关系户
+你问我为何不疲惫
+我背后有 family push
+面对人生上行
+我心里经常混乱
+顺意来时忘情
+可能我需要诊断
+日出时风静浪平
+我的心里滚烫
+这天气难得放晴
+我才更需要忍耐
+我的生活鲜艳
+让不安飞灰湮灭
+我懂得什么是尊重
+才和他们有边界
+可我依然保有偏见
+心里面的天堑
+我一不小心宣泄
+伴奏像点的烟叶
+我保有偏见
+是因为我被偏见洗刷
+Guilty survivor
+故事里会有你吗
+我觉得有人不太对
+但总会给我启发
+我必须组织语言
+这是纽带密码
+我想要变得 intelligent
+是导火索是探索欲
+但收敛你的欲望因为
+Attention is all you need
+记录生活 recording
+扫 QR Code 掏手机
+我没法摆脱人情味
+这吸引力像老友记
+你知道我挑的对
+你可以说我好手气
+你看到我掉了队
+可以说我眼高手低
+我和你没有方向感
+我和你雨后会有期
+和你十年又十年
+我和你说 now you dig
+直挂云帆济沧海
+我像一个水手
+你问 what's going on
+我就会在这里回头
+我过去山连山连山
+记忆里风拂垂柳
+年年轻巧到年关
+以后星连着北斗
+我的想法应了验
+我家人才放心得下
+我没有时间情绪浪费
+才华准给我的假
+我让她住进敬老院
+她相信我说的话
+我说我会过得好
+我说你得舍得花` // TODO: 用户可以在这里编辑歌词
+        }
+    ]
   }
 };
 
