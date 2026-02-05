@@ -81,7 +81,8 @@ const albums = [
     songs: [
       { id: 8, title: '我的心骄荣自满 Intro', duration: '2:28', src: '/audio/wodexinjiaorongziman/01 - Mo Ling - 我的心骄荣自满重制.mp3' },
       { id: 9, title: '长出来', duration: '2:31', src: '/audio/wodexinjiaorongziman/02 - Mo Ling - 长出来.mp3' },
-      { id: 10, title: 'Egotism', duration: '2:28', src: '/audio/wodexinjiaorongziman/03 - Mo Ling - egotism.mp3' }
+      { id: 10, title: 'Egotism', duration: '2:28', src: '/audio/wodexinjiaorongziman/03 - Mo Ling - egotism.mp3' },
+      { id: 11, title: '中性变化', duration: '2:12', src: '/audio/wodexinjiaorongziman/中性变化.mp3' }
     ]
   }
 ];
