@@ -1020,7 +1020,7 @@ Memory be like Lollipop
     artist: '张嗣泳',
     cover: '/images/dongcun.png',
     year: '2026',
-    description: '夏令时最终日 The day i was 22',
+    description: 'Attention is all you need.',
     songs: [
         { 
           id: 15, 
