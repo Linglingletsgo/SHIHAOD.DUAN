@@ -3,7 +3,7 @@
 ## Snapshot
 - Date: 2026-04-25
 - Project root: `/Users/dominicduan/_gitdevelop/my-nextjs-app`
-- Current status: Next.js personal portfolio site for Shihao D. Duan / Dominic Duan. The SonySIE page was updated in this session to remove the embedded YouTube iframe, keep a YouTube outbound link, and add the requested Introduction copy.
+- Current status: Next.js personal portfolio site for Shihao D. Duan / Dominic Duan. The PORTFOLIO section now includes `GLITCH IN THE HIVE`, linked to a new project detail page with Introduction, footage previews, credits, and a YouTube outbound link.
 
 ## Project State
 - Key files and folders:
@@ -16,6 +16,7 @@
   - `src/app/projects/project-a|b|c|d/page.tsx`: Fashion Lab projects using shared `PDFViewer`; titles include `幻`, `墙`, `灵`, `根`.
   - `src/app/other-works/work-1/page.tsx`: WaveSync video page.
   - `src/app/other-works/sony-sie/page.tsx`: LCF CC SonySIE project page with title, Introduction text, and outbound YouTube link only; no embedded iframe.
+  - `src/app/other-works/glitch-in-the-hive/page.tsx`: GLITCH IN THE HIVE project page with Introduction text, footage preview grid, production credits, and outbound YouTube link `https://youtu.be/5CudZJwybjg`.
   - `src/app/tools/page.tsx`: tool hub linking to Media Tool, Spectrafilm, and Rhymer.
   - `src/app/mediatool/page.tsx`: browser-local FFmpeg.wasm media processor for conversion, resize, audio extraction, compression, GIF, and screenshot.
   - `src/app/spectrafilm/page.tsx` and `src/lib/spectrafilm/*`: RAW-only film simulation pipeline using `libraw-mini`, film profiles, tone mapping, dye coupling, grain, halation, and bloom.
@@ -31,6 +32,7 @@
   - `public/pdfs/`: `huan.pdf`, `qiang.pdf`, `ling.pdf`, `gen.pdf`.
   - `public/profiles/`: Spectrafilm film profile JSON files plus `index.json`.
   - `public/data/`: rhyme dictionaries `phrase_dict.bin` and `en_rhyme_dict.bin`.
+  - `public/images/footage_GIH/`: GLITCH IN THE HIVE PNG footage stills used by the project detail page; files are named `01.png` through `12.png` in display order.
 - Missing or empty areas:
   - `api/` directory exists but appears empty from top-level listing.
   - Several album and project data structures are hard-coded in page components; no CMS or database is present.
@@ -51,6 +53,7 @@
   - Created project-local memory at `.agent/memory.md` because it was missing.
   - For the SonySIE page, removed the embedded YouTube iframe instead of replacing it with another embed, matching the request to keep only the YouTube jump link.
   - Added the requested Introduction copy as three paragraph strings rendered under the page title.
+  - For GLITCH IN THE HIVE, added a detail page rather than linking `/home` directly to YouTube so the supplied Introduction and credits have a dedicated display surface.
   - Treat the site as a personal portfolio plus creative toolkit, not just a generic Next.js app.
 - Paths or tools selected:
   - Use `npm run dev` for local development.
@@ -72,9 +75,21 @@
   - `npm run type-check`
   - `npm run lint`
   - `npm run build`
+  - `npx eslint src/app/home/page.tsx src/app/other-works/glitch-in-the-hive/page.tsx`
+  - `git diff --check -- src/app/home/page.tsx src/app/other-works/glitch-in-the-hive/page.tsx`
+  - `npm run dev`
+  - `curl -I http://localhost:3000/home`
+  - `curl -I http://localhost:3000/other-works/glitch-in-the-hive`
+  - `npx eslint src/app/other-works/glitch-in-the-hive/page.tsx`
+  - `git diff --check -- src/app/other-works/glitch-in-the-hive/page.tsx`
+  - Renamed GLITCH IN THE HIVE footage files from long exported frame names to `01.png` through `12.png`.
 - Verification status:
   - Target page lint passed: `npx eslint src/app/other-works/sony-sie/page.tsx`.
+  - GLITCH IN THE HIVE changes passed targeted lint: `npx eslint src/app/home/page.tsx src/app/other-works/glitch-in-the-hive/page.tsx`.
+  - GLITCH IN THE HIVE footage update passed targeted lint: `npx eslint src/app/other-works/glitch-in-the-hive/page.tsx`.
   - TypeScript passed: `npm run type-check`.
+  - Whitespace check passed for the GLITCH IN THE HIVE changes and footage update.
+  - Dev server started at `http://localhost:3000`; `/home` and `/other-works/glitch-in-the-hive` returned HTTP 200.
   - Full `npm run lint` currently fails on existing unrelated issues in `public/pdf.worker.min.js` and warnings in `src/app/mediatool/page.tsx`; no target-page lint errors were found.
   - `npm run build` was attempted but remained stuck at "Creating an optimized production build ..." for an extended period; the stuck process was terminated and exited with code 143.
 
