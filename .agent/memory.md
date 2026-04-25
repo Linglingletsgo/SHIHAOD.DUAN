@@ -3,13 +3,13 @@
 ## Snapshot
 - Date: 2026-04-25
 - Project root: `/Users/dominicduan/_gitdevelop/my-nextjs-app`
-- Current status: Next.js personal portfolio site for Shihao D. Duan / Dominic Duan. The PORTFOLIO section now includes `GLITCH IN THE HIVE`, linked to a new project detail page with Introduction, footage previews, credits, and a YouTube outbound link.
+- Current status: Next.js personal portfolio site for Shihao D. Duan / Dominic Duan. The top navigation now hides the `/music` and `/misc` menu entries while keeping those pages and routes intact.
 
 ## Project State
 - Key files and folders:
   - `src/app/page.tsx`: landing page with black full-screen `LiquidEther` background and looping `TextType` title "SHIHAO D. DUAN"; click navigates to `/home`.
   - `src/app/home/page.tsx`: main directory page with animated/decrypted text links to portfolio works, Fashion Lab projects, music, tools, misc, and about via the top nav.
-  - `src/components/Navigation.tsx` and `src/components/ConditionalNavigation.tsx`: global navigation is hidden on `/`, shown elsewhere. Nav labels are bilingual: HOME, ALBUMS, MISC, TOOLS, ABOUT.
+  - `src/components/Navigation.tsx` and `src/components/ConditionalNavigation.tsx`: global navigation is hidden on `/`, shown elsewhere. Visible nav labels are bilingual: HOME, TOOLS, ABOUT. `/music` and `/misc` remain valid pages but are not shown in the top menu.
   - `src/app/about/page.tsx`: profile page with portrait, bio ("Fashion Designer & Music Producer & Interdiscipline Artist"), education, email, Instagram, LinkedIn, and NetEase Cloud Music links.
   - `src/app/music/page.tsx` and `src/app/music/album/[id]/page.tsx`: music portfolio for artist `张嗣泳`, with album covers, audio paths, durations, descriptions, and lyrics hard-coded in page files.
   - `src/app/misc/page.tsx` and `src/app/misc/night-moon/page.tsx`: personal writing / fragments, including longer reflective prose under "夜月沉入我的海".
@@ -54,6 +54,7 @@
   - For the SonySIE page, removed the embedded YouTube iframe instead of replacing it with another embed, matching the request to keep only the YouTube jump link.
   - Added the requested Introduction copy as three paragraph strings rendered under the page title.
   - For GLITCH IN THE HIVE, added a detail page rather than linking `/home` directly to YouTube so the supplied Introduction and credits have a dedicated display surface.
+  - For the top navigation, removed only the `/music` and `/misc` entries from the nav item array; page files and route contents were left untouched.
   - Treat the site as a personal portfolio plus creative toolkit, not just a generic Next.js app.
 - Paths or tools selected:
   - Use `npm run dev` for local development.
@@ -83,10 +84,12 @@
   - `npx eslint src/app/other-works/glitch-in-the-hive/page.tsx`
   - `git diff --check -- src/app/other-works/glitch-in-the-hive/page.tsx`
   - Renamed GLITCH IN THE HIVE footage files from long exported frame names to `01.png` through `12.png`.
+  - `npx eslint src/components/Navigation.tsx`
 - Verification status:
   - Target page lint passed: `npx eslint src/app/other-works/sony-sie/page.tsx`.
   - GLITCH IN THE HIVE changes passed targeted lint: `npx eslint src/app/home/page.tsx src/app/other-works/glitch-in-the-hive/page.tsx`.
   - GLITCH IN THE HIVE footage update passed targeted lint: `npx eslint src/app/other-works/glitch-in-the-hive/page.tsx`.
+  - Navigation update passed targeted lint: `npx eslint src/components/Navigation.tsx`.
   - TypeScript passed: `npm run type-check`.
   - Whitespace check passed for the GLITCH IN THE HIVE changes and footage update.
   - Dev server started at `http://localhost:3000`; `/home` and `/other-works/glitch-in-the-hive` returned HTTP 200.
