@@ -4,11 +4,63 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import DecryptedText from '@/components/DecryptedText';
 
+type HomeLinkItem = {
+  text: string;
+  href: string;
+  revealDirection: 'left' | 'right';
+  external?: boolean;
+};
+
+const portfolioItems: HomeLinkItem[] = [
+  { text: 'WaveSync', href: '/other-works/work-1', revealDirection: 'right' },
+  { text: 'LCF CC SonySIE Project', href: '/other-works/sony-sie', revealDirection: 'right' },
+  { text: 'GLITCH IN THE HIVE', href: '/other-works/glitch-in-the-hive', revealDirection: 'right' },
+  { text: 'Digital Alchemy', href: 'https://digitalalchemy.dominicduan.com', revealDirection: 'right', external: true },
+];
+
+const fashionLabItems: HomeLinkItem[] = [
+  { text: '幻', href: '/projects/project-a', revealDirection: 'left' },
+  { text: '墙', href: '/projects/project-b', revealDirection: 'left' },
+  { text: '灵', href: '/projects/project-c', revealDirection: 'left' },
+  { text: '根', href: '/projects/project-d', revealDirection: 'left' },
+];
+
+function HomeLink({
+  item,
+  onNavigate,
+}: {
+  item: HomeLinkItem;
+  onNavigate: (item: HomeLinkItem) => void;
+}) {
+  return (
+    <motion.div
+      className="cursor-pointer"
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      onClick={() => onNavigate(item)}
+    >
+      <DecryptedText
+        text={item.text}
+        speed={100}
+        maxIterations={12}
+        className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
+        animateOn="view"
+        revealDirection={item.revealDirection}
+      />
+    </motion.div>
+  );
+}
+
 export default function HomePage() {
   const router = useRouter();
 
-  const handleNavigation = (href: string) => {
-    router.push(href);
+  const handleNavigation = (item: HomeLinkItem) => {
+    if (item.external) {
+      window.location.href = item.href;
+      return;
+    }
+
+    router.push(item.href);
   };
 
   return (
@@ -39,69 +91,9 @@ export default function HomePage() {
           transition={{ duration: 0.8, delay: 0.3 }}
         >
           <div className="space-y-3">
-            <motion.div
-              className="cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleNavigation('/other-works/work-1')}
-            >
-              <DecryptedText
-                text="WaveSync"
-                speed={100}
-                maxIterations={12}
-                className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
-                animateOn="view"
-                revealDirection="right"
-              />
-            </motion.div>
-
-            <motion.div
-              className="cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleNavigation('/other-works/sony-sie')}
-            >
-              <DecryptedText
-                text="LCF CC SonySIE Project"
-                speed={100}
-                maxIterations={12}
-                className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
-                animateOn="view"
-                revealDirection="right"
-              />
-            </motion.div>
-
-            <motion.div
-              className="cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleNavigation('/other-works/glitch-in-the-hive')}
-            >
-              <DecryptedText
-                text="GLITCH IN THE HIVE"
-                speed={100}
-                maxIterations={12}
-                className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
-                animateOn="view"
-                revealDirection="right"
-              />
-            </motion.div>
-
-            <motion.div
-              className="cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => window.location.href = 'https://digitalalchemy.dominicduan.com'}
-            >
-              <DecryptedText
-                text="Digital Alchemy"
-                speed={100}
-                maxIterations={12}
-                className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
-                animateOn="view"
-                revealDirection="right"
-              />
-            </motion.div>
+            {portfolioItems.map((item) => (
+              <HomeLink key={item.href} item={item} onNavigate={handleNavigation} />
+            ))}
           </div>
         </motion.div>
 
@@ -130,69 +122,9 @@ export default function HomePage() {
           transition={{ duration: 0.8, delay: 0.7 }}
         >
           <div className="space-y-3">
-            <motion.div
-              className="cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleNavigation('/projects/project-a')}
-            >
-              <DecryptedText
-                text="幻"
-                speed={100}
-                maxIterations={12}
-                className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
-                animateOn="view"
-                revealDirection="left"
-              />
-            </motion.div>
-            
-            <motion.div
-              className="cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleNavigation('/projects/project-b')}
-            >
-              <DecryptedText
-                text="墙"
-                speed={100}
-                maxIterations={12}
-                className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
-                animateOn="view"
-                revealDirection="left"
-              />
-            </motion.div>
-            
-            <motion.div
-              className="cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleNavigation('/projects/project-c')}
-            >
-              <DecryptedText
-                text="灵"
-                speed={100}
-                maxIterations={12}
-                className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
-                animateOn="view"
-                revealDirection="left"
-              />
-            </motion.div>
-            
-            <motion.div
-              className="cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => handleNavigation('/projects/project-d')}
-            >
-              <DecryptedText
-                text="根"
-                speed={100}
-                maxIterations={12}
-                className="text-base text-zinc-300 hover:text-white transition-colors font-mono text-left"
-                animateOn="view"
-                revealDirection="left"
-              />
-            </motion.div>
+            {fashionLabItems.map((item) => (
+              <HomeLink key={item.href} item={item} onNavigate={handleNavigation} />
+            ))}
           </div>
         </motion.div>
       </div>

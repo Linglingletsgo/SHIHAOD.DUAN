@@ -1,9 +1,20 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { FFmpeg } from '@ffmpeg/ffmpeg';
-import { toBlobURL, fetchFile } from '@ffmpeg/util';
-import { Upload, Download, Play, FileVideo, Loader2, AlertCircle, CheckCircle2 } from 'lucide-react';
+import type { FFmpeg } from '@ffmpeg/ffmpeg';
+import { Upload, Download, Play, FileVideo, Loader2, CheckCircle2 } from 'lucide-react';
+
+type Mode = 'convert' | 'resize' | 'audio' | 'compress' | 'gif' | 'screenshot';
+
+const audioModes = [{ id: 'convert', label: 'Convert Format' }];
+const videoModes = [
+  { id: 'convert', label: 'Convert Format' },
+  { id: 'resize', label: 'Resize' },
+  { id: 'audio', label: 'Extract Audio' },
+  { id: 'compress', label: 'Compress' },
+  { id: 'gif', label: 'Make GIF' },
+  { id: 'screenshot', label: 'Screenshot' },
+];
 
 export default function MediaToolPage() {
   return (
@@ -26,7 +37,7 @@ export default function MediaToolPage() {
 
 function VideoProcessor() {
   const [loaded, setLoaded] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const ffmpegRef = useRef<FFmpeg | null>(null);
   const messageRef = useRef<HTMLParagraphElement | null>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -36,8 +47,6 @@ function VideoProcessor() {
   const [outputUrl, setOutputUrl] = useState<string | null>(null);
   const [outputExt, setOutputExt] = useState('mp4');
   
-  // Modes
-  type Mode = 'convert' | 'resize' | 'audio' | 'compress' | 'gif' | 'screenshot';
   const [mode, setMode] = useState<Mode>('convert');
 
   // Settings
@@ -62,9 +71,15 @@ function VideoProcessor() {
     }
   };
 
-  const load = async () => {
-    setIsLoading(true);
+  const load = async (markLoading = true) => {
+    if (markLoading) {
+      setIsLoading(true);
+    }
     const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd';
+    const [{ FFmpeg }, { toBlobURL }] = await Promise.all([
+      import('@ffmpeg/ffmpeg'),
+      import('@ffmpeg/util'),
+    ]);
     
     if (!ffmpegRef.current) {
         ffmpegRef.current = new FFmpeg();
@@ -99,6 +114,7 @@ function VideoProcessor() {
     if (!file || !ffmpegRef.current) return;
     
     const ffmpeg = ffmpegRef.current;
+    const { fetchFile } = await import('@ffmpeg/util');
     setStatus('Processing...');
     setOutputUrl(null);
     setProgress(0);
@@ -164,19 +180,12 @@ function VideoProcessor() {
   };
 
   useEffect(() => {
-    load();
+    queueMicrotask(() => {
+      load(false);
+    });
   }, []);
 
-  const availableModes = fileType === 'audio' 
-    ? [{ id: 'convert', label: 'Convert Format' }]
-    : [
-        { id: 'convert', label: 'Convert Format' },
-        { id: 'resize', label: 'Resize' },
-        { id: 'audio', label: 'Extract Audio' },
-        { id: 'compress', label: 'Compress' },
-        { id: 'gif', label: 'Make GIF' },
-        { id: 'screenshot', label: 'Screenshot' },
-      ];
+  const availableModes = fileType === 'audio' ? audioModes : videoModes;
 
   return (
     <div className="space-y-6">
@@ -195,7 +204,7 @@ function VideoProcessor() {
                     <p>Loading FFmpeg core...</p>
                 </>
             ) : (
-                <button onClick={load} className="bg-blue-600 px-4 py-2 rounded">Retry Load FFmpeg</button>
+                <button onClick={() => load()} className="bg-blue-600 px-4 py-2 rounded">Retry Load FFmpeg</button>
             )}
         </div>
       )}
@@ -410,14 +419,3 @@ function VideoProcessor() {
     </div>
   );
 }
-
-interface VideoResult {
-  title?: string;
-  url?: string;
-  thumbnail?: string;
-  duration?: number;
-  ext?: string;
-  error?: string;
-}
-
-

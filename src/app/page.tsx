@@ -4,6 +4,10 @@ import { useRouter } from 'next/navigation';
 import TextType from "@/components/TextType";
 import LiquidEther from "@/components/LiquidEther";
 
+const liquidEtherColors = ['#C8D8DA', '#F95A6A', '#AA7ABC', '#7A7AAA', '#F9EDD8', '#F97F66'];
+const textTypeVariableSpeed = { min: 80, max: 120 };
+const handleSentenceComplete = () => {};
+
 export default function Landing() {
   const router = useRouter();
 
@@ -21,7 +25,7 @@ export default function Landing() {
         <LiquidEther 
           mouseForce={2}
           cursorSize={40}
-          colors={['#C8D8DA', '#F95A6A', '#AA7ABC', '#7A7AAA', '#F9EDD8', '#F97F66']}
+          colors={liquidEtherColors}
           autoDemo={true}
           autoSpeed={0.05}
           autoIntensity={0.3}
@@ -49,8 +53,8 @@ export default function Landing() {
           showCursor={true}
           cursorCharacter="|"
           cursorBlinkDuration={0.8}
-          variableSpeed={{ min: 80, max: 120 }}
-          onSentenceComplete={() => {}}
+          variableSpeed={textTypeVariableSpeed}
+          onSentenceComplete={handleSentenceComplete}
         />
       </div>
     </div>

@@ -3,7 +3,7 @@
 ## Snapshot
 - Date: 2026-05-01
 - Project root: `/Users/dominicduan/_gitdevelop/my-nextjs-app`
-- Current status: Next.js personal portfolio site for Shihao D. Duan / Dominic Duan. Project dependencies were upgraded from Next.js 15.5.7 / React 19.1.0 to Next.js 16.2.4 / React 19.2.5. ESLint config was migrated to the Next 16 flat config style.
+- Current status: Next.js personal portfolio site for Shihao D. Duan / Dominic Duan. Recent refactor focused on performance and clean code without changing visible content: static render data was hoisted, `/home` link rendering was made data-driven, and Media Tool now lazy-loads FFmpeg modules.
 
 ## Project State
 - Key files and folders:
@@ -51,6 +51,10 @@
 
 ## Decisions
 - Important choices made:
+  - Applied `vercel-react-best-practices` guidance for small, non-visual refactors: hoisted static arrays/constants, removed unused code, and deferred heavy FFmpeg imports until Media Tool loading/processing paths.
+  - Refactored `/home` to render portfolio and Fashion Lab links from module-level data via a reusable `HomeLink` component; text, order, routes, and external link behavior were preserved.
+  - In `src/app/mediatool/page.tsx`, changed `@ffmpeg/ffmpeg` and `@ffmpeg/util` from top-level runtime imports to dynamic imports inside `load`/`processVideo`; also removed unused `AlertCircle` import and unused `VideoResult` interface.
+  - Hoisted static nav/tool/rhyme/landing constants to module scope to avoid re-creating arrays/objects/functions on every render.
   - Upgraded `next`, `@next/bundle-analyzer`, and `eslint-config-next` to `16.2.4`.
   - Upgraded `react` and `react-dom` to `19.2.5`, plus `@types/react` to `19.2.14` and `@types/react-dom` to `19.2.3`.
   - Removed `--turbopack` from `dev` and `build` scripts because Next 16 uses Turbopack by default.
@@ -94,6 +98,9 @@
   - `npm install next@latest react@latest react-dom@latest @next/bundle-analyzer@latest eslint-config-next@latest @types/react@latest @types/react-dom@latest`
   - `npm list next @next/bundle-analyzer eslint-config-next react react-dom @types/react @types/react-dom`
   - `npm audit --audit-level=high`
+  - `curl -I http://localhost:3000/`
+  - `curl -I http://localhost:3000/tools`
+  - `curl -I http://localhost:3000/mediatool`
 - Verification status:
   - Target page lint passed: `npx eslint src/app/other-works/sony-sie/page.tsx`.
   - GLITCH IN THE HIVE changes passed targeted lint: `npx eslint src/app/home/page.tsx src/app/other-works/glitch-in-the-hive/page.tsx`.
@@ -101,11 +108,13 @@
   - Navigation update passed targeted lint: `npx eslint src/components/Navigation.tsx`.
   - Next upgrade verified installed versions: `next@16.2.4`, `@next/bundle-analyzer@16.2.4`, `eslint-config-next@16.2.4`, `react@19.2.5`, `react-dom@19.2.5`.
   - Full `npm run lint` now exits with code 0 after ESLint config migration; it reports 10 warnings in existing code.
+  - After the performance refactor, `npm run lint` exits with code 0 and now reports 7 warnings. `npm run type-check` passes.
   - TypeScript passed: `npm run type-check`.
   - Whitespace check passed for the GLITCH IN THE HIVE changes and footage update.
   - Dev server started at `http://localhost:3000`; `/home` and `/other-works/glitch-in-the-hive` returned HTTP 200.
   - `npm run build` was attempted after the Next 16 upgrade but remained stuck at "Creating an optimized production build ..." for an extended period; the stuck process was terminated and exited with code 143. This matches the pre-upgrade build behavior observed under Next 15.
   - `npm run dev` starts successfully under Next 16.2.4; `/home` and `/other-works/glitch-in-the-hive` returned HTTP 200.
+  - After the performance refactor, dev server returned HTTP 200 for `/`, `/home`, `/tools`, and `/mediatool`.
   - `npm audit --audit-level=high` reports 21 vulnerabilities (10 moderate, 11 high). Some are fixable via `npm audit fix`; one `postcss` advisory suggests `npm audit fix --force` but would install an old Next version, so do not run force automatically.
 
 ## Next Steps

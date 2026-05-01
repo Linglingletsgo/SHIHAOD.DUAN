@@ -7,6 +7,8 @@ import * as rhymerCn from '@/lib/rhymer/rhymer_cn';
 import * as rhymerEn from '@/lib/rhymer/rhymer_en';
 import type { Language, RhymeType } from '@/lib/rhymer/types';
 
+const rhymeTypes = ['单押 (Single)', '双押 (Double)', '三押 (Triple)', '四押 (Quad)'];
+
 export default function RhymerPage() {
   const [inputValue, setInputValue] = useState('');
   const [language, setLanguage] = useState<Language>('cn');
@@ -15,8 +17,6 @@ export default function RhymerPage() {
   const [results, setResults] = useState<string[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  const types = ['单押 (Single)', '双押 (Double)', '三押 (Triple)', '四押 (Quad)'];
 
   const handleSearch = async () => {
     if (!inputValue.trim()) {
@@ -45,7 +45,7 @@ export default function RhymerPage() {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleSearch();
     }
@@ -70,7 +70,7 @@ export default function RhymerPage() {
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyDown}
               placeholder="输入词汇..."
               className="flex-1 bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-3 outline-none focus:border-neutral-500 transition-colors"
             />
@@ -124,7 +124,7 @@ export default function RhymerPage() {
                     onChange={(e) => setTypeIndex(Number(e.target.value))}
                     className="bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 outline-none focus:border-neutral-500"
                   >
-                    {types.map((type, index) => (
+                    {rhymeTypes.map((type, index) => (
                       <option key={index} value={index}>
                         {type}
                       </option>

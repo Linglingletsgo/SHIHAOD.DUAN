@@ -4,34 +4,31 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FileVideo, MessageSquare, Film } from 'lucide-react';
 
-export default function ToolsPage() {
-  const tools = [
-    {
-      id: 'mediatool',
-      name: 'Media Tool',
-      icon: FileVideo,
-      href: '/mediatool',
-      gradient: 'from-white to-white',
-      available: true,
-    },
-    {
-      id: 'spectrafilm',
-      name: 'Spectrafilm',
-      icon: Film,
-      href: '/spectrafilm',
-      gradient: 'from-zinc-500 to-zinc-800',
-      available: true,
-    },
-    {
-      id: 'rhymer',
-      name: 'Rhymer',
-      icon: MessageSquare,
-      href: '/rhymer',
-      gradient: 'from-white to-white',
-      available: true,
-    },
-  ];
+const tools = [
+  {
+    id: 'mediatool',
+    name: 'Media Tool',
+    icon: FileVideo,
+    href: '/mediatool',
+    gradient: 'from-white to-white',
+  },
+  {
+    id: 'spectrafilm',
+    name: 'Spectrafilm',
+    icon: Film,
+    href: '/spectrafilm',
+    gradient: 'from-zinc-500 to-zinc-800',
+  },
+  {
+    id: 'rhymer',
+    name: 'Rhymer',
+    icon: MessageSquare,
+    href: '/rhymer',
+    gradient: 'from-white to-white',
+  },
+];
 
+export default function ToolsPage() {
   return (
     <div className="min-h-screen bg-black text-white p-8 font-sans">
       <div className="max-w-6xl mx-auto">

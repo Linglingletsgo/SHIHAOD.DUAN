@@ -4,14 +4,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
+const navItems = [
+  { href: '/home', label: '首页 HOME' },
+  { href: '/tools', label: '工具 TOOLS' },
+  { href: '/about', label: '关于 ABOUT' },
+];
+
 const Navigation = () => {
   const pathname = usePathname();
-
-  const navItems = [
-    { href: '/home', label: '首页 HOME' },
-    { href: '/tools', label: '工具 TOOLS' },
-    { href: '/about', label: '关于 ABOUT' },
-  ];
 
   return (
     <motion.nav 
