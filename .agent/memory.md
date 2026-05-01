@@ -1,9 +1,9 @@
 # Project Memory
 
 ## Snapshot
-- Date: 2026-04-25
+- Date: 2026-05-01
 - Project root: `/Users/dominicduan/_gitdevelop/my-nextjs-app`
-- Current status: Next.js personal portfolio site for Shihao D. Duan / Dominic Duan. The top navigation now hides the `/music` and `/misc` menu entries while keeping those pages and routes intact.
+- Current status: Next.js personal portfolio site for Shihao D. Duan / Dominic Duan. Project dependencies were upgraded from Next.js 15.5.7 / React 19.1.0 to Next.js 16.2.4 / React 19.2.5. ESLint config was migrated to the Next 16 flat config style.
 
 ## Project State
 - Key files and folders:
@@ -22,6 +22,7 @@
   - `src/app/spectrafilm/page.tsx` and `src/lib/spectrafilm/*`: RAW-only film simulation pipeline using `libraw-mini`, film profiles, tone mapping, dye coupling, grain, halation, and bloom.
   - `src/app/rhymer/page.tsx` and `src/lib/rhymer/*`: Chinese/English rhyme finder using binary dictionaries under `public/data/`.
   - `.agent/skills/update_music/SKILL.md`: project-local skill for adding new albums/songs; requires validating audio, cover, metadata, description, duration, and lyrics before editing music pages.
+  - `eslint.config.mjs`: Next 16 flat ESLint config using `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`; `public/pdf.worker.min.js` is ignored as a generated/minified worker.
 - Generated artifacts:
   - `.next/` exists from prior local builds/dev runs.
   - `node_modules/` exists.
@@ -50,6 +51,10 @@
 
 ## Decisions
 - Important choices made:
+  - Upgraded `next`, `@next/bundle-analyzer`, and `eslint-config-next` to `16.2.4`.
+  - Upgraded `react` and `react-dom` to `19.2.5`, plus `@types/react` to `19.2.14` and `@types/react-dom` to `19.2.3`.
+  - Removed `--turbopack` from `dev` and `build` scripts because Next 16 uses Turbopack by default.
+  - Migrated ESLint away from `FlatCompat` because `eslint-config-next@16` exports flat config directly; downgraded new React Compiler lint rules (`react-hooks/immutability`, `react-hooks/refs`, `react-hooks/set-state-in-effect`) to warnings for existing code.
   - Created project-local memory at `.agent/memory.md` because it was missing.
   - For the SonySIE page, removed the embedded YouTube iframe instead of replacing it with another embed, matching the request to keep only the YouTube jump link.
   - Added the requested Introduction copy as three paragraph strings rendered under the page title.
@@ -85,16 +90,23 @@
   - `git diff --check -- src/app/other-works/glitch-in-the-hive/page.tsx`
   - Renamed GLITCH IN THE HIVE footage files from long exported frame names to `01.png` through `12.png`.
   - `npx eslint src/components/Navigation.tsx`
+  - `npm view next version`
+  - `npm install next@latest react@latest react-dom@latest @next/bundle-analyzer@latest eslint-config-next@latest @types/react@latest @types/react-dom@latest`
+  - `npm list next @next/bundle-analyzer eslint-config-next react react-dom @types/react @types/react-dom`
+  - `npm audit --audit-level=high`
 - Verification status:
   - Target page lint passed: `npx eslint src/app/other-works/sony-sie/page.tsx`.
   - GLITCH IN THE HIVE changes passed targeted lint: `npx eslint src/app/home/page.tsx src/app/other-works/glitch-in-the-hive/page.tsx`.
   - GLITCH IN THE HIVE footage update passed targeted lint: `npx eslint src/app/other-works/glitch-in-the-hive/page.tsx`.
   - Navigation update passed targeted lint: `npx eslint src/components/Navigation.tsx`.
+  - Next upgrade verified installed versions: `next@16.2.4`, `@next/bundle-analyzer@16.2.4`, `eslint-config-next@16.2.4`, `react@19.2.5`, `react-dom@19.2.5`.
+  - Full `npm run lint` now exits with code 0 after ESLint config migration; it reports 10 warnings in existing code.
   - TypeScript passed: `npm run type-check`.
   - Whitespace check passed for the GLITCH IN THE HIVE changes and footage update.
   - Dev server started at `http://localhost:3000`; `/home` and `/other-works/glitch-in-the-hive` returned HTTP 200.
-  - Full `npm run lint` currently fails on existing unrelated issues in `public/pdf.worker.min.js` and warnings in `src/app/mediatool/page.tsx`; no target-page lint errors were found.
-  - `npm run build` was attempted but remained stuck at "Creating an optimized production build ..." for an extended period; the stuck process was terminated and exited with code 143.
+  - `npm run build` was attempted after the Next 16 upgrade but remained stuck at "Creating an optimized production build ..." for an extended period; the stuck process was terminated and exited with code 143. This matches the pre-upgrade build behavior observed under Next 15.
+  - `npm run dev` starts successfully under Next 16.2.4; `/home` and `/other-works/glitch-in-the-hive` returned HTTP 200.
+  - `npm audit --audit-level=high` reports 21 vulnerabilities (10 moderate, 11 high). Some are fixable via `npm audit fix`; one `postcss` advisory suggests `npm audit fix --force` but would install an old Next version, so do not run force automatically.
 
 ## Next Steps
 - Immediate next action:
