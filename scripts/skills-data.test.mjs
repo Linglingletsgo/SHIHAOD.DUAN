@@ -76,3 +76,15 @@ test('validates the production skills manifest', async () => {
   const { skillData } = await import('./skills-data-manifest.mjs');
   assert.deepEqual(validateSkillData(skillData), []);
 });
+
+test('skills route keeps content server-rendered and isolates locale state', async () => {
+  const [page, content, shell] = await Promise.all([
+    readFile(new URL('../src/app/skills/page.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/app/skills/SkillsContent.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/app/skills/SkillsLanguageShell.tsx', import.meta.url), 'utf8'),
+  ]);
+  assert.doesNotMatch(page, /^['"]use client['"]/m);
+  assert.doesNotMatch(content, /^['"]use client['"]/m);
+  assert.match(shell, /^['"]use client['"]/m);
+  assert.match(shell, /useState<'zh' \| 'en'>/);
+});
