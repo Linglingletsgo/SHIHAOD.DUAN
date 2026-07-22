@@ -1,126 +1,82 @@
 # Project Memory
 
 ## Snapshot
-- Date: 2026-05-01
+- Date: 2026-07-22
 - Project root: `/Users/dominicduan/_gitdevelop/my-nextjs-app`
-- Current status: Next.js personal portfolio site for Shihao D. Duan / Dominic Duan. Recent refactor focused on performance and clean code without changing visible content: static render data was hoisted, `/home` link rendering was made data-driven, and Media Tool now lazy-loads FFmpeg modules.
+- Current status: Next.js 16 personal portfolio for Shihao D. Duan / Dominic Duan. Content design for a new public bilingual `/skills` database page is approved and written to `docs/superpowers/specs/2026-07-22-skills-content-design.md`; the spec awaits user review. No feature code has been written yet.
 
 ## Project State
-- Key files and folders:
-  - `src/app/page.tsx`: landing page with black full-screen `LiquidEther` background and looping `TextType` title "SHIHAO D. DUAN"; click navigates to `/home`.
-  - `src/app/home/page.tsx`: main directory page with animated/decrypted text links to portfolio works, Fashion Lab projects, music, tools, misc, and about via the top nav.
-  - `src/components/Navigation.tsx` and `src/components/ConditionalNavigation.tsx`: global navigation is hidden on `/`, shown elsewhere. Visible nav labels are bilingual: HOME, TOOLS, ABOUT. `/music` and `/misc` remain valid pages but are not shown in the top menu.
-  - `src/app/about/page.tsx`: profile page with portrait, bio ("Fashion Designer & Music Producer & Interdiscipline Artist"), education, email, Instagram, LinkedIn, and NetEase Cloud Music links.
-  - `src/app/music/page.tsx` and `src/app/music/album/[id]/page.tsx`: music portfolio for artist `张嗣泳`, with album covers, audio paths, durations, descriptions, and lyrics hard-coded in page files.
-  - `src/app/misc/page.tsx` and `src/app/misc/night-moon/page.tsx`: personal writing / fragments, including longer reflective prose under "夜月沉入我的海".
-  - `src/app/projects/project-a|b|c|d/page.tsx`: Fashion Lab projects using shared `PDFViewer`; titles include `幻`, `墙`, `灵`, `根`.
-  - `src/app/other-works/work-1/page.tsx`: WaveSync video page.
-  - `src/app/other-works/sony-sie/page.tsx`: LCF CC SonySIE project page with title, Introduction text, and outbound YouTube link only; no embedded iframe.
-  - `src/app/other-works/glitch-in-the-hive/page.tsx`: GLITCH IN THE HIVE project page with Introduction text, footage preview grid, production credits, and outbound YouTube link `https://youtu.be/5CudZJwybjg`.
-  - `src/app/tools/page.tsx`: tool hub linking to Media Tool, Spectrafilm, and Rhymer.
-  - `src/app/mediatool/page.tsx`: browser-local FFmpeg.wasm media processor for conversion, resize, audio extraction, compression, GIF, and screenshot.
-  - `src/app/spectrafilm/page.tsx` and `src/lib/spectrafilm/*`: RAW-only film simulation pipeline using `libraw-mini`, film profiles, tone mapping, dye coupling, grain, halation, and bloom.
-  - `src/app/rhymer/page.tsx` and `src/lib/rhymer/*`: Chinese/English rhyme finder using binary dictionaries under `public/data/`.
-  - `.agent/skills/update_music/SKILL.md`: project-local skill for adding new albums/songs; requires validating audio, cover, metadata, description, duration, and lyrics before editing music pages.
-  - `eslint.config.mjs`: Next 16 flat ESLint config using `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`; `public/pdf.worker.min.js` is ignored as a generated/minified worker.
-- Generated artifacts:
-  - `.next/` exists from prior local builds/dev runs.
-  - `node_modules/` exists.
-- Assets:
-  - `public/images/`: profile photo and album covers.
-  - `public/audio/`: local MP3 files organized by album/song folders.
-  - `public/videos/`: `huan` and `WaveSync` videos in mov/mp4 variants.
-  - `public/pdfs/`: `huan.pdf`, `qiang.pdf`, `ling.pdf`, `gen.pdf`.
-  - `public/profiles/`: Spectrafilm film profile JSON files plus `index.json`.
-  - `public/data/`: rhyme dictionaries `phrase_dict.bin` and `en_rhyme_dict.bin`.
-  - `public/images/footage_GIH/`: GLITCH IN THE HIVE PNG footage stills used by the project detail page; files are named `01.png` through `12.png` in display order.
-- Missing or empty areas:
-  - `api/` directory exists but appears empty from top-level listing.
-  - Several album and project data structures are hard-coded in page components; no CMS or database is present.
+- `src/app/page.tsx`: animated landing page.
+- `src/app/home/page.tsx`: portfolio/Fashion Lab directory. Portfolio includes WaveSync, SonySIE, GLITCH IN THE HIVE, Obfuscation Identity Archive, and Digital Alchemy.
+- `src/components/Navigation.tsx`: visible top nav is HOME, TOOLS, ABOUT; `/music` and `/misc` remain accessible but hidden from nav.
+- `src/app/about/page.tsx`: biography, education, portrait, and contact links.
+- `src/app/projects/project-a|b|c|d`: Fashion Lab PDF projects.
+- `src/app/other-works/*`: WaveSync, SonySIE, and GLITCH IN THE HIVE pages.
+- `src/app/music/*`: albums and lyrics; use `.agent/skills/update_music/SKILL.md` for music updates.
+- `src/app/tools/page.tsx`, `mediatool`, `spectrafilm`, `rhymer`: creative tools.
+- Static content is hard-coded; there is no CMS/database.
+- Next/React versions: Next 16.2.4, React/React DOM 19.2.5. ESLint uses Next 16 flat config.
 
-## Task Goals
-- Active goal: Maintain and refine the personal website while preserving durable project context in project-local memory.
-- User preferences or constraints:
-  - Final user-facing responses should be in Chinese.
-  - Think through technical work in English, but do not expose hidden reasoning.
-  - Before creative feature/component/behavior changes, use `superpowers:brainstorming`.
-  - For multi-step tasks or existing specs, use `superpowers:writing-plans` before coding.
-  - Follow Clean Code, KISS, DRY, low cyclomatic complexity, and narrow blast radius.
-  - Do not generate standalone Markdown docs unless explicitly requested.
-  - After modifying important writing/document-like artifacts, archive a copy/history version under `~/archive/`.
+## Active Goal: Public Skills Database
+- Add top-navigation label `技能 SKILLS` linking to independent route `/skills`.
+- Purpose: maintain a comprehensive database of skills the user is willing to publish, while making it legible to collaborators, institutions, professional teams, and general audiences.
+- Content comes before frontend/visual design. User declined the visual brainstorming companion.
+- Public page is fully bilingual Chinese/English with a button switching languages; translations must be semantically equivalent and maintained together.
+- Database content equals public content: no Public/Summary/Private visibility system.
+- Do not publish proficiency ratings. Cases demonstrate ability.
 
-## Decisions
-- Important choices made:
-  - Applied `vercel-react-best-practices` guidance for small, non-visual refactors: hoisted static arrays/constants, removed unused code, and deferred heavy FFmpeg imports until Media Tool loading/processing paths.
-  - Refactored `/home` to render portfolio and Fashion Lab links from module-level data via a reusable `HomeLink` component; text, order, routes, and external link behavior were preserved.
-  - In `src/app/mediatool/page.tsx`, changed `@ffmpeg/ffmpeg` and `@ffmpeg/util` from top-level runtime imports to dynamic imports inside `load`/`processVideo`; also removed unused `AlertCircle` import and unused `VideoResult` interface.
-  - Hoisted static nav/tool/rhyme/landing constants to module scope to avoid re-creating arrays/objects/functions on every render.
-  - Upgraded `next`, `@next/bundle-analyzer`, and `eslint-config-next` to `16.2.4`.
-  - Upgraded `react` and `react-dom` to `19.2.5`, plus `@types/react` to `19.2.14` and `@types/react-dom` to `19.2.3`.
-  - Removed `--turbopack` from `dev` and `build` scripts because Next 16 uses Turbopack by default.
-  - Migrated ESLint away from `FlatCompat` because `eslint-config-next@16` exports flat config directly; downgraded new React Compiler lint rules (`react-hooks/immutability`, `react-hooks/refs`, `react-hooks/set-state-in-effect`) to warnings for existing code.
-  - Created project-local memory at `.agent/memory.md` because it was missing.
-  - For the SonySIE page, removed the embedded YouTube iframe instead of replacing it with another embed, matching the request to keep only the YouTube jump link.
-  - Added the requested Introduction copy as three paragraph strings rendered under the page title.
-  - For GLITCH IN THE HIVE, added a detail page rather than linking `/home` directly to YouTube so the supplied Introduction and credits have a dedicated display surface.
-  - For the top navigation, removed only the `/music` and `/misc` entries from the nav item array; page files and route contents were left untouched.
-  - Treat the site as a personal portfolio plus creative toolkit, not just a generic Next.js app.
-- Paths or tools selected:
-  - Use `npm run dev` for local development.
-  - Use `npm run build`, `npm run lint`, and `npm run type-check` for verification when code changes are made.
-  - Use `.agent/skills/update_music/SKILL.md` when adding music.
+### Confirmed Content Model
+- Four separate object types: `Skill`, `Knowledge`, `Tool`, `Experience`; Skill is central.
+- Store each type separately and connect objects through stable IDs.
+- Skill granularity: independently applicable capability units, not broad identities or microscopic operations.
+- Fixed top-level domains with extensible subdomains:
+  1. Cognitive
+  2. Creative
+  3. Technical
+  4. Physical
+  5. Interpersonal
+  6. Organizational
+  7. Personal
+  8. Practical Life
+- Skill-to-skill relationships: `Prerequisite`, `Related`, `Combined Practice`.
+- Other relations: Skill requires Knowledge, uses Tool, and is demonstrated by Experience.
+- Keep Domain, Subdomain, Mode, Transferability, Evidence Type, and Language where relevant.
+- Explicitly exclude Status, Time, first/last used, and Application Context. Case descriptions already communicate context.
+- Cases without links may show a name and short description. Describe the user’s actual role rather than inferring every skill from project participation.
+- Case description standard: context -> specific action/role -> result.
+- Avoid unverifiable self-praise; convert claims such as “learns quickly” into evidenced abilities.
+- Avoid publishing illegal-resource framing. Describe compliant research, open-source discovery, source evaluation, and resource verification.
+- Health knowledge must be framed as basic health information literacy, not diagnosis, prescribing, or professional medical expertise.
 
-## Commands and Verification
-- Commands run:
-  - `pwd`
-  - `test -f .agent/memory.md`
-  - `ls -la`
-  - `ls -la .agent`
-  - `rg --files -g '!node_modules' ...`
-  - `sed -n ...` on key app, component, config, skill, and profile files.
-  - `find public -maxdepth 2 -type f`
-  - `find .agent -maxdepth 3 -type f`
-  - `git status --short`
-  - `npx eslint src/app/other-works/sony-sie/page.tsx`
-  - `npm run type-check`
-  - `npm run lint`
-  - `npm run build`
-  - `npx eslint src/app/home/page.tsx src/app/other-works/glitch-in-the-hive/page.tsx`
-  - `git diff --check -- src/app/home/page.tsx src/app/other-works/glitch-in-the-hive/page.tsx`
-  - `npm run dev`
-  - `curl -I http://localhost:3000/home`
-  - `curl -I http://localhost:3000/other-works/glitch-in-the-hive`
-  - `npx eslint src/app/other-works/glitch-in-the-hive/page.tsx`
-  - `git diff --check -- src/app/other-works/glitch-in-the-hive/page.tsx`
-  - Renamed GLITCH IN THE HIVE footage files from long exported frame names to `01.png` through `12.png`.
-  - `npx eslint src/components/Navigation.tsx`
-  - `npm view next version`
-  - `npm install next@latest react@latest react-dom@latest @next/bundle-analyzer@latest eslint-config-next@latest @types/react@latest @types/react-dom@latest`
-  - `npm list next @next/bundle-analyzer eslint-config-next react react-dom @types/react @types/react-dom`
-  - `npm audit --audit-level=high`
-  - `curl -I http://localhost:3000/`
-  - `curl -I http://localhost:3000/tools`
-  - `curl -I http://localhost:3000/mediatool`
-- Verification status:
-  - Target page lint passed: `npx eslint src/app/other-works/sony-sie/page.tsx`.
-  - GLITCH IN THE HIVE changes passed targeted lint: `npx eslint src/app/home/page.tsx src/app/other-works/glitch-in-the-hive/page.tsx`.
-  - GLITCH IN THE HIVE footage update passed targeted lint: `npx eslint src/app/other-works/glitch-in-the-hive/page.tsx`.
-  - Navigation update passed targeted lint: `npx eslint src/components/Navigation.tsx`.
-  - Next upgrade verified installed versions: `next@16.2.4`, `@next/bundle-analyzer@16.2.4`, `eslint-config-next@16.2.4`, `react@19.2.5`, `react-dom@19.2.5`.
-  - Full `npm run lint` now exits with code 0 after ESLint config migration; it reports 10 warnings in existing code.
-  - After the performance refactor, `npm run lint` exits with code 0 and now reports 7 warnings. `npm run type-check` passes.
-  - TypeScript passed: `npm run type-check`.
-  - Whitespace check passed for the GLITCH IN THE HIVE changes and footage update.
-  - Dev server started at `http://localhost:3000`; `/home` and `/other-works/glitch-in-the-hive` returned HTTP 200.
-  - `npm run build` was attempted after the Next 16 upgrade but remained stuck at "Creating an optimized production build ..." for an extended period; the stuck process was terminated and exited with code 143. This matches the pre-upgrade build behavior observed under Next 15.
-  - `npm run dev` starts successfully under Next 16.2.4; `/home` and `/other-works/glitch-in-the-hive` returned HTTP 200.
-  - After the performance refactor, dev server returned HTTP 200 for `/`, `/home`, `/tools`, and `/mediatool`.
-  - `npm audit --audit-level=high` reports 21 vulnerabilities (10 moderate, 11 high). Some are fixable via `npm audit fix`; one `postcss` advisory suggests `npm audit fix --force` but would install an old Next version, so do not run force automatically.
+### Approved First-Version Inventory
+- Cognitive/research: cross-source research, resource discovery and verification, frontier-tech monitoring, data collection/cleaning/analysis/visualization, first-principles reasoning, philosophical concepts applied to design, cultural/ethnic/religious research, speculative/provocative design, literary criticism, basic economics/finance knowledge.
+- Fashion/material: fashion design, pattern cutting, flat cutting, draping, fitting, sewing, fashion illustration, CLO3D, knitting/hand flat knitting machine, textile modification, yarn reconstruction, botanical dyeing, origami-to-silhouette/pattern translation, wearable installations, leathercraft, mixed-media painting, light clay, silver-clay jewellery design/forming/firing/setting/finishing.
+- Image/film: photography, cinematography/DP, directing, screenwriting/dialogue, performance, fashion shoot direction, reference research, location scouting, makeup/styling direction, media organisation, DaVinci editing/project-server collaboration, colour grading, VFX, voice recording/AI voice change, sound/music design.
+- Music/sound/stage: composition, arranging, lyrics, music production, mixing, recording-system design, microphone selection, basic acoustics, EQ/dynamics/signal-chain knowledge, audio-reactive visuals, audio-hardware interaction, real-time audiovisual and interactive stage systems. DJ remains Knowledge only; user owns a deck but does not claim DJ performance ability. Some stage performance experience.
+- 3D/interactive: Blender modelling, Geometry Nodes, sculpting, scenes, animation, materials, rendering; 3D scanning/printing/material and cost estimation; COMSOL multiphysics simulation; Processing code art; TouchDesigner; Three.js; Unity–TouchDesigner OSC/MIDI communication; serial/UART; Arduino/ESP32/STM32; sensors, lighting, fashion interaction; Unity/web LLM API integration.
+- AI/software: AIGC workflows, text-to-image, image-to-video, text-to-video, first/last-frame generation, prompting, consistency and post-processing; AI Agents, API integration, MCP tools, web development/UI/UX, open-source research/code reading/customisation, Git/GitHub, utility development, automation, Wiki Agent + local wiki + Zotero via MCP for academic writing.
+- Full-stack evidence: survey website workflow using SurveyJS, GitHub data/image archival, image-generation API, frontend updates, Vercel deployment, custom domain, and Three.js interaction.
+- Infrastructure/hardware: component selection, PC/ITX building and clean cable management, upgrades, OS installation/troubleshooting, data protection/migration, NAS, soft router, home server, virtual machines, set-top-box repurposing, VPS/Linux service deployment, secure remote access, media library automation, backups, filesystems/interfaces, smart-home/HomeKit principles, small appliance repair/battery replacement/soldering, keyboard assembly, furniture assembly.
+- Practical/physical: driving with Norway and Zakynthos self-drive evidence; broad cooking practice; coffee brewing and equipment knowledge; food/drink flavour appreciation; independent travel/living; visa preparation; five-day Hangzhou–Nanjing cycling; running, aerobic exercise, table tennis, long-term fitness, sleep/recovery practice, plant care/pest management, fire-extinguisher operation, Go amateur 3-dan.
+- Language: native Chinese; IELTS 7.0 overall, Listening 8.5.
+- Education/evidence: Zhejiang Sci-Tech University BA/BEng-related Fashion Design and Engineering; London College of Fashion Fashion Futures postgraduate study; undergraduate thesis on embodied carbon in Chinese garment exports using data analysis and visualisation; Sony interactive project; STM32 automatic watering; Arduino garment lighting; personal website and GitHub projects; taught basic CLO3D.
+- Tool names confirmed: Blender, Geometry Nodes, CLO3D, COMSOL, TouchDesigner, Processing, Three.js, Unity, DaVinci Resolve, DaVinci Resolve Project Server, SurveyJS, Arduino, ESP32, STM32, OSC, MIDI, Serial/UART, GitHub, Vercel, Zotero, wiki-agent, MCP, Linux, VPS, NAS, HomeKit, 3D scanner/printer, hand flat knitting machine, DJ deck, coffee equipment, and silver-clay equipment. Do not infer or solicit additional tools for the first version.
+
+## Workflow and Constraints
+- Use `superpowers:brainstorming` before implementation; design must be approved before code.
+- After approved spec, use `superpowers:writing-plans`; implement React/Next work with `vercel-react-best-practices`.
+- User requested one question at a time during discovery. Free-list collection and targeted verification are complete for the first version; do not resume exhaustive tool collection unless asked.
+- Follow KISS, narrow changes, existing visual intent, and Chinese user-facing replies.
+- Do not create unrelated documentation. The brainstorming skill will require a reviewed design spec before implementation.
+
+## Verification and Known Issues
+- Prior checks: `npm run type-check` passes; `npm run lint` exits 0 with seven pre-existing warnings.
+- Dev routes previously returned HTTP 200.
+- `npm run build` repeatedly hangs at optimized production build under Next 15 and 16; terminated runs exited 143.
+- `npm audit` previously reported 21 vulnerabilities; do not run force fixes automatically.
+- Current Skills work has not changed application code and has not yet required code verification.
 
 ## Next Steps
-- Immediate next action:
-  - If asked to change the site, first identify whether it is a creative/behavior change and invoke the required Superpowers workflow before editing.
-  - For music updates, follow `.agent/skills/update_music/SKILL.md` and keep `src/app/music/page.tsx` and `src/app/music/album/[id]/page.tsx` IDs in sync.
-- Known blockers:
-  - None for current understanding/memory task.
-  - Spectrafilm depends on browser support for RAW processing, `libraw-mini`, and cross-origin isolation headers from `next.config.ts`.
+- Ask the user to review `docs/superpowers/specs/2026-07-22-skills-content-design.md`.
+- After user approval of the written spec, invoke `superpowers:writing-plans` and create the implementation plan.
+- Only after plan approval should implementation modify navigation, add `/skills`, and create structured content data.
