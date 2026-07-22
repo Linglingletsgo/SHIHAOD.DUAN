@@ -3,7 +3,7 @@
 ## Snapshot
 - Date: 2026-07-22
 - Project root: `/Users/dominicduan/_gitdevelop/my-nextjs-app`
-- Current status: Next.js 16 personal portfolio for Shihao D. Duan / Dominic Duan. Content design for a new public bilingual `/skills` database page is approved and written to `docs/superpowers/specs/2026-07-22-skills-content-design.md`; the spec awaits user review. No feature code has been written yet.
+- Current status: Next.js 16 personal portfolio for Shihao D. Duan / Dominic Duan. The `/skills` content spec is approved. The implementation plan is at `docs/superpowers/plans/2026-07-22-skills-page.md` and awaits execution-method selection. No feature code has been written yet.
 
 ## Project State
 - `src/app/page.tsx`: animated landing page.
@@ -77,6 +77,6 @@
 - Current Skills work has not changed application code and has not yet required code verification.
 
 ## Next Steps
-- Ask the user to review `docs/superpowers/specs/2026-07-22-skills-content-design.md`.
-- After user approval of the written spec, invoke `superpowers:writing-plans` and create the implementation plan.
-- Only after plan approval should implementation modify navigation, add `/skills`, and create structured content data.
+- Ask the user to choose subagent-driven or inline plan execution.
+- During implementation, create the validated local JSON content graph, server-rendered `/skills` page, small client-only language shell, and navigation entry in the task order defined by the plan.
+- Verify with skills data tests, data validation, type-check, lint, dev route checks, and an attempted production build.
