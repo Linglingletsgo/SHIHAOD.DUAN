@@ -88,3 +88,8 @@ test('skills route keeps content server-rendered and isolates locale state', asy
   assert.match(shell, /^['"]use client['"]/m);
   assert.match(shell, /useState<'zh' \| 'en'>/);
 });
+
+test('top navigation exposes the skills route', async () => {
+  const source = await readFile(new URL('../src/components/Navigation.tsx', import.meta.url), 'utf8');
+  assert.match(source, /href: '\/skills', label: '技能 SKILLS'/);
+});
