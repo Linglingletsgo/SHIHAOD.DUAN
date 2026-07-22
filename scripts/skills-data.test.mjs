@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { validateSkillData } from './skills-data.mjs';
 
 const validData = () => ({
@@ -48,4 +49,30 @@ test('keeps DJ as knowledge rather than a skill', () => {
   const data = validData();
   data.skills.push({ ...data.skills[0], id: 'dj-performance', name: { zh: 'DJ 表演', en: 'DJ Performance' } });
   assert.match(validateSkillData(data).join('\n'), /DJ must remain knowledge-only/);
+});
+
+test('declares every fixed domain and required evidence hub', async () => {
+  const [domains, experiences] = await Promise.all([
+    readFile(new URL('../src/data/skills/domains.json', import.meta.url), 'utf8').then(JSON.parse),
+    readFile(new URL('../src/data/skills/experiences.json', import.meta.url), 'utf8').then(JSON.parse),
+  ]);
+  assert.deepEqual(domains.map(({ id }) => id), ['cognitive', 'creative', 'technical', 'physical', 'interpersonal', 'organizational', 'personal', 'practical-life']);
+  for (const id of ['fashion-lab', 'huan-3d', 'glitch-in-the-hive', 'sony-sie', 'music-portfolio', 'github', 'obfuscation-archive', 'digital-alchemy', 'education-research', 'practical-experiences']) assert.ok(experiences.some((item) => item.id === id));
+});
+
+test('keeps first-version content boundaries in source data', async () => {
+  const [skills, tools, knowledge] = await Promise.all([
+    readFile(new URL('../src/data/skills/skills.json', import.meta.url), 'utf8').then(JSON.parse),
+    readFile(new URL('../src/data/skills/tools.json', import.meta.url), 'utf8').then(JSON.parse),
+    readFile(new URL('../src/data/skills/knowledge.json', import.meta.url), 'utf8').then(JSON.parse),
+  ]);
+  for (const id of ['cognitive', 'creative', 'technical', 'physical', 'interpersonal', 'organizational', 'personal', 'practical-life']) assert.ok(skills.some((item) => item.domainId === id));
+  assert.ok(tools.every((item) => !/Veo 3\.1/i.test(item.name)));
+  assert.ok(knowledge.some((item) => item.id === 'dj-fundamentals'));
+  assert.ok(skills.every((item) => item.id !== 'dj-performance'));
+});
+
+test('validates the production skills manifest', async () => {
+  const { skillData } = await import('./skills-data-manifest.mjs');
+  assert.deepEqual(validateSkillData(skillData), []);
 });

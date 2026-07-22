@@ -15,6 +15,10 @@ export function validateSkillData(data) {
       }
       for (const field of ['name', 'description', 'definition', 'subdomain']) {
         if (!(field in item)) continue;
+        if (group === 'tools' && field === 'name') {
+          if (!hasText(item.name)) errors.push(`tools ${item.id} name is required`);
+          continue;
+        }
         if (!hasText(item[field]?.zh)) errors.push(`${group} ${item.id} ${field}.zh is required`);
         if (!hasText(item[field]?.en)) errors.push(`${group} ${item.id} ${field}.en is required`);
       }

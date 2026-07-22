@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:skills": "node --test scripts/skills-data.test.mjs",
+    "validate:skills": "node scripts/validate-skills.mjs",
     "analyze": "npm run build && npx @next/bundle-analyzer",
     "type-check": "tsc --noEmit"
   },
