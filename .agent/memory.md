@@ -3,7 +3,7 @@
 ## Snapshot
 - Date: 2026-07-22
 - Project root: `/Users/dominicduan/_gitdevelop/my-nextjs-app`
-- Current status: Next.js 16 personal portfolio for Shihao D. Duan / Dominic Duan. The `/skills` content spec is approved. The implementation plan is at `docs/superpowers/plans/2026-07-22-skills-page.md` and awaits execution-method selection. No feature code has been written yet.
+- Current status: The bilingual `/skills` feature is implemented and committed on branch `codex/skills-page` in `.worktrees/skills-page`. It awaits integration into `main`.
 
 ## Project State
 - `src/app/page.tsx`: animated landing page.
@@ -69,14 +69,27 @@
 - Follow KISS, narrow changes, existing visual intent, and Chinese user-facing replies.
 - Do not create unrelated documentation. The brainstorming skill will require a reviewed design spec before implementation.
 
+## Skills Implementation
+- `src/data/skills/`: JSON data grouped into domains, skills, knowledge, tools, and experiences; `types.ts` supplies contracts and `index.ts` supplies module-level lookup maps.
+- `scripts/skills-data.mjs`, `skills-data-manifest.mjs`, `skills-data.test.mjs`, and `validate-skills.mjs`: dependency-free bilingual, ID, relation, prohibited-field, DJ, and Veo boundary validation.
+- `src/app/skills/page.tsx` and `SkillsContent.tsx`: server-render the database and evidence links.
+- `SkillsLanguageShell.tsx`: the only new Client Component; owns the Chinese/English toggle while content remains server rendered.
+- `src/components/Navigation.tsx`: includes `技能 SKILLS` linking to `/skills`.
+- `src/app/globals.css`: switches paired localized spans based on the shell locale.
+
 ## Verification and Known Issues
 - Prior checks: `npm run type-check` passes; `npm run lint` exits 0 with seven pre-existing warnings.
 - Dev routes previously returned HTTP 200.
 - `npm run build` repeatedly hangs at optimized production build under Next 15 and 16; terminated runs exited 143.
 - `npm audit` previously reported 21 vulnerabilities; do not run force fixes automatically.
-- Current Skills work has not changed application code and has not yet required code verification.
+- `npm run test:skills`: 12 tests pass.
+- `npm run validate:skills`: passes with `Skills data is valid.`
+- `npm run type-check`: passes.
+- `npm run lint`: exits 0 with the same 7 pre-existing warnings and no new warnings.
+- Dev server: `/skills` and `/home` return HTTP 200; Skills response contains all eight English domain names and `中文` / `EN` controls.
+- `npm run build`: again remained at `Creating an optimized production build ...` with no error output and was terminated after observation; interrupted exit was 130. This matches the existing build-hang pattern.
+- Worktree dependency setup initially failed because sandboxed npm registry requests left a partial install. A clean network-enabled install completed; no dependency versions changed.
 
 ## Next Steps
-- Ask the user to choose subagent-driven or inline plan execution.
-- During implementation, create the validated local JSON content graph, server-rendered `/skills` page, small client-only language shell, and navigation entry in the task order defined by the plan.
-- Verify with skills data tests, data validation, type-check, lint, dev route checks, and an attempted production build.
+- Review final branch diff and verification evidence.
+- Choose integration into `main` (merge locally is the expected next action unless the user requests a PR or leaves the branch intact).
