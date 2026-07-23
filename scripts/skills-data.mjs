@@ -44,6 +44,13 @@ export function validateSkillData(data) {
     if (item.experienceId && !ids.experiences.has(item.experienceId)) errors.push(`skill evidence references missing experience ${item.experienceId}`);
     if (!hasText(item.description?.zh)) errors.push(`skill evidence ${item.skillId} description.zh is required`);
     if (!hasText(item.description?.en)) errors.push(`skill evidence ${item.skillId} description.en is required`);
+    if (item.linkText) {
+      if (!item.experienceId) errors.push(`skill evidence ${item.skillId} linkText requires experienceId`);
+      for (const locale of ['zh', 'en']) {
+        if (!hasText(item.linkText[locale])) errors.push(`skill evidence ${item.skillId} linkText.${locale} is required`);
+        else if (!item.description?.[locale]?.includes(item.linkText[locale])) errors.push(`skill evidence ${item.skillId} description.${locale} must contain linkText`);
+      }
+    }
   }
 
   for (const item of data.knowledge ?? []) {

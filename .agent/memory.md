@@ -71,9 +71,10 @@
 
 ## Skills Implementation
 - `docs/skills/skills-raw-inventory.zh.md`: Chinese source-of-truth notes distilled from the user's spoken inventory with only basic deduplication and logical grouping. Use it before rewriting public skill definitions or evidence; do not treat the polished JSON as the only factual source.
+- Treat the Raw inventory as the content ceiling as well as the factual source: public copy may deduplicate, combine adjacent facts, translate, and add only the grammar needed for readable sentences. Do not add inferred workflows, outcomes, expertise claims, or professional generalisations merely to make an entry sound complete.
 - `src/data/skills/`: JSON data grouped into domains, skills, knowledge, tools, and experiences; `types.ts` supplies contracts and `index.ts` supplies module-level lookup maps.
 - Public skill names use broad, scan-friendly capability labels. Each bilingual definition should remain detailed: explain the capability boundary, working method or workflow, relevant technical knowledge, and concrete practice from the user's account instead of reducing the entry to a short summary.
-- Present supporting experience in its own layout column without a `案例` / case heading. Render the bilingual experience description as a complete first-person sentence; project names may appear naturally inside the sentence but must not be displayed as standalone evidence titles.
+- Render supporting experience directly after the skill definition in the same paragraph, without a `案例` / case heading or separate column. When a sentence names a linked project, hyperlink only the project title inside the sentence.
 - Do not reuse a generic Experience sentence across skills. `skill-evidence.json` contains at most one unique, skill-specific bilingual practice sentence per skill and may reference an Experience only for its link. Include only experiences explicitly stated by the user; omit the right-hand practice column when no concrete example was provided.
 - `scripts/skills-data.mjs`, `skills-data-manifest.mjs`, `skills-data.test.mjs`, and `validate-skills.mjs`: dependency-free bilingual, ID, relation, prohibited-field, DJ, and Veo boundary validation.
 - `src/app/skills/page.tsx` and `SkillsContent.tsx`: server-render the database and evidence links.

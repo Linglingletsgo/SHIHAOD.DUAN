@@ -6,12 +6,20 @@ function LocalizedText({ text }: { text: BilingualText }) {
   return <><span data-content-locale="zh">{text.zh}</span><span data-content-locale="en">{text.en}</span></>;
 }
 
-function EvidenceLink({ evidence, experience }: { evidence: SkillEvidence; experience?: Experience }) {
-  const content = <LocalizedText text={evidence.description} />;
-  if (!experience?.href) return <span>{content}</span>;
+function EvidenceAnchor({ experience, children }: { experience: Experience; children: string }) {
   const className = 'underline decoration-zinc-600 underline-offset-4 hover:decoration-zinc-200';
-  if (experience.href.startsWith('/')) return <Link href={experience.href} className={className}>{content}</Link>;
-  return <a href={experience.href} target="_blank" rel="noreferrer" className={className}>{content}</a>;
+  if (experience.href?.startsWith('/')) return <Link href={experience.href} className={className}>{children}</Link>;
+  return <a href={experience.href} target="_blank" rel="noreferrer" className={className}>{children}</a>;
+}
+
+function EvidenceSentence({ evidence, experience }: { evidence: SkillEvidence; experience?: Experience }) {
+  return <>{(['zh', 'en'] as const).map((locale) => {
+    const text = evidence.description[locale];
+    const linkText = evidence.linkText?.[locale];
+    if (!experience?.href || !linkText) return <span key={locale} data-content-locale={locale}>{text}</span>;
+    const linkStart = text.indexOf(linkText);
+    return <span key={locale} data-content-locale={locale}>{text.slice(0, linkStart)}<EvidenceAnchor experience={experience}>{linkText}</EvidenceAnchor>{text.slice(linkStart + linkText.length)}</span>;
+  })}</>;
 }
 
 export default function SkillsContent() {
@@ -51,17 +59,16 @@ export default function SkillsContent() {
                   const evidenceExperience = skillEvidence?.experienceId ? experienceById.get(skillEvidence.experienceId) : undefined;
                   const relatedSkills = [...skill.prerequisiteSkillIds, ...skill.relatedSkillIds, ...skill.combinedPracticeIds].map((id) => skillById.get(id)).filter(Boolean);
                   return (
-                    <article key={skill.id} className="grid gap-5 py-9 md:grid-cols-[minmax(12rem,1fr)_2fr] xl:grid-cols-[minmax(12rem,1fr)_minmax(24rem,2fr)_minmax(16rem,1fr)]">
+                    <article key={skill.id} className="grid gap-5 py-9 md:grid-cols-[minmax(12rem,1fr)_2fr]">
                       <div><p className="mb-2 font-mono text-xs uppercase tracking-widest text-zinc-500"><LocalizedText text={skill.subdomain} /></p><h3 className="text-xl font-medium text-zinc-100"><LocalizedText text={skill.name} /></h3></div>
                       <div>
-                        <p className="mb-5 leading-7 text-zinc-300"><LocalizedText text={skill.definition} /></p>
+                        <p className="mb-5 leading-7 text-zinc-300"><LocalizedText text={skill.definition} />{skillEvidence && <><span aria-hidden="true"> </span><EvidenceSentence evidence={skillEvidence} experience={evidenceExperience} /></>}</p>
                         {(skillKnowledge.length > 0 || skillTools.length > 0) && <div className="mb-4 flex flex-wrap gap-2 text-xs text-zinc-400">
                           {skillKnowledge.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-800 px-3 py-1"><LocalizedText text={item.name} /></span>)}
                           {skillTools.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-700 px-3 py-1 text-zinc-300">{item.name}</span>)}
                         </div>}
                         {relatedSkills.length > 0 && <details className="mt-4 text-sm text-zinc-500"><summary className="cursor-pointer font-mono text-xs uppercase tracking-wider hover:text-zinc-300"><span data-content-locale="zh">关联能力</span><span data-content-locale="en">Related Skills</span></summary><p className="mt-3 leading-6">{relatedSkills.map((item, index) => item && <span key={item.id}>{index > 0 && ' · '}<LocalizedText text={item.name} /></span>)}</p></details>}
                       </div>
-                      {skillEvidence && <div className="border-l border-zinc-800 pl-5 text-sm leading-7 text-zinc-400 md:col-start-2 xl:col-start-3"><p><EvidenceLink evidence={skillEvidence} experience={evidenceExperience} /></p></div>}
                     </article>
                   );
                 })}

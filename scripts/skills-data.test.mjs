@@ -40,6 +40,12 @@ test('rejects repeated evidence for the same skill', () => {
   assert.match(validateSkillData(data).join('\n'), /duplicate skill evidence for research/);
 });
 
+test('requires linked case text to appear in its sentence', () => {
+  const data = validData();
+  data.skillEvidence[0].linkText = { zh: '不存在', en: 'Missing' };
+  assert.match(validateSkillData(data).join('\n'), /must contain linkText/);
+});
+
 test('rejects prohibited public fields', () => {
   const data = validData();
   data.skills[0].status = 'active';
@@ -99,6 +105,7 @@ test('skills route keeps content server-rendered and isolates locale state', asy
 test('skills route presents experience as sentences without a case label', async () => {
   const content = await readFile(new URL('../src/app/skills/SkillsContent.tsx', import.meta.url), 'utf8');
   assert.match(content, /evidence\.description/);
+  assert.match(content, /EvidenceSentence/);
   assert.doesNotMatch(content, />案例</);
   assert.doesNotMatch(content, /experience\.name/);
 });
