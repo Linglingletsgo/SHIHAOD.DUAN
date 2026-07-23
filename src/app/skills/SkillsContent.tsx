@@ -7,7 +7,7 @@ function LocalizedText({ text }: { text: BilingualText }) {
 }
 
 function EvidenceLink({ experience }: { experience: Experience }) {
-  const content = <LocalizedText text={experience.name} />;
+  const content = <LocalizedText text={experience.description} />;
   if (!experience.href) return <span>{content}</span>;
   const className = 'underline decoration-zinc-600 underline-offset-4 hover:decoration-zinc-200';
   if (experience.href.startsWith('/')) return <Link href={experience.href} className={className}>{content}</Link>;
@@ -20,7 +20,7 @@ export default function SkillsContent() {
       <header className="mb-16 max-w-3xl">
         <h1 className="mb-5 font-mono text-4xl font-bold tracking-tight text-white md:text-6xl">SKILLS</h1>
         <p className="text-base leading-8 text-zinc-300 md:text-lg">
-          <span data-content-locale="zh">一套连接技能、知识、工具与实践案例的跨学科能力索引。</span>
+          <span data-content-locale="zh">一套连接技能、知识、工具与实践经历的跨学科能力索引。</span>
           <span data-content-locale="en">An interdisciplinary capability index connecting skills, knowledge, tools and evidence.</span>
         </p>
       </header>
@@ -50,7 +50,7 @@ export default function SkillsContent() {
                   const skillExperiences = skill.experienceIds.map((id) => experienceById.get(id)).filter((item): item is Experience => Boolean(item));
                   const relatedSkills = [...skill.prerequisiteSkillIds, ...skill.relatedSkillIds, ...skill.combinedPracticeIds].map((id) => skillById.get(id)).filter(Boolean);
                   return (
-                    <article key={skill.id} className="grid gap-5 py-9 md:grid-cols-[minmax(12rem,1fr)_2fr]">
+                    <article key={skill.id} className="grid gap-5 py-9 md:grid-cols-[minmax(12rem,1fr)_2fr] xl:grid-cols-[minmax(12rem,1fr)_minmax(24rem,2fr)_minmax(16rem,1fr)]">
                       <div><p className="mb-2 font-mono text-xs uppercase tracking-widest text-zinc-500"><LocalizedText text={skill.subdomain} /></p><h3 className="text-xl font-medium text-zinc-100"><LocalizedText text={skill.name} /></h3></div>
                       <div>
                         <p className="mb-5 leading-7 text-zinc-300"><LocalizedText text={skill.definition} /></p>
@@ -58,9 +58,9 @@ export default function SkillsContent() {
                           {skillKnowledge.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-800 px-3 py-1"><LocalizedText text={item.name} /></span>)}
                           {skillTools.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-700 px-3 py-1 text-zinc-300">{item.name}</span>)}
                         </div>}
-                        {skillExperiences.length > 0 && <p className="text-sm leading-7 text-zinc-400"><span className="mr-2 font-mono text-xs uppercase tracking-wider text-zinc-600"><span data-content-locale="zh">案例</span><span data-content-locale="en">Evidence</span></span>{skillExperiences.map((experience, index) => <span key={experience.id}>{index > 0 && ' · '}<EvidenceLink experience={experience} /></span>)}</p>}
                         {relatedSkills.length > 0 && <details className="mt-4 text-sm text-zinc-500"><summary className="cursor-pointer font-mono text-xs uppercase tracking-wider hover:text-zinc-300"><span data-content-locale="zh">关联能力</span><span data-content-locale="en">Related Skills</span></summary><p className="mt-3 leading-6">{relatedSkills.map((item, index) => item && <span key={item.id}>{index > 0 && ' · '}<LocalizedText text={item.name} /></span>)}</p></details>}
                       </div>
+                      {skillExperiences.length > 0 && <div className="border-l border-zinc-800 pl-5 text-sm leading-7 text-zinc-400 md:col-start-2 xl:col-start-3">{skillExperiences.map((experience) => <p key={experience.id} className="mb-3 last:mb-0"><EvidenceLink experience={experience} /></p>)}</div>}
                     </article>
                   );
                 })}
