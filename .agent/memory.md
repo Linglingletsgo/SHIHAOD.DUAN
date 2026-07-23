@@ -71,6 +71,7 @@
 
 ## Skills Implementation
 - `src/data/skills/`: JSON data grouped into domains, skills, knowledge, tools, and experiences; `types.ts` supplies contracts and `index.ts` supplies module-level lookup maps.
+- Public skill names use broad, scan-friendly capability labels. Each bilingual definition should remain detailed: explain the capability boundary, working method or workflow, relevant technical knowledge, and concrete practice from the user's account instead of reducing the entry to a short summary.
 - `scripts/skills-data.mjs`, `skills-data-manifest.mjs`, `skills-data.test.mjs`, and `validate-skills.mjs`: dependency-free bilingual, ID, relation, prohibited-field, DJ, and Veo boundary validation.
 - `src/app/skills/page.tsx` and `SkillsContent.tsx`: server-render the database and evidence links.
 - `SkillsLanguageShell.tsx`: the only new Client Component; owns the Chinese/English toggle while content remains server rendered.
