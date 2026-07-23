@@ -70,6 +70,7 @@
 - Do not create unrelated documentation. The brainstorming skill will require a reviewed design spec before implementation.
 
 ## Skills Implementation
+- `docs/skills/skills-raw-inventory.zh.md`: Chinese source-of-truth notes distilled from the user's spoken inventory with only basic deduplication and logical grouping. Use it before rewriting public skill definitions or evidence; do not treat the polished JSON as the only factual source.
 - `src/data/skills/`: JSON data grouped into domains, skills, knowledge, tools, and experiences; `types.ts` supplies contracts and `index.ts` supplies module-level lookup maps.
 - Public skill names use broad, scan-friendly capability labels. Each bilingual definition should remain detailed: explain the capability boundary, working method or workflow, relevant technical knowledge, and concrete practice from the user's account instead of reducing the entry to a short summary.
 - Present supporting experience in its own layout column without a `案例` / case heading. Render the bilingual experience description as a complete first-person sentence; project names may appear naturally inside the sentence but must not be displayed as standalone evidence titles.
