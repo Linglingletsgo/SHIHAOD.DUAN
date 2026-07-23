@@ -9,6 +9,7 @@ const validData = () => ({
   knowledge: [{ id: 'source-evaluation', name: { zh: '来源评估', en: 'Source Evaluation' }, definition: { zh: '判断来源可靠性。', en: 'Assessment of source reliability.' }, relatedSkillIds: ['research'] }],
   tools: [],
   experiences: [{ id: 'research-education', name: { zh: '研究教育', en: 'Research Education' }, description: { zh: '以研究项目形成证据。', en: 'Evidence developed through research projects.' }, relatedSkillIds: ['research'], evidenceType: 'education' }],
+  skillEvidence: [{ skillId: 'research', experienceId: 'research-education', description: { zh: '我在研究项目中检索并验证资料。', en: 'I found and verified sources in a research project.' } }],
 });
 
 test('accepts a complete bilingual data set', () => {
@@ -31,6 +32,12 @@ test('rejects missing relations', () => {
   const data = validData();
   data.skills[0].toolIds = ['missing-tool'];
   assert.match(validateSkillData(data).join('\n'), /missing tool missing-tool/);
+});
+
+test('rejects repeated evidence for the same skill', () => {
+  const data = validData();
+  data.skillEvidence.push({ ...data.skillEvidence[0] });
+  assert.match(validateSkillData(data).join('\n'), /duplicate skill evidence for research/);
 });
 
 test('rejects prohibited public fields', () => {
@@ -91,7 +98,7 @@ test('skills route keeps content server-rendered and isolates locale state', asy
 
 test('skills route presents experience as sentences without a case label', async () => {
   const content = await readFile(new URL('../src/app/skills/SkillsContent.tsx', import.meta.url), 'utf8');
-  assert.match(content, /experience\.description/);
+  assert.match(content, /evidence\.description/);
   assert.doesNotMatch(content, />案例</);
   assert.doesNotMatch(content, /experience\.name/);
 });

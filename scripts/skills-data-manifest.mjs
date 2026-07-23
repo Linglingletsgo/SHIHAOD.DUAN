@@ -8,4 +8,5 @@ export const skillData = {
   knowledge: await read('knowledge'),
   tools: await read('tools'),
   experiences: await read('experiences'),
+  skillEvidence: await read('skill-evidence'),
 };

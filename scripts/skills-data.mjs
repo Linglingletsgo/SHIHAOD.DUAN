@@ -36,6 +36,16 @@ export function validateSkillData(data) {
     if (/^dj-performance$/i.test(skill.id)) errors.push('DJ must remain knowledge-only');
   }
 
+  const evidencedSkills = new Set();
+  for (const item of data.skillEvidence ?? []) {
+    if (evidencedSkills.has(item.skillId)) errors.push(`duplicate skill evidence for ${item.skillId}`);
+    evidencedSkills.add(item.skillId);
+    if (!ids.skills.has(item.skillId)) errors.push(`skill evidence references missing skill ${item.skillId}`);
+    if (item.experienceId && !ids.experiences.has(item.experienceId)) errors.push(`skill evidence references missing experience ${item.experienceId}`);
+    if (!hasText(item.description?.zh)) errors.push(`skill evidence ${item.skillId} description.zh is required`);
+    if (!hasText(item.description?.en)) errors.push(`skill evidence ${item.skillId} description.en is required`);
+  }
+
   for (const item of data.knowledge ?? []) {
     for (const id of item.relatedSkillIds ?? []) if (!ids.skills.has(id)) errors.push(`knowledge ${item.id} references missing skill ${id}`);
   }

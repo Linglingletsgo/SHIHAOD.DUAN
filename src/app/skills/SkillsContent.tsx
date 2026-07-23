@@ -1,14 +1,14 @@
 import Link from 'next/link';
-import { domains, experienceById, knowledgeById, skillById, skills, toolById } from '@/data/skills';
-import type { BilingualText, Experience } from '@/data/skills/types';
+import { domains, experienceById, knowledgeById, skillById, skillEvidenceBySkillId, skills, toolById } from '@/data/skills';
+import type { BilingualText, Experience, SkillEvidence } from '@/data/skills/types';
 
 function LocalizedText({ text }: { text: BilingualText }) {
   return <><span data-content-locale="zh">{text.zh}</span><span data-content-locale="en">{text.en}</span></>;
 }
 
-function EvidenceLink({ experience }: { experience: Experience }) {
-  const content = <LocalizedText text={experience.description} />;
-  if (!experience.href) return <span>{content}</span>;
+function EvidenceLink({ evidence, experience }: { evidence: SkillEvidence; experience?: Experience }) {
+  const content = <LocalizedText text={evidence.description} />;
+  if (!experience?.href) return <span>{content}</span>;
   const className = 'underline decoration-zinc-600 underline-offset-4 hover:decoration-zinc-200';
   if (experience.href.startsWith('/')) return <Link href={experience.href} className={className}>{content}</Link>;
   return <a href={experience.href} target="_blank" rel="noreferrer" className={className}>{content}</a>;
@@ -47,7 +47,8 @@ export default function SkillsContent() {
                 {domainSkills.map((skill) => {
                   const skillKnowledge = skill.knowledgeIds.map((id) => knowledgeById.get(id)).filter(Boolean);
                   const skillTools = skill.toolIds.map((id) => toolById.get(id)).filter(Boolean);
-                  const skillExperiences = skill.experienceIds.map((id) => experienceById.get(id)).filter((item): item is Experience => Boolean(item));
+                  const skillEvidence = skillEvidenceBySkillId.get(skill.id);
+                  const evidenceExperience = skillEvidence?.experienceId ? experienceById.get(skillEvidence.experienceId) : undefined;
                   const relatedSkills = [...skill.prerequisiteSkillIds, ...skill.relatedSkillIds, ...skill.combinedPracticeIds].map((id) => skillById.get(id)).filter(Boolean);
                   return (
                     <article key={skill.id} className="grid gap-5 py-9 md:grid-cols-[minmax(12rem,1fr)_2fr] xl:grid-cols-[minmax(12rem,1fr)_minmax(24rem,2fr)_minmax(16rem,1fr)]">
@@ -60,7 +61,7 @@ export default function SkillsContent() {
                         </div>}
                         {relatedSkills.length > 0 && <details className="mt-4 text-sm text-zinc-500"><summary className="cursor-pointer font-mono text-xs uppercase tracking-wider hover:text-zinc-300"><span data-content-locale="zh">关联能力</span><span data-content-locale="en">Related Skills</span></summary><p className="mt-3 leading-6">{relatedSkills.map((item, index) => item && <span key={item.id}>{index > 0 && ' · '}<LocalizedText text={item.name} /></span>)}</p></details>}
                       </div>
-                      {skillExperiences.length > 0 && <div className="border-l border-zinc-800 pl-5 text-sm leading-7 text-zinc-400 md:col-start-2 xl:col-start-3">{skillExperiences.map((experience) => <p key={experience.id} className="mb-3 last:mb-0"><EvidenceLink experience={experience} /></p>)}</div>}
+                      {skillEvidence && <div className="border-l border-zinc-800 pl-5 text-sm leading-7 text-zinc-400 md:col-start-2 xl:col-start-3"><p><EvidenceLink evidence={skillEvidence} experience={evidenceExperience} /></p></div>}
                     </article>
                   );
                 })}
