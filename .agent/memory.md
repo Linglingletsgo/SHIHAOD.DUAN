@@ -30,14 +30,14 @@
 - Store each type separately and connect objects through stable IDs.
 - Skill granularity: independently applicable capability units, not broad identities or microscopic operations.
 - Fixed top-level domains with extensible subdomains:
-  1. Cognitive
+  1. Technical
   2. Creative
-  3. Technical
-  4. Physical
+  3. Cognitive
+  4. Organizational
   5. Interpersonal
-  6. Organizational
-  7. Personal
-  8. Practical Life
+  6. Physical
+  7. Practical Life
+  8. Personal
 - Skill-to-skill relationships: `Prerequisite`, `Related`, `Combined Practice`.
 - Other relations: Skill requires Knowledge, uses Tool, and is demonstrated by Experience.
 - Keep Domain, Subdomain, Mode, Transferability, Evidence Type, and Language where relevant.

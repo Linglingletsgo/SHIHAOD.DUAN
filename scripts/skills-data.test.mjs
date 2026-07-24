@@ -69,7 +69,7 @@ test('declares every fixed domain and required evidence hub', async () => {
     readFile(new URL('../src/data/skills/domains.json', import.meta.url), 'utf8').then(JSON.parse),
     readFile(new URL('../src/data/skills/experiences.json', import.meta.url), 'utf8').then(JSON.parse),
   ]);
-  assert.deepEqual(domains.map(({ id }) => id), ['cognitive', 'creative', 'technical', 'physical', 'interpersonal', 'organizational', 'personal', 'practical-life']);
+  assert.deepEqual(domains.map(({ id }) => id), ['technical', 'creative', 'cognitive', 'organizational', 'interpersonal', 'physical', 'practical-life', 'personal']);
   for (const id of ['fashion-lab', 'huan-3d', 'glitch-in-the-hive', 'sony-sie', 'music-portfolio', 'github', 'obfuscation-archive', 'digital-alchemy', 'education-research', 'practical-experiences']) assert.ok(experiences.some((item) => item.id === id));
 });
 

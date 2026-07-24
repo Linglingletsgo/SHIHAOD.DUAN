@@ -1,10 +1,10 @@
 [
-  {"id":"cognitive","name":{"zh":"认知","en":"Cognitive"},"description":{"zh":"研究、分析、推理、判断与知识整合。","en":"Research, analysis, reasoning, judgement and knowledge synthesis."}},
-  {"id":"creative","name":{"zh":"创意","en":"Creative"},"description":{"zh":"想象、设计、叙事、表达与审美决策。","en":"Imagination, design, narrative, expression and aesthetic decision-making."}},
   {"id":"technical","name":{"zh":"技术","en":"Technical"},"description":{"zh":"软件、硬件、系统、协议与工程实践。","en":"Software, hardware, systems, protocols and engineering practice."}},
-  {"id":"physical","name":{"zh":"身体与手工","en":"Physical"},"description":{"zh":"身体控制、运动、手工制作与设备操作。","en":"Physical control, movement, craft and equipment operation."}},
-  {"id":"interpersonal","name":{"zh":"人际","en":"Interpersonal"},"description":{"zh":"沟通、教学、协作、支持与跨专业配合。","en":"Communication, teaching, collaboration, support and interdisciplinary teamwork."}},
+  {"id":"creative","name":{"zh":"创意","en":"Creative"},"description":{"zh":"想象、设计、叙事、表达与审美决策。","en":"Imagination, design, narrative, expression and aesthetic decision-making."}},
+  {"id":"cognitive","name":{"zh":"认知","en":"Cognitive"},"description":{"zh":"研究、分析、推理、判断与知识整合。","en":"Research, analysis, reasoning, judgement and knowledge synthesis."}},
   {"id":"organizational","name":{"zh":"组织","en":"Organizational"},"description":{"zh":"规划流程、协调资源与管理项目和数字资产。","en":"Planning workflows, coordinating resources and managing projects and digital assets."}},
-  {"id":"personal","name":{"zh":"个人","en":"Personal"},"description":{"zh":"自主学习、适应、反思、恢复与持续发展。","en":"Self-directed learning, adaptation, reflection, recovery and continuous development."}},
-  {"id":"practical-life","name":{"zh":"生活实践","en":"Practical Life"},"description":{"zh":"生活、出行、照护、维护与现实事务。","en":"Everyday living, travel, care, maintenance and practical affairs."}}
+  {"id":"interpersonal","name":{"zh":"人际","en":"Interpersonal"},"description":{"zh":"沟通、教学、协作、支持与跨专业配合。","en":"Communication, teaching, collaboration, support and interdisciplinary teamwork."}},
+  {"id":"physical","name":{"zh":"身体与手工","en":"Physical"},"description":{"zh":"身体控制、运动、手工制作与设备操作。","en":"Physical control, movement, craft and equipment operation."}},
+  {"id":"practical-life","name":{"zh":"生活实践","en":"Practical Life"},"description":{"zh":"生活、出行、照护、维护与现实事务。","en":"Everyday living, travel, care, maintenance and practical affairs."}},
+  {"id":"personal","name":{"zh":"个人","en":"Personal"},"description":{"zh":"自主学习、适应、反思、恢复与持续发展。","en":"Self-directed learning, adaptation, reflection, recovery and continuous development."}}
 ]
