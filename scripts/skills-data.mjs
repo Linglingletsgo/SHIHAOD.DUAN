@@ -22,6 +22,10 @@ export function validateSkillData(data) {
         if (!hasText(item[field]?.zh)) errors.push(`${group} ${item.id} ${field}.zh is required`);
         if (!hasText(item[field]?.en)) errors.push(`${group} ${item.id} ${field}.en is required`);
       }
+      if (group === 'tools' && item.label) {
+        if (!hasText(item.label.zh)) errors.push(`tools ${item.id} label.zh is required`);
+        if (!hasText(item.label.en)) errors.push(`tools ${item.id} label.en is required`);
+      }
     }
   }
 

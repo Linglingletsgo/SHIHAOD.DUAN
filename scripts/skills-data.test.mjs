@@ -68,6 +68,12 @@ test('keeps Veo 3.1 out of tools', () => {
   assert.match(validateSkillData(data).join('\n'), /Veo 3\.1 is case context/);
 });
 
+test('requires complete bilingual labels for generic tools', () => {
+  const data = validData();
+  data.tools.push({ id: 'scanner', name: 'Scanner', label: { zh: '', en: 'Scanner' }, type: 'hardware', relatedSkillIds: [] });
+  assert.match(validateSkillData(data).join('\n'), /tools scanner label\.zh is required/);
+});
+
 test('keeps DJ as knowledge rather than a skill', () => {
   const data = validData();
   data.skills.push({ ...data.skills[0], id: 'dj-performance', name: { zh: 'DJ 表演', en: 'DJ Performance' } });
@@ -89,8 +95,13 @@ test('declares every public discipline and classifies every skill', async () => 
     readFile(new URL('../src/data/skills/skills.json', import.meta.url), 'utf8').then(JSON.parse),
     readFile(new URL('../src/data/skills/skill-disciplines.json', import.meta.url), 'utf8').then(JSON.parse),
   ]);
-  assert.deepEqual(disciplines.map(({ id }) => id), ['fashion-textiles', 'film-photography', 'music-sound', 'creative-technology', 'ai-web-software', 'computing-infrastructure', 'research-sustainability', 'life-practical']);
+  assert.deepEqual(disciplines.map(({ id }) => id), ['ai-web-software', 'computing-infrastructure', 'creative-technology', 'fashion-textiles', 'film-photography', 'music-sound', 'research-sustainability', 'life-practical']);
   assert.deepEqual(new Set(mappings.map(({ skillId }) => skillId)), new Set(skills.map(({ id }) => id)));
+  const mappingBySkillId = new Map(mappings.map((item) => [item.skillId, item.disciplineIds]));
+  assert.deepEqual(mappingBySkillId.get('cross-source-research'), ['research-sustainability']);
+  assert.deepEqual(mappingBySkillId.get('engineering-quantitative-coursework'), ['computing-infrastructure']);
+  assert.ok(mappingBySkillId.get('academic-research-writing').includes('fashion-textiles'));
+  assert.ok(mappingBySkillId.get('data-analysis-visualization').includes('fashion-textiles'));
 });
 
 test('keeps first-version content boundaries in source data', async () => {
@@ -103,7 +114,7 @@ test('keeps first-version content boundaries in source data', async () => {
   assert.ok(tools.every((item) => !/Veo 3\.1/i.test(item.name)));
   assert.ok(knowledge.some((item) => item.id === 'dj-fundamentals'));
   assert.ok(skills.every((item) => item.id !== 'dj-performance'));
-  for (const id of ['engineering-quantitative-coursework', 'fashion-engineering-education']) assert.ok(skills.some((item) => item.id === id));
+  for (const id of ['academic-research-writing', 'engineering-quantitative-coursework', 'fashion-engineering-education']) assert.ok(skills.some((item) => item.id === id));
   assert.ok(skills.every((item) => !/(GPA|成绩为|得分|score of)/i.test(`${item.definition.zh} ${item.definition.en}`)));
 });
 
@@ -152,7 +163,21 @@ test('skills route exposes shareable discipline filters', async () => {
   assert.match(page, /searchParams/);
   assert.match(content, /data-disciplines/);
   assert.match(filter, /Browse by discipline/);
+  assert.match(filter, /skillCountByDiscipline/);
+  assert.match(filter, /Knowledge Areas/);
+  assert.match(filter, /aria-live="polite"/);
   assert.match(shell, /searchParams\.set\('discipline'/);
+});
+
+test('skills route distinguishes capability navigation, tool tags and external links', async () => {
+  const [page, content] = await Promise.all([
+    readFile(new URL('../src/app/skills/page.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/app/skills/SkillsContent.tsx', import.meta.url), 'utf8'),
+  ]);
+  assert.match(page, /canonical: '\/skills'/);
+  assert.match(content, /Browse by capability type/);
+  assert.match(content, /Tools and Systems/);
+  assert.match(content, /opens in a new tab/);
 });
 
 test('top navigation exposes the skills route', async () => {

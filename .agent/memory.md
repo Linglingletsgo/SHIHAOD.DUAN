@@ -82,7 +82,10 @@
 - Skill subdomains remain in the database for taxonomy maintenance but are hidden publicly to avoid repeating skill titles.
 - `disciplines.json` and `skill-disciplines.json` provide eight public discipline lenses independent of the fixed capability domains. Skills may appear in multiple lenses; every skill must have at least one mapping.
 - `DisciplineFilter.tsx` filters the server-rendered skill articles through the existing client shell and keeps a shareable `?discipline=` URL. Empty capability-domain sections and their navigation entries are hidden while filtering.
-- `SkillsLanguageShell.tsx`: the only new Client Component; defaults to English and switches to Chinese through the language toggle while content remains server rendered.
+- Discipline filters are single-select, ordered with hard-technology lenses first, show automatic skill counts, use stricter direct-relevance mappings, and expose an `aria-live` result announcement. Filter URLs canonicalize to `/skills`.
+- The capability-domain directory remains visible below the discipline filters and is explicitly labelled `Browse by capability type`.
+- A single global legend distinguishes plain-text Knowledge Areas from outlined Tools & Systems tags; generic equipment may use bilingual `tool.label` values while official product, platform, and protocol names remain unchanged.
+- `SkillsLanguageShell.tsx` and `DisciplineFilter.tsx` are the only Skills Client Components; they own language and filter state while skill content remains server rendered.
 - `src/components/Navigation.tsx`: includes `技能 SKILLS` linking to `/skills`.
 - `src/app/globals.css`: switches paired localized spans based on the shell locale.
 
@@ -91,7 +94,7 @@
 - Dev routes previously returned HTTP 200.
 - `npm run build` repeatedly hangs at optimized production build under Next 15 and 16; terminated runs exited 143.
 - `npm audit` previously reported 21 vulnerabilities; do not run force fixes automatically.
-- `npm run test:skills`: 12 tests pass.
+- `npm run test:skills`: 22 tests pass.
 - `npm run validate:skills`: passes with `Skills data is valid.`
 - `npm run type-check`: passes.
 - `npm run lint`: exits 0 with the same 7 pre-existing warnings and no new warnings.

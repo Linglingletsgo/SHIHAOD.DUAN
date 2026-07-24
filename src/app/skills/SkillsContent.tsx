@@ -1,16 +1,16 @@
 import Link from 'next/link';
 import { disciplineIdsBySkillId, domains, experienceById, knowledgeById, skillEvidenceBySkillId, skills, toolById } from '@/data/skills';
-import type { BilingualText, Experience, SkillEvidence } from '@/data/skills/types';
+import type { BilingualText, Experience, SkillEvidence, SkillTool } from '@/data/skills/types';
 import DisciplineFilter from './DisciplineFilter';
 
 function LocalizedText({ text }: { text: BilingualText }) {
   return <><span data-content-locale="zh">{text.zh}</span><span data-content-locale="en">{text.en}</span></>;
 }
 
-function EvidenceAnchor({ experience, children }: { experience: Experience; children: string }) {
+function EvidenceAnchor({ experience, children, locale }: { experience: Experience; children: string; locale: 'zh' | 'en' }) {
   const className = 'underline decoration-zinc-600 underline-offset-4 hover:decoration-zinc-200';
   if (experience.href?.startsWith('/')) return <Link href={experience.href} className={className}>{children}</Link>;
-  return <a href={experience.href} target="_blank" rel="noreferrer" className={className}>{children}</a>;
+  return <a href={experience.href} target="_blank" rel="noreferrer" className={className}>{children}<span aria-hidden="true"> ↗</span><span className="sr-only">{locale === 'zh' ? '（在新标签页打开）' : ' (opens in a new tab)'}</span></a>;
 }
 
 function EvidenceSentence({ evidence, experience }: { evidence: SkillEvidence; experience?: Experience }) {
@@ -19,8 +19,12 @@ function EvidenceSentence({ evidence, experience }: { evidence: SkillEvidence; e
     const linkText = evidence.linkText?.[locale];
     if (!experience?.href || !linkText) return <span key={locale} data-content-locale={locale}>{text}</span>;
     const linkStart = text.indexOf(linkText);
-    return <span key={locale} data-content-locale={locale}>{text.slice(0, linkStart)}<EvidenceAnchor experience={experience}>{linkText}</EvidenceAnchor>{text.slice(linkStart + linkText.length)}</span>;
+    return <span key={locale} data-content-locale={locale}>{text.slice(0, linkStart)}<EvidenceAnchor experience={experience} locale={locale}>{linkText}</EvidenceAnchor>{text.slice(linkStart + linkText.length)}</span>;
   })}</>;
+}
+
+function ToolName({ tool }: { tool: SkillTool }) {
+  return tool.label ? <LocalizedText text={tool.label} /> : tool.name;
 }
 
 export default function SkillsContent() {
@@ -37,6 +41,10 @@ export default function SkillsContent() {
       <DisciplineFilter />
 
       <nav className="mb-20 border-y border-zinc-800 py-6" aria-label="Skill domains">
+        <p className="mb-4 font-mono text-xs uppercase tracking-widest text-zinc-500">
+          <span data-content-locale="zh">按能力类型浏览</span>
+          <span data-content-locale="en">Browse by capability type</span>
+        </p>
         <ol className="grid gap-x-8 gap-y-3 font-mono text-sm text-zinc-400 sm:grid-cols-2 lg:grid-cols-4">
           {domains.map((domain, index) => (
             <li key={domain.id} data-disciplines={[...new Set(skills.filter((skill) => skill.domainId === domain.id).flatMap((skill) => disciplineIdsBySkillId.get(skill.id) ?? []))].join(' ')}><a href={`#${domain.id}`} className="transition-colors hover:text-white"><span className="mr-2 text-zinc-600">{String(index + 1).padStart(2, '0')}</span><LocalizedText text={domain.name} /></a></li>
@@ -65,9 +73,9 @@ export default function SkillsContent() {
                       <div><h3 className="text-xl font-medium text-zinc-100"><LocalizedText text={skill.name} /></h3></div>
                       <div>
                         <p className="mb-5 leading-7 text-zinc-300"><LocalizedText text={skill.definition} />{skillEvidence && <><span aria-hidden="true"> </span><EvidenceSentence evidence={skillEvidence} experience={evidenceExperience} /></>}</p>
-                        {(skillKnowledge.length > 0 || skillTools.length > 0) && <div className="mb-4 flex flex-wrap gap-2 text-xs text-zinc-400">
-                          {skillKnowledge.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-800 px-3 py-1"><LocalizedText text={item.name} /></span>)}
-                          {skillTools.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-700 px-3 py-1 text-zinc-300">{item.name}</span>)}
+                        {(skillKnowledge.length > 0 || skillTools.length > 0) && <div className="mb-4 space-y-3 text-xs text-zinc-400">
+                          {skillKnowledge.length > 0 && <p><span className="sr-only"><span data-content-locale="zh">知识范围：</span><span data-content-locale="en">Knowledge Areas: </span></span>{skillKnowledge.map((item, index) => item && <span key={item.id}>{index > 0 && <span aria-hidden="true"> · </span>}<LocalizedText text={item.name} /></span>)}</p>}
+                          {skillTools.length > 0 && <div className="flex flex-wrap gap-2"><span className="sr-only"><span data-content-locale="zh">工具与系统：</span><span data-content-locale="en">Tools and Systems: </span></span>{skillTools.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-700 px-3 py-1 text-zinc-300"><ToolName tool={item} /></span>)}</div>}
                         </div>}
                       </div>
                     </article>

@@ -7,6 +7,7 @@ import type { DisciplineId } from '@/data/skills/types';
 export const metadata: Metadata = {
   title: 'Skills | Shihao D. Duan',
   description: 'A bilingual interdisciplinary index of skills, knowledge, tools and evidence.',
+  alternates: { canonical: '/skills' },
 };
 
 export default async function SkillsPage({ searchParams }: { searchParams: Promise<{ discipline?: string }> }) {
