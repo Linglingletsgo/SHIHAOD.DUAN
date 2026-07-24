@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 const navItems = [
   { href: '/home', label: '首页 HOME' },
   { href: '/skills', label: '技能 SKILLS' },
-  { href: '/tools', label: '工具 TOOLS' },
   { href: '/about', label: '关于 ABOUT' },
 ];
 

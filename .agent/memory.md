@@ -1,19 +1,19 @@
 # Project Memory
 
 ## Snapshot
-- Date: 2026-07-22
+- Date: 2026-07-24
 - Project root: `/Users/dominicduan/_gitdevelop/my-nextjs-app`
-- Current status: The bilingual `/skills` feature is implemented and committed on branch `codex/skills-page` in `.worktrees/skills-page`. It awaits integration into `main`.
+- Current status: The bilingual `/skills` feature is integrated into `main`. Rhymer has been extracted into a standalone application; the personal site no longer contains the Tools, Rhymer, Media Tool, or Spectrafilm routes.
 
 ## Project State
 - `src/app/page.tsx`: animated landing page.
 - `src/app/home/page.tsx`: portfolio/Fashion Lab directory. Portfolio includes WaveSync, SonySIE, GLITCH IN THE HIVE, Obfuscation Identity Archive, and Digital Alchemy.
-- `src/components/Navigation.tsx`: visible top nav is HOME, TOOLS, ABOUT; `/music` and `/misc` remain accessible but hidden from nav.
+- `src/components/Navigation.tsx`: visible top nav is HOME, SKILLS, ABOUT; `/music` and `/misc` remain accessible but hidden from nav.
 - `src/app/about/page.tsx`: biography, education, portrait, and contact links.
 - `src/app/projects/project-a|b|c|d`: Fashion Lab PDF projects.
 - `src/app/other-works/*`: WaveSync, SonySIE, and GLITCH IN THE HIVE pages.
 - `src/app/music/*`: albums and lyrics; use `.agent/skills/update_music/SKILL.md` for music updates.
-- `src/app/tools/page.tsx`, `mediatool`, `spectrafilm`, `rhymer`: creative tools.
+- Rhymer is maintained as a standalone application and repository. `/tools`, `/rhymer`, `/mediatool`, and `/spectrafilm` have been removed from this site.
 - Static content is hard-coded; there is no CMS/database.
 - Next/React versions: Next 16.2.4, React/React DOM 19.2.5. ESLint uses Next 16 flat config.
 
