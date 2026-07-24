@@ -83,6 +83,8 @@ test('keeps first-version content boundaries in source data', async () => {
   assert.ok(tools.every((item) => !/Veo 3\.1/i.test(item.name)));
   assert.ok(knowledge.some((item) => item.id === 'dj-fundamentals'));
   assert.ok(skills.every((item) => item.id !== 'dj-performance'));
+  for (const id of ['engineering-quantitative-coursework', 'fashion-engineering-education']) assert.ok(skills.some((item) => item.id === id));
+  assert.ok(skills.every((item) => !/(GPA|成绩为|得分|score of)/i.test(`${item.definition.zh} ${item.definition.en}`)));
 });
 
 test('validates the production skills manifest', async () => {
