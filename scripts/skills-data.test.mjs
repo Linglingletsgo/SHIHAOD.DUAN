@@ -117,6 +117,8 @@ test('keeps first-version content boundaries in source data', async () => {
   assert.ok(skills.every((item) => item.id !== 'dj-performance'));
   for (const id of ['academic-research-writing', 'engineering-quantitative-coursework', 'fashion-engineering-education', 'art-theory-criticism']) assert.ok(skills.some((item) => item.id === id));
   const artTheory = skills.find((item) => item.id === 'art-theory-criticism');
+  assert.equal(artTheory.name.en, 'Artistic Practice, Theory and Criticism');
+  assert.match(artTheory.definition.zh, /^以艺术创作为核心/);
   assert.doesNotMatch(`${artTheory.definition.zh} ${artTheory.definition.en}`, /发表|published|publication/i);
   assert.ok(artTheory.experienceIds.includes('education-research'));
   assert.ok(skills.every((item) => !/(GPA|成绩为|得分|score of)/i.test(`${item.definition.zh} ${item.definition.en}`)));
