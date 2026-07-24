@@ -101,7 +101,7 @@ test('skills route keeps content server-rendered and isolates locale state', asy
   assert.doesNotMatch(page, /^['"]use client['"]/m);
   assert.doesNotMatch(content, /^['"]use client['"]/m);
   assert.match(shell, /^['"]use client['"]/m);
-  assert.match(shell, /useState<'zh' \| 'en'>/);
+  assert.match(shell, /useState<'zh' \| 'en'>\('en'\)/);
 });
 
 test('skills route presents experience as sentences without a case label', async () => {

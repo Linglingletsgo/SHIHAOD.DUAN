@@ -182,7 +182,7 @@
 
 - 该项目是影视全流程制作的主要实例。
 - 导演：Shihao Duan。
-- 编剧：Shihao Duan 与 Larissa Lorenzi。
+- 叙事与台词由 Shihao Duan 主导编写。
 - 演员：Anupreet 与 Shihao Duan。
 - 摄影指导：Qi Zhang 与 Shihao Duan。
 - 服装设计：Qi Zhang、Anupreet 与 Larissa Lorenzi。

@@ -78,7 +78,7 @@
 - Do not reuse a generic Experience sentence across skills. `skill-evidence.json` contains at most one unique, skill-specific bilingual practice sentence per skill and may reference an Experience only for its link. Include only experiences explicitly stated by the user; omit the right-hand practice column when no concrete example was provided.
 - `scripts/skills-data.mjs`, `skills-data-manifest.mjs`, `skills-data.test.mjs`, and `validate-skills.mjs`: dependency-free bilingual, ID, relation, prohibited-field, DJ, and Veo boundary validation.
 - `src/app/skills/page.tsx` and `SkillsContent.tsx`: server-render the database and evidence links.
-- `SkillsLanguageShell.tsx`: the only new Client Component; owns the Chinese/English toggle while content remains server rendered.
+- `SkillsLanguageShell.tsx`: the only new Client Component; defaults to English and switches to Chinese through the language toggle while content remains server rendered.
 - `src/components/Navigation.tsx`: includes `技能 SKILLS` linking to `/skills`.
 - `src/app/globals.css`: switches paired localized spans based on the shell locale.
 
