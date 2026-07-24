@@ -28,8 +28,8 @@ export default function SkillsContent() {
       <header className="mb-16 max-w-3xl">
         <h1 className="mb-5 font-mono text-4xl font-bold tracking-tight text-white md:text-6xl">SKILLS</h1>
         <p className="text-base leading-8 text-zinc-300 md:text-lg">
-          <span data-content-locale="zh">一套连接技能、知识、工具与实践经历的跨学科能力索引。</span>
-          <span data-content-locale="en">An interdisciplinary capability index connecting skills, knowledge, tools and evidence.</span>
+          <span data-content-locale="zh">我的跨学科知识与能力难以通过单一作品或履历完整呈现，因此，我构建了这套连接技能、知识、工具与实践经历的能力索引。</span>
+          <span data-content-locale="en">My interdisciplinary knowledge and capabilities cannot be fully represented by a single project or résumé, so I created this index to connect my skills, knowledge, tools and practical experience.</span>
         </p>
       </header>
 
