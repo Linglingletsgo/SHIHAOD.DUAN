@@ -114,7 +114,9 @@ test('keeps first-version content boundaries in source data', async () => {
   assert.ok(tools.every((item) => !/Veo 3\.1/i.test(item.name)));
   assert.ok(knowledge.some((item) => item.id === 'dj-fundamentals'));
   assert.ok(skills.every((item) => item.id !== 'dj-performance'));
-  for (const id of ['academic-research-writing', 'engineering-quantitative-coursework', 'fashion-engineering-education']) assert.ok(skills.some((item) => item.id === id));
+  for (const id of ['academic-research-writing', 'engineering-quantitative-coursework', 'fashion-engineering-education', 'art-theory-criticism']) assert.ok(skills.some((item) => item.id === id));
+  const artTheory = skills.find((item) => item.id === 'art-theory-criticism');
+  assert.doesNotMatch(`${artTheory.definition.zh} ${artTheory.definition.en}`, /发表|published|publication/i);
   assert.ok(skills.every((item) => !/(GPA|成绩为|得分|score of)/i.test(`${item.definition.zh} ${item.definition.en}`)));
 });
 
