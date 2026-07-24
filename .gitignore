@@ -99,6 +99,7 @@ dist
 tmp/
 temp/
 .worktrees/
+.archive/
 
 # Large files (over 50MB) - old files
 public/videos/huan.mp4

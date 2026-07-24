@@ -12,11 +12,11 @@ type HomeLinkItem = {
 };
 
 const portfolioItems: HomeLinkItem[] = [
-  { text: 'WaveSync', href: '/other-works/work-1', revealDirection: 'right' },
-  { text: 'LCF CC SonySIE Project', href: '/other-works/sony-sie', revealDirection: 'right' },
-  { text: 'GLITCH IN THE HIVE', href: '/other-works/glitch-in-the-hive', revealDirection: 'right' },
   { text: 'Obfuscation Identity Archive', href: 'https://archive.dominicduan.com/', revealDirection: 'right', external: true },
+  { text: 'GLITCH IN THE HIVE', href: '/other-works/glitch-in-the-hive', revealDirection: 'right' },
+  { text: 'LCF CC SonySIE Project', href: '/other-works/sony-sie', revealDirection: 'right' },
   { text: 'Digital Alchemy', href: 'https://digitalalchemy.dominicduan.com', revealDirection: 'right', external: true },
+  { text: 'WaveSync', href: '/other-works/work-1', revealDirection: 'right' },
 ];
 
 const fashionLabItems: HomeLinkItem[] = [

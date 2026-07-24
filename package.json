@@ -23,7 +23,6 @@
     "lucide-react": "^0.555.0",
     "motion": "^12.23.22",
     "next": "^16.2.4",
-    "pdfjs-dist": "^5.4.149",
     "react": "^19.2.5",
     "react-bits": "github:DavidHDev/react-bits",
     "react-dom": "^19.2.5",
