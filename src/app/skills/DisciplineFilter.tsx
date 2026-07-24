@@ -39,8 +39,8 @@ export default function DisciplineFilter() {
         <span data-content-locale="en">{discipline === 'all' ? 'All skills shown' : `${selectedDiscipline?.name.en} selected`}. {selectedCount} skills shown.</span>
       </p>
       <div className="mt-6 flex flex-wrap items-center gap-4 border-t border-zinc-900 pt-5 font-mono text-xs">
-        <span className="text-zinc-500"><span data-content-locale="zh">知识范围</span><span data-content-locale="en">Knowledge Areas</span></span>
-        <span className="rounded-full border border-zinc-700 px-3 py-1 text-zinc-300"><span data-content-locale="zh">工具与系统</span><span data-content-locale="en">Tools &amp; Systems</span></span>
+        <span className="rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1 text-zinc-500"><span data-content-locale="zh">知识范围</span><span data-content-locale="en">Knowledge Areas</span></span>
+        <span className="rounded-full border border-zinc-600 px-3 py-1 text-zinc-200"><span data-content-locale="zh">工具与系统</span><span data-content-locale="en">Tools &amp; Systems</span></span>
       </div>
     </nav>
   );

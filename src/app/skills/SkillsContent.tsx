@@ -73,9 +73,9 @@ export default function SkillsContent() {
                       <div><h3 className="text-xl font-medium text-zinc-100"><LocalizedText text={skill.name} /></h3></div>
                       <div>
                         <p className="mb-5 leading-7 text-zinc-300"><LocalizedText text={skill.definition} />{skillEvidence && <><span aria-hidden="true"> </span><EvidenceSentence evidence={skillEvidence} experience={evidenceExperience} /></>}</p>
-                        {(skillKnowledge.length > 0 || skillTools.length > 0) && <div className="mb-4 space-y-3 text-xs text-zinc-400">
-                          {skillKnowledge.length > 0 && <p><span className="sr-only"><span data-content-locale="zh">知识范围：</span><span data-content-locale="en">Knowledge Areas: </span></span>{skillKnowledge.map((item, index) => item && <span key={item.id}>{index > 0 && <span aria-hidden="true"> · </span>}<LocalizedText text={item.name} /></span>)}</p>}
-                          {skillTools.length > 0 && <div className="flex flex-wrap gap-2"><span className="sr-only"><span data-content-locale="zh">工具与系统：</span><span data-content-locale="en">Tools and Systems: </span></span>{skillTools.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-700 px-3 py-1 text-zinc-300"><ToolName tool={item} /></span>)}</div>}
+                        {(skillKnowledge.length > 0 || skillTools.length > 0) && <div className="mb-4 space-y-3 text-xs">
+                          {skillKnowledge.length > 0 && <div className="flex flex-wrap gap-2"><span className="sr-only"><span data-content-locale="zh">知识范围：</span><span data-content-locale="en">Knowledge Areas: </span></span>{skillKnowledge.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1 text-zinc-500"><LocalizedText text={item.name} /></span>)}</div>}
+                          {skillTools.length > 0 && <div className="flex flex-wrap gap-2 font-mono"><span className="sr-only"><span data-content-locale="zh">工具与系统：</span><span data-content-locale="en">Tools and Systems: </span></span>{skillTools.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-600 px-3 py-1 text-zinc-200"><ToolName tool={item} /></span>)}</div>}
                         </div>}
                       </div>
                     </article>
