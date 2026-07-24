@@ -105,10 +105,11 @@ test('declares every public discipline and classifies every skill', async () => 
 });
 
 test('keeps first-version content boundaries in source data', async () => {
-  const [skills, tools, knowledge] = await Promise.all([
+  const [skills, tools, knowledge, skillEvidence] = await Promise.all([
     readFile(new URL('../src/data/skills/skills.json', import.meta.url), 'utf8').then(JSON.parse),
     readFile(new URL('../src/data/skills/tools.json', import.meta.url), 'utf8').then(JSON.parse),
     readFile(new URL('../src/data/skills/knowledge.json', import.meta.url), 'utf8').then(JSON.parse),
+    readFile(new URL('../src/data/skills/skill-evidence.json', import.meta.url), 'utf8').then(JSON.parse),
   ]);
   for (const id of ['cognitive', 'creative', 'technical', 'physical', 'interpersonal', 'organizational', 'personal', 'practical-life']) assert.ok(skills.some((item) => item.domainId === id));
   assert.ok(tools.every((item) => !/Veo 3\.1/i.test(item.name)));
@@ -118,6 +119,9 @@ test('keeps first-version content boundaries in source data', async () => {
   const artTheory = skills.find((item) => item.id === 'art-theory-criticism');
   assert.doesNotMatch(`${artTheory.definition.zh} ${artTheory.definition.en}`, /发表|published|publication/i);
   assert.ok(skills.every((item) => !/(GPA|成绩为|得分|score of)/i.test(`${item.definition.zh} ${item.definition.en}`)));
+  const educationEvidence = skillEvidence.find((item) => item.skillId === 'academic-research-writing');
+  assert.match(educationEvidence.description.en, /University of the Arts London/);
+  assert.match(educationEvidence.description.en, /received an offer.*Royal College of Art/);
 });
 
 test('validates the production skills manifest', async () => {

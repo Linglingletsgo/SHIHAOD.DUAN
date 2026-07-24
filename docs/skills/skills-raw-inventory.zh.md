@@ -20,7 +20,8 @@
 ### 教育
 
 - 本科毕业于浙江理工大学服装设计与工程专业。
-- 研究生就读于伦敦时装学院 Fashion Futures 专业。
+- 研究生就读于伦敦艺术大学（University of the Arts London）伦敦时装学院（London College of Fashion）Fashion Futures 专业。
+- 曾获得皇家艺术学院（Royal College of Art）MA Digital Direction offer，但不表述为就读或学位经历。
 - Fashion Futures 是侧重可持续时尚的专业。
 - Fashion Futures 是学术研究与设计实践同等权重的专业。
 - 本科毕业论文涉及中国服装产业出口隐含碳的数据分析与可视化。
