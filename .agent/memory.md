@@ -80,6 +80,8 @@
 - `src/app/skills/page.tsx` and `SkillsContent.tsx`: server-render the database and evidence links.
 - Skill relations remain in the database for future indexing but are not shown on the public Skills page.
 - Skill subdomains remain in the database for taxonomy maintenance but are hidden publicly to avoid repeating skill titles.
+- `disciplines.json` and `skill-disciplines.json` provide eight public discipline lenses independent of the fixed capability domains. Skills may appear in multiple lenses; every skill must have at least one mapping.
+- `DisciplineFilter.tsx` filters the server-rendered skill articles through the existing client shell and keeps a shareable `?discipline=` URL. Empty capability-domain sections and their navigation entries are hidden while filtering.
 - `SkillsLanguageShell.tsx`: the only new Client Component; defaults to English and switches to Chinese through the language toggle while content remains server rendered.
 - `src/components/Navigation.tsx`: includes `技能 SKILLS` linking to `/skills`.
 - `src/app/globals.css`: switches paired localized spans based on the shell locale.

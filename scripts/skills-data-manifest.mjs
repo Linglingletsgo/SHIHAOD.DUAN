@@ -4,7 +4,9 @@ const read = async (name) => JSON.parse(await readFile(new URL(`../src/data/skil
 
 export const skillData = {
   domains: await read('domains'),
+  disciplines: await read('disciplines'),
   skills: await read('skills'),
+  skillDisciplines: await read('skill-disciplines'),
   knowledge: await read('knowledge'),
   tools: await read('tools'),
   experiences: await read('experiences'),

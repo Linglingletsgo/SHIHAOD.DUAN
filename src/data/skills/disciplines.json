@@ -1,0 +1,10 @@
+[
+  {"id":"fashion-textiles","name":{"zh":"服装与纺织","en":"Fashion & Textiles"}},
+  {"id":"film-photography","name":{"zh":"影视、摄影与后期","en":"Film, Photography & Post-production"}},
+  {"id":"music-sound","name":{"zh":"音乐、声音与表演","en":"Music, Sound & Performance"}},
+  {"id":"creative-technology","name":{"zh":"3D、交互与创意技术","en":"3D, Interaction & Creative Technology"}},
+  {"id":"ai-web-software","name":{"zh":"AI、Web与软件","en":"AI, Web & Software"}},
+  {"id":"computing-infrastructure","name":{"zh":"计算机、硬件与基础设施","en":"Computing, Hardware & Infrastructure"}},
+  {"id":"research-sustainability","name":{"zh":"研究、可持续与批判实践","en":"Research, Sustainability & Critical Practice"}},
+  {"id":"life-practical","name":{"zh":"生活、出行与实用技能","en":"Life, Mobility & Practical Skills"}}
+]

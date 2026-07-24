@@ -1,10 +1,13 @@
 export type BilingualText = Readonly<{ zh: string; en: string }>;
 export type DomainId = 'cognitive' | 'creative' | 'technical' | 'physical' | 'interpersonal' | 'organizational' | 'personal' | 'practical-life';
+export type DisciplineId = 'fashion-textiles' | 'film-photography' | 'music-sound' | 'creative-technology' | 'ai-web-software' | 'computing-infrastructure' | 'research-sustainability' | 'life-practical';
 export type WorkMode = 'individual' | 'collaborative' | 'teaching' | 'support';
 export type Transferability = 'domain-specific' | 'cross-disciplinary' | 'universal';
 export type EvidenceType = 'project' | 'work' | 'education' | 'publication' | 'practice' | 'recognition';
 
 export type Domain = Readonly<{ id: DomainId; name: BilingualText; description: BilingualText }>;
+export type Discipline = Readonly<{ id: DisciplineId; name: BilingualText }>;
+export type SkillDiscipline = Readonly<{ skillId: string; disciplineIds: readonly DisciplineId[] }>;
 export type Knowledge = Readonly<{ id: string; name: BilingualText; definition: BilingualText; relatedSkillIds: readonly string[] }>;
 export type SkillTool = Readonly<{ id: string; name: string; type: 'software' | 'hardware' | 'protocol' | 'platform' | 'equipment'; relatedSkillIds: readonly string[] }>;
 export type Experience = Readonly<{ id: string; name: BilingualText; description: BilingualText; href?: string; relatedSkillIds: readonly string[]; evidenceType: EvidenceType }>;

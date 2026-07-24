@@ -5,7 +5,9 @@ import { validateSkillData } from './skills-data.mjs';
 
 const validData = () => ({
   domains: [{ id: 'cognitive', name: { zh: '认知', en: 'Cognitive' }, description: { zh: '研究与推理。', en: 'Research and reasoning.' } }],
+  disciplines: [{ id: 'research-sustainability', name: { zh: '研究', en: 'Research' } }],
   skills: [{ id: 'research', domainId: 'cognitive', subdomain: { zh: '研究', en: 'Research' }, name: { zh: '跨来源调研', en: 'Cross-source Research' }, definition: { zh: '从多个来源检索并验证资料。', en: 'Finds and verifies information across multiple sources.' }, knowledgeIds: ['source-evaluation'], toolIds: [], experienceIds: ['research-education'], prerequisiteSkillIds: [], relatedSkillIds: [], combinedPracticeIds: [], mode: ['individual'], transferability: 'universal', evidenceType: ['education'] }],
+  skillDisciplines: [{ skillId: 'research', disciplineIds: ['research-sustainability'] }],
   knowledge: [{ id: 'source-evaluation', name: { zh: '来源评估', en: 'Source Evaluation' }, definition: { zh: '判断来源可靠性。', en: 'Assessment of source reliability.' }, relatedSkillIds: ['research'] }],
   tools: [],
   experiences: [{ id: 'research-education', name: { zh: '研究教育', en: 'Research Education' }, description: { zh: '以研究项目形成证据。', en: 'Evidence developed through research projects.' }, relatedSkillIds: ['research'], evidenceType: 'education' }],
@@ -32,6 +34,14 @@ test('rejects missing relations', () => {
   const data = validData();
   data.skills[0].toolIds = ['missing-tool'];
   assert.match(validateSkillData(data).join('\n'), /missing tool missing-tool/);
+});
+
+test('requires every skill to have a valid discipline mapping', () => {
+  const data = validData();
+  data.skillDisciplines[0].disciplineIds = ['missing-discipline'];
+  assert.match(validateSkillData(data).join('\n'), /missing discipline missing-discipline/);
+  data.skillDisciplines = [];
+  assert.match(validateSkillData(data).join('\n'), /requires a discipline mapping/);
 });
 
 test('rejects repeated evidence for the same skill', () => {
@@ -71,6 +81,16 @@ test('declares every fixed domain and required evidence hub', async () => {
   ]);
   assert.deepEqual(domains.map(({ id }) => id), ['technical', 'creative', 'cognitive', 'organizational', 'interpersonal', 'physical', 'practical-life', 'personal']);
   for (const id of ['fashion-lab', 'huan-3d', 'glitch-in-the-hive', 'sony-sie', 'music-portfolio', 'github', 'obfuscation-archive', 'digital-alchemy', 'education-research', 'practical-experiences']) assert.ok(experiences.some((item) => item.id === id));
+});
+
+test('declares every public discipline and classifies every skill', async () => {
+  const [disciplines, skills, mappings] = await Promise.all([
+    readFile(new URL('../src/data/skills/disciplines.json', import.meta.url), 'utf8').then(JSON.parse),
+    readFile(new URL('../src/data/skills/skills.json', import.meta.url), 'utf8').then(JSON.parse),
+    readFile(new URL('../src/data/skills/skill-disciplines.json', import.meta.url), 'utf8').then(JSON.parse),
+  ]);
+  assert.deepEqual(disciplines.map(({ id }) => id), ['fashion-textiles', 'film-photography', 'music-sound', 'creative-technology', 'ai-web-software', 'computing-infrastructure', 'research-sustainability', 'life-practical']);
+  assert.deepEqual(new Set(mappings.map(({ skillId }) => skillId)), new Set(skills.map(({ id }) => id)));
 });
 
 test('keeps first-version content boundaries in source data', async () => {
@@ -120,6 +140,19 @@ test('skills route keeps skill relations in data without displaying them', async
 test('skills route keeps subdomains in data without displaying them', async () => {
   const content = await readFile(new URL('../src/app/skills/SkillsContent.tsx', import.meta.url), 'utf8');
   assert.doesNotMatch(content, /skill\.subdomain/);
+});
+
+test('skills route exposes shareable discipline filters', async () => {
+  const [page, content, filter, shell] = await Promise.all([
+    readFile(new URL('../src/app/skills/page.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/app/skills/SkillsContent.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/app/skills/DisciplineFilter.tsx', import.meta.url), 'utf8'),
+    readFile(new URL('../src/app/skills/SkillsLanguageShell.tsx', import.meta.url), 'utf8'),
+  ]);
+  assert.match(page, /searchParams/);
+  assert.match(content, /data-disciplines/);
+  assert.match(filter, /Browse by discipline/);
+  assert.match(shell, /searchParams\.set\('discipline'/);
 });
 
 test('top navigation exposes the skills route', async () => {

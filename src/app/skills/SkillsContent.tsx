@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { domains, experienceById, knowledgeById, skillEvidenceBySkillId, skills, toolById } from '@/data/skills';
+import { disciplineIdsBySkillId, domains, experienceById, knowledgeById, skillEvidenceBySkillId, skills, toolById } from '@/data/skills';
 import type { BilingualText, Experience, SkillEvidence } from '@/data/skills/types';
+import DisciplineFilter from './DisciplineFilter';
 
 function LocalizedText({ text }: { text: BilingualText }) {
   return <><span data-content-locale="zh">{text.zh}</span><span data-content-locale="en">{text.en}</span></>;
@@ -33,10 +34,12 @@ export default function SkillsContent() {
         </p>
       </header>
 
+      <DisciplineFilter />
+
       <nav className="mb-20 border-y border-zinc-800 py-6" aria-label="Skill domains">
         <ol className="grid gap-x-8 gap-y-3 font-mono text-sm text-zinc-400 sm:grid-cols-2 lg:grid-cols-4">
           {domains.map((domain, index) => (
-            <li key={domain.id}><a href={`#${domain.id}`} className="transition-colors hover:text-white"><span className="mr-2 text-zinc-600">{String(index + 1).padStart(2, '0')}</span><LocalizedText text={domain.name} /></a></li>
+            <li key={domain.id} data-disciplines={[...new Set(skills.filter((skill) => skill.domainId === domain.id).flatMap((skill) => disciplineIdsBySkillId.get(skill.id) ?? []))].join(' ')}><a href={`#${domain.id}`} className="transition-colors hover:text-white"><span className="mr-2 text-zinc-600">{String(index + 1).padStart(2, '0')}</span><LocalizedText text={domain.name} /></a></li>
           ))}
         </ol>
       </nav>
@@ -45,7 +48,7 @@ export default function SkillsContent() {
         {domains.map((domain, domainIndex) => {
           const domainSkills = skills.filter((skill) => skill.domainId === domain.id);
           return (
-            <section key={domain.id} id={domain.id} className="scroll-mt-24">
+            <section key={domain.id} id={domain.id} className="skills-domain scroll-mt-24">
               <div className="mb-10 grid gap-3 border-b border-zinc-800 pb-6 md:grid-cols-[5rem_1fr_2fr]">
                 <span className="font-mono text-sm text-zinc-600">{String(domainIndex + 1).padStart(2, '0')}</span>
                 <h2 className="font-mono text-2xl font-semibold text-white"><LocalizedText text={domain.name} /></h2>
@@ -58,7 +61,7 @@ export default function SkillsContent() {
                   const skillEvidence = skillEvidenceBySkillId.get(skill.id);
                   const evidenceExperience = skillEvidence?.experienceId ? experienceById.get(skillEvidence.experienceId) : undefined;
                   return (
-                    <article key={skill.id} className="grid gap-5 py-9 md:grid-cols-[minmax(12rem,1fr)_2fr]">
+                    <article key={skill.id} data-disciplines={(disciplineIdsBySkillId.get(skill.id) ?? []).join(' ')} className="grid gap-5 py-9 md:grid-cols-[minmax(12rem,1fr)_2fr]">
                       <div><h3 className="text-xl font-medium text-zinc-100"><LocalizedText text={skill.name} /></h3></div>
                       <div>
                         <p className="mb-5 leading-7 text-zinc-300"><LocalizedText text={skill.definition} />{skillEvidence && <><span aria-hidden="true"> </span><EvidenceSentence evidence={skillEvidence} experience={evidenceExperience} /></>}</p>

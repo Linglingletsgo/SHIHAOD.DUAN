@@ -3,7 +3,7 @@ const hasText = (value) => typeof value === 'string' && value.trim().length > 0;
 
 export function validateSkillData(data) {
   const errors = [];
-  const groups = ['domains', 'skills', 'knowledge', 'tools', 'experiences'];
+  const groups = ['domains', 'disciplines', 'skills', 'knowledge', 'tools', 'experiences'];
   const ids = Object.fromEntries(groups.map((group) => [group, new Set()]));
 
   for (const group of groups) {
@@ -34,6 +34,20 @@ export function validateSkillData(data) {
       for (const id of skill[field] ?? []) if (!ids.skills.has(id)) errors.push(`skill ${skill.id} references missing skill ${id}`);
     }
     if (/^dj-performance$/i.test(skill.id)) errors.push('DJ must remain knowledge-only');
+  }
+
+  const classifiedSkills = new Set();
+  for (const item of data.skillDisciplines ?? []) {
+    if (classifiedSkills.has(item.skillId)) errors.push(`duplicate discipline mapping for skill ${item.skillId}`);
+    classifiedSkills.add(item.skillId);
+    if (!ids.skills.has(item.skillId)) errors.push(`discipline mapping references missing skill ${item.skillId}`);
+    if (!item.disciplineIds?.length) errors.push(`skill ${item.skillId} requires at least one discipline`);
+    for (const id of item.disciplineIds ?? []) {
+      if (!ids.disciplines.has(id)) errors.push(`skill ${item.skillId} references missing discipline ${id}`);
+    }
+  }
+  for (const id of ids.skills) {
+    if (!classifiedSkills.has(id)) errors.push(`skill ${id} requires a discipline mapping`);
   }
 
   const evidencedSkills = new Set();

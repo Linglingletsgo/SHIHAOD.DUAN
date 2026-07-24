@@ -32,3 +32,22 @@ body {
 .skills-language-shell[data-locale="en"] [data-content-locale="en"] {
   display: revert;
 }
+
+.skills-language-shell[data-discipline="fashion-textiles"] :is(article, li):not([data-disciplines~="fashion-textiles"]),
+.skills-language-shell[data-discipline="film-photography"] :is(article, li):not([data-disciplines~="film-photography"]),
+.skills-language-shell[data-discipline="music-sound"] :is(article, li):not([data-disciplines~="music-sound"]),
+.skills-language-shell[data-discipline="creative-technology"] :is(article, li):not([data-disciplines~="creative-technology"]),
+.skills-language-shell[data-discipline="ai-web-software"] :is(article, li):not([data-disciplines~="ai-web-software"]),
+.skills-language-shell[data-discipline="computing-infrastructure"] :is(article, li):not([data-disciplines~="computing-infrastructure"]),
+.skills-language-shell[data-discipline="research-sustainability"] :is(article, li):not([data-disciplines~="research-sustainability"]),
+.skills-language-shell[data-discipline="life-practical"] :is(article, li):not([data-disciplines~="life-practical"]),
+.skills-language-shell[data-discipline="fashion-textiles"] .skills-domain:not(:has(article[data-disciplines~="fashion-textiles"])),
+.skills-language-shell[data-discipline="film-photography"] .skills-domain:not(:has(article[data-disciplines~="film-photography"])),
+.skills-language-shell[data-discipline="music-sound"] .skills-domain:not(:has(article[data-disciplines~="music-sound"])),
+.skills-language-shell[data-discipline="creative-technology"] .skills-domain:not(:has(article[data-disciplines~="creative-technology"])),
+.skills-language-shell[data-discipline="ai-web-software"] .skills-domain:not(:has(article[data-disciplines~="ai-web-software"])),
+.skills-language-shell[data-discipline="computing-infrastructure"] .skills-domain:not(:has(article[data-disciplines~="computing-infrastructure"])),
+.skills-language-shell[data-discipline="research-sustainability"] .skills-domain:not(:has(article[data-disciplines~="research-sustainability"])),
+.skills-language-shell[data-discipline="life-practical"] .skills-domain:not(:has(article[data-disciplines~="life-practical"])) {
+  display: none;
+}
