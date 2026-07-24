@@ -164,7 +164,6 @@ test('skills route exposes shareable discipline filters', async () => {
   assert.match(content, /data-disciplines/);
   assert.match(filter, /Browse by discipline/);
   assert.match(filter, /skillCountByDiscipline/);
-  assert.match(filter, /Knowledge Areas/);
   assert.match(filter, /aria-live="polite"/);
   assert.match(shell, /searchParams\.set\('discipline'/);
 });

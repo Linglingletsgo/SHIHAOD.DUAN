@@ -84,7 +84,7 @@
 - `DisciplineFilter.tsx` filters the server-rendered skill articles through the existing client shell and keeps a shareable `?discipline=` URL. Empty capability-domain sections and their navigation entries are hidden while filtering.
 - Discipline filters are single-select, ordered with hard-technology lenses first, show automatic skill counts, use stricter direct-relevance mappings, and expose an `aria-live` result announcement. Filter URLs canonicalize to `/skills`.
 - The capability-domain directory remains visible below the discipline filters and is explicitly labelled `Browse by capability type`.
-- A single global legend distinguishes subdued framed Knowledge Areas tags from brighter monospace Tools & Systems tags; generic equipment may use bilingual `tool.label` values while official product, platform, and protocol names remain unchanged.
+- Knowledge Areas use subdued framed tags; Tools & Systems use brighter monospace tags. Do not show a global legend. Generic equipment may use bilingual `tool.label` values while official product, platform, and protocol names remain unchanged.
 - `SkillsLanguageShell.tsx` and `DisciplineFilter.tsx` are the only Skills Client Components; they own language and filter state while skill content remains server rendered.
 - `src/components/Navigation.tsx`: includes `技能 SKILLS` linking to `/skills`.
 - `src/app/globals.css`: switches paired localized spans based on the shell locale.
