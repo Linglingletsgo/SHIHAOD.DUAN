@@ -110,8 +110,8 @@
 - 会制作样衣。
 - 会进行 Fitting，判断问题并修版。
 - 能够把概念、效果图、结构、样版、样衣、Fitting、修版和最终成衣组织为完整流程。
-- Fashion Lab 中包括《墙 — The walls of China》《灵 — Yi Ancestral and nature worship》《根 — Shackles of the native land》三个项目。
-- 不需要把每项服装技能分别对应到《墙 — The walls of China》《灵 — Yi Ancestral and nature worship》《根 — Shackles of the native land》，可概述为体现在 Fashion Lab 中。
+- Fashion Lab 中包括《墙 — The Walls of China》《灵 — Yi Ancestral and Nature Worship》《根 — Shackles of the Native Land》三个项目。
+- 不需要把每项服装技能分别对应到《墙 — The Walls of China》《灵 — Yi Ancestral and Nature Worship》《根 — Shackles of the Native Land》，可概述为体现在 Fashion Lab 中。
 
 ### 数字服装
 
