@@ -1,6 +1,7 @@
 [
   {"id":"source-evaluation","name":{"zh":"来源评估","en":"Source Evaluation"},"definition":{"zh":"判断资料来源的可靠性、相关性与合规性。","en":"Assessing the reliability, relevance and compliance of information sources."},"relatedSkillIds":[]},
   {"id":"data-methods","name":{"zh":"数据方法","en":"Data Methods"},"definition":{"zh":"数据收集、清理、分析与可视化方法。","en":"Methods for data collection, cleaning, analysis and visualisation."},"relatedSkillIds":[]},
+  {"id":"sustainable-fashion-industry","name":{"zh":"可持续时尚与产业","en":"Sustainable Fashion and Industry"},"definition":{"zh":"可持续设计、可持续面料以及服装产业环保与可持续知识。","en":"Knowledge of sustainable design, sustainable textiles, and environmental sustainability in the fashion industry."},"relatedSkillIds":["sustainable-fashion-industry-research"]},
   {"id":"critical-theory","name":{"zh":"哲学与未来研究","en":"Philosophy and Futures"},"definition":{"zh":"以哲学、未来研究和批判理论构建设计命题。","en":"Framing design propositions through philosophy, futures and critical theory."},"relatedSkillIds":[]},
   {"id":"cultural-research","name":{"zh":"文化与宗教研究","en":"Cultural and Religious Research"},"definition":{"zh":"民族文化、宗教及其当代转译的研究方法。","en":"Research methods for ethnic cultures, religion and contemporary translation."},"relatedSkillIds":[]},
   {"id":"garment-structure","name":{"zh":"服装结构","en":"Garment Structure"},"definition":{"zh":"人体、样版、廓形与成衣结构之间的关系。","en":"Relationships between body, pattern, silhouette and garment construction."},"relatedSkillIds":[]},
