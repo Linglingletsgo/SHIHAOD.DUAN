@@ -112,6 +112,11 @@ test('skills route presents experience as sentences without a case label', async
   assert.doesNotMatch(content, /experience\.name/);
 });
 
+test('skills route keeps skill relations in data without displaying them', async () => {
+  const content = await readFile(new URL('../src/app/skills/SkillsContent.tsx', import.meta.url), 'utf8');
+  assert.doesNotMatch(content, /关联能力|Related Skills|relatedSkills/);
+});
+
 test('top navigation exposes the skills route', async () => {
   const source = await readFile(new URL('../src/components/Navigation.tsx', import.meta.url), 'utf8');
   assert.match(source, /href: '\/skills', label: '技能 SKILLS'/);

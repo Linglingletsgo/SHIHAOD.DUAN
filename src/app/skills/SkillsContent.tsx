@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { domains, experienceById, knowledgeById, skillById, skillEvidenceBySkillId, skills, toolById } from '@/data/skills';
+import { domains, experienceById, knowledgeById, skillEvidenceBySkillId, skills, toolById } from '@/data/skills';
 import type { BilingualText, Experience, SkillEvidence } from '@/data/skills/types';
 
 function LocalizedText({ text }: { text: BilingualText }) {
@@ -57,7 +57,6 @@ export default function SkillsContent() {
                   const skillTools = skill.toolIds.map((id) => toolById.get(id)).filter(Boolean);
                   const skillEvidence = skillEvidenceBySkillId.get(skill.id);
                   const evidenceExperience = skillEvidence?.experienceId ? experienceById.get(skillEvidence.experienceId) : undefined;
-                  const relatedSkills = [...skill.prerequisiteSkillIds, ...skill.relatedSkillIds, ...skill.combinedPracticeIds].map((id) => skillById.get(id)).filter(Boolean);
                   return (
                     <article key={skill.id} className="grid gap-5 py-9 md:grid-cols-[minmax(12rem,1fr)_2fr]">
                       <div><p className="mb-2 font-mono text-xs uppercase tracking-widest text-zinc-500"><LocalizedText text={skill.subdomain} /></p><h3 className="text-xl font-medium text-zinc-100"><LocalizedText text={skill.name} /></h3></div>
@@ -67,7 +66,6 @@ export default function SkillsContent() {
                           {skillKnowledge.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-800 px-3 py-1"><LocalizedText text={item.name} /></span>)}
                           {skillTools.map((item) => item && <span key={item.id} className="rounded-full border border-zinc-700 px-3 py-1 text-zinc-300">{item.name}</span>)}
                         </div>}
-                        {relatedSkills.length > 0 && <details className="mt-4 text-sm text-zinc-500"><summary className="cursor-pointer font-mono text-xs uppercase tracking-wider hover:text-zinc-300"><span data-content-locale="zh">关联能力</span><span data-content-locale="en">Related Skills</span></summary><p className="mt-3 leading-6">{relatedSkills.map((item, index) => item && <span key={item.id}>{index > 0 && ' · '}<LocalizedText text={item.name} /></span>)}</p></details>}
                       </div>
                     </article>
                   );
