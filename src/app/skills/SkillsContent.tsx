@@ -59,7 +59,7 @@ export default function SkillsContent() {
                   const evidenceExperience = skillEvidence?.experienceId ? experienceById.get(skillEvidence.experienceId) : undefined;
                   return (
                     <article key={skill.id} className="grid gap-5 py-9 md:grid-cols-[minmax(12rem,1fr)_2fr]">
-                      <div><p className="mb-2 font-mono text-xs uppercase tracking-widest text-zinc-500"><LocalizedText text={skill.subdomain} /></p><h3 className="text-xl font-medium text-zinc-100"><LocalizedText text={skill.name} /></h3></div>
+                      <div><h3 className="text-xl font-medium text-zinc-100"><LocalizedText text={skill.name} /></h3></div>
                       <div>
                         <p className="mb-5 leading-7 text-zinc-300"><LocalizedText text={skill.definition} />{skillEvidence && <><span aria-hidden="true"> </span><EvidenceSentence evidence={skillEvidence} experience={evidenceExperience} /></>}</p>
                         {(skillKnowledge.length > 0 || skillTools.length > 0) && <div className="mb-4 flex flex-wrap gap-2 text-xs text-zinc-400">
