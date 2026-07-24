@@ -77,7 +77,7 @@ export default function AboutPage() {
               <div className="space-y-3">
                 {/* Email */}
                 <motion.a
-                  href="mailto:lingonthebeat@gmail.com"
+                  href="mailto:shihaod.duan@gmail.com"
                   className="flex items-center space-x-3 text-zinc-300 hover:text-white transition-colors group"
                   whileHover={{ x: 5 }}
                 >
@@ -87,7 +87,7 @@ export default function AboutPage() {
                       <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                     </svg>
                   </div>
-                  <span>lingonthebeat@gmail.com</span>
+                  <span>shihaod.duan@gmail.com</span>
                 </motion.a>
 
                 {/* Instagram */}
