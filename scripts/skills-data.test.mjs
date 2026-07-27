@@ -113,6 +113,7 @@ test('keeps first-version content boundaries in source data', async () => {
   ]);
   for (const id of ['cognitive', 'creative', 'technical', 'physical', 'interpersonal', 'organizational', 'personal', 'practical-life']) assert.ok(skills.some((item) => item.domainId === id));
   assert.ok(tools.every((item) => !/Veo 3\.1/i.test(item.name)));
+  for (const id of ['zed', 'codex']) assert.ok(tools.some((item) => item.id === id));
   assert.ok(knowledge.some((item) => item.id === 'dj-fundamentals'));
   assert.ok(skills.every((item) => item.id !== 'dj-performance'));
   for (const id of ['academic-research-writing', 'engineering-quantitative-coursework', 'fashion-engineering-education', 'art-theory-criticism']) assert.ok(skills.some((item) => item.id === id));
@@ -127,6 +128,12 @@ test('keeps first-version content boundaries in source data', async () => {
   assert.match(educationEvidence.description.en, /received an offer.*Royal College of Art/);
   const artTheoryEvidence = skillEvidence.find((item) => item.skillId === 'art-theory-criticism');
   assert.match(artTheoryEvidence.description.en, /educational foundation/);
+  const utilityEvidence = skillEvidence.find((item) => item.skillId === 'software-utility-development');
+  assert.equal(utilityEvidence.linkText.en, 'RightClick');
+  assert.match(utilityEvidence.description.en, /macOS Finder/);
+  const openSourceEvidence = skillEvidence.find((item) => item.skillId === 'open-source-customisation');
+  assert.match(openSourceEvidence.description.en, /French visa appointment workflow/);
+  assert.doesNotMatch(openSourceEvidence.description.en, /bypass|circumvent|guarantee/i);
 });
 
 test('validates the production skills manifest', async () => {

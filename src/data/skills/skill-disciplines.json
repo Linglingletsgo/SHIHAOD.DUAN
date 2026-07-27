@@ -21,6 +21,7 @@
   {"skillId":"speculative-design","disciplineIds":["fashion-textiles","research-sustainability"]},
   {"skillId":"aigc-video-production","disciplineIds":["film-photography","ai-web-software"]},
   {"skillId":"web-development","disciplineIds":["ai-web-software","creative-technology"]},
+  {"skillId":"software-utility-development","disciplineIds":["ai-web-software","computing-infrastructure"]},
   {"skillId":"open-source-customisation","disciplineIds":["ai-web-software","computing-infrastructure"]},
   {"skillId":"llm-api-integration","disciplineIds":["ai-web-software","creative-technology"]},
   {"skillId":"realtime-system-integration","disciplineIds":["creative-technology","music-sound","computing-infrastructure"]},

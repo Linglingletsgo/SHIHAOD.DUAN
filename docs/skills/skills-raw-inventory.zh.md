@@ -373,9 +373,18 @@
 - 需要工具时会优先搜索开源项目并进行调研。
 - 会阅读和理解开源项目代码。
 - 会基于开源代码进行定制修改。
+- 曾在开源脚本基础上修改代码，将法国签证预约流程中的重复操作自动化；只记录流程自动化，不表述为绕过验证、平台限制或保证预约成功。
 - 会使用 GitHub 管理代码和归档数据。
 - 经常产生创意性的工具或网页点子。
 - GitHub 地址为 `https://github.com/Linglingletsgo`。
+
+### 软件工具与项目管理
+
+- 在编程、艺术创作和论文写作中，使用 Zed 浏览、阅读和组织项目文件。
+- 使用 Codex 协助管理项目、拆分任务、执行工作并检查结果。
+- 使用 GitHub 进行版本管理和远端备份，在关键节点把可恢复的项目版本推送到远端。
+- 编写了 RightClick，为 macOS Finder 补充个人需要的右键菜单功能。
+- RightClick 项目地址为 `https://github.com/Linglingletsgo/RightClick`。
 
 ### 部署与平台
 
@@ -553,6 +562,8 @@
 - DaVinci Resolve
 - DaVinci Resolve Project Server
 - SurveyJS
+- Zed
+- Codex
 - Zotero
 - wiki-agent
 - Git
