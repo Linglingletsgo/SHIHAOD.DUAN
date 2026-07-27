@@ -966,13 +966,19 @@ export default function LiquidEther({
       }
       dispose() {
         try {
+          this.pause();
           window.removeEventListener('resize', this._resize);
           document.removeEventListener('visibilitychange', this._onVisibility);
           Mouse.dispose();
           if (Common.renderer) {
+            Common.renderer.setRenderTarget(null);
+            Common.renderer.clear(true, true, true);
             const canvas = Common.renderer.domElement;
-            if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
             Common.renderer.dispose();
+            Common.renderer.forceContextLoss();
+            if (canvas && canvas.parentNode) canvas.parentNode.removeChild(canvas);
+            canvas.width = 0;
+            canvas.height = 0;
           }
         } catch (e) {
           void 0;
@@ -1068,6 +1074,7 @@ export default function LiquidEther({
       if (webglRef.current) {
         webglRef.current.dispose();
       }
+      paletteTex.dispose();
       webglRef.current = null;
     };
   }, [
