@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import TextType from "@/components/TextType";
 import LiquidEther from "@/components/LiquidEther";
 
-const liquidEtherColors = ['#C8D8DA', '#F95A6A', '#AA7ABC', '#7A7AAA', '#F9EDD8', '#F97F66'];
+const liquidEtherColors = ['#FFFFFF', '#FAFAFA', '#E4E4E7', '#C4C4CC', '#FFFFFF'];
 const textTypeVariableSpeed = { min: 80, max: 120 };
 const handleSentenceComplete = () => {};
 
