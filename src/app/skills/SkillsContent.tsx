@@ -10,7 +10,7 @@ function LocalizedText({ text }: { text: BilingualText }) {
 function EvidenceAnchor({ experience, children, locale }: { experience: Experience; children: string; locale: 'zh' | 'en' }) {
   const className = 'underline decoration-zinc-600 underline-offset-4 hover:decoration-zinc-200';
   if (experience.href?.startsWith('/')) return <Link href={experience.href} className={className}>{children}</Link>;
-  return <a href={experience.href} target="_blank" rel="noreferrer" className={className}>{children}<span aria-hidden="true"> ↗</span><span className="sr-only">{locale === 'zh' ? '（在新标签页打开）' : ' (opens in a new tab)'}</span></a>;
+  return <a href={experience.href} target="_blank" rel="noreferrer" className={className}>{children}<span className="sr-only">{locale === 'zh' ? '（在新标签页打开）' : ' (opens in a new tab)'}</span></a>;
 }
 
 function EvidenceSentence({ evidence, experience }: { evidence: SkillEvidence; experience?: Experience }) {
