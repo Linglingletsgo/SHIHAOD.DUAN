@@ -100,6 +100,8 @@ tmp/
 temp/
 .worktrees/
 .archive/
+/.agent/memory.md
+/docs/superpowers/
 
 # Large files (over 50MB) - old files
 public/videos/huan.mp4
