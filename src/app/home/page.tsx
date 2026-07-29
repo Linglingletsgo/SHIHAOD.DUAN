@@ -3,27 +3,35 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import DecryptedText from '@/components/DecryptedText';
+import disciplineData from '@/data/skills/disciplines.json';
+import toolData from '@/data/skills/tools.json';
 
 type HomeLinkItem = {
   text: string;
   href: string;
   revealDirection: 'left' | 'right';
+  labels: readonly string[];
   external?: boolean;
 };
 
+const disciplineNameById = new Map(
+  disciplineData.map((discipline) => [discipline.id, discipline.name.en]),
+);
+const toolNameById = new Map(toolData.map((tool) => [tool.id, tool.name]));
+
 const portfolioItems: HomeLinkItem[] = [
-  { text: 'Obfuscation Identity Archive', href: 'https://archive.dominicduan.com/', revealDirection: 'right', external: true },
-  { text: 'GLITCH IN THE HIVE', href: '/other-works/glitch-in-the-hive', revealDirection: 'right' },
-  { text: 'LCF CC SonySIE Project', href: '/other-works/sony-sie', revealDirection: 'right' },
-  { text: 'Digital Alchemy', href: 'https://digitalalchemy.dominicduan.com', revealDirection: 'right', external: true },
-  { text: 'WaveSync', href: '/other-works/work-1', revealDirection: 'right' },
+  { text: 'Obfuscation Identity Archive', href: 'https://archive.dominicduan.com/', revealDirection: 'right', labels: ['3D Web Interaction', 'AIGC Automated Archiving'], external: true },
+  { text: 'GLITCH IN THE HIVE', href: '/other-works/glitch-in-the-hive', revealDirection: 'right', labels: [disciplineNameById.get('film-photography')!, disciplineNameById.get('music-sound')!] },
+  { text: 'LCF CC SonySIE Project', href: '/other-works/sony-sie', revealDirection: 'right', labels: [disciplineNameById.get('creative-technology')!, disciplineNameById.get('music-sound')!, toolNameById.get('touchdesigner')!] },
+  { text: 'Digital Alchemy', href: 'https://digitalalchemy.dominicduan.com', revealDirection: 'right', labels: ['AIGC Film & Post-production', 'Web Design', 'Speculative Design'], external: true },
+  { text: 'WaveSync', href: '/other-works/work-1', revealDirection: 'right', labels: [disciplineNameById.get('music-sound')!, toolNameById.get('touchdesigner')!, 'Interaction & Creative Technology'] },
 ];
 
 const fashionLabItems: HomeLinkItem[] = [
-  { text: '幻', href: '/projects/project-a', revealDirection: 'left' },
-  { text: '墙', href: '/projects/project-b', revealDirection: 'left' },
-  { text: '灵', href: '/projects/project-c', revealDirection: 'left' },
-  { text: '根', href: '/projects/project-d', revealDirection: 'left' },
+  { text: '幻', href: '/projects/project-a', revealDirection: 'left', labels: [toolNameById.get('blender')!, '3D Design & Modelling', 'Materials & Rendering'] },
+  { text: '墙', href: '/projects/project-b', revealDirection: 'left', labels: [disciplineNameById.get('fashion-textiles')!, '3D Printing', toolNameById.get('touchdesigner')!, 'Arduino & Interactive Design', 'Photography'] },
+  { text: '灵', href: '/projects/project-c', revealDirection: 'left', labels: [disciplineNameById.get('fashion-textiles')!, 'Knitting', 'Cultural Research', 'Sustainability'] },
+  { text: '根', href: '/projects/project-d', revealDirection: 'left', labels: [disciplineNameById.get('fashion-textiles')!, 'Knitting', 'Cultural Research', 'Photography'] },
 ];
 
 function HomeLink({
@@ -34,8 +42,9 @@ function HomeLink({
   onNavigate: (item: HomeLinkItem) => void;
 }) {
   return (
-    <motion.div
-      className="cursor-pointer"
+    <motion.button
+      type="button"
+      className="group relative block w-fit cursor-pointer p-0 text-left"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       onClick={() => onNavigate(item)}
@@ -48,7 +57,17 @@ function HomeLink({
         animateOn="view"
         revealDirection={item.revealDirection}
       />
-    </motion.div>
+      <span className="pointer-events-none absolute left-full top-1/2 ml-5 hidden -translate-y-1/2 flex-col items-start gap-1 whitespace-nowrap opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100 md:flex">
+        {item.labels.map((label) => (
+          <span
+            key={label}
+            className="rounded-full border border-zinc-700/80 bg-black/90 px-2 py-0.5 font-mono text-[10px] leading-4 tracking-wide text-zinc-400"
+          >
+            {label}
+          </span>
+        ))}
+      </span>
+    </motion.button>
   );
 }
 
