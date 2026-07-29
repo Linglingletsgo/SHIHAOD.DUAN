@@ -47,7 +47,7 @@ export default function AboutPage() {
             {/* 标题 */}
             <div>
               <h1 className="text-4xl font-bold text-zinc-100 mb-4">SHIHAO DOMINIC DUAN</h1>
-              <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
+              <div className="h-1 w-16 rounded-full bg-white" />
             </div>
 
             {/* 介绍 */}
