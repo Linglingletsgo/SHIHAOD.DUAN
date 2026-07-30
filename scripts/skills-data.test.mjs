@@ -105,10 +105,11 @@ test('declares every public discipline and classifies every skill', async () => 
 });
 
 test('keeps first-version content boundaries in source data', async () => {
-  const [skills, tools, knowledge, skillEvidence] = await Promise.all([
+  const [skills, tools, knowledge, experiences, skillEvidence] = await Promise.all([
     readFile(new URL('../src/data/skills/skills.json', import.meta.url), 'utf8').then(JSON.parse),
     readFile(new URL('../src/data/skills/tools.json', import.meta.url), 'utf8').then(JSON.parse),
     readFile(new URL('../src/data/skills/knowledge.json', import.meta.url), 'utf8').then(JSON.parse),
+    readFile(new URL('../src/data/skills/experiences.json', import.meta.url), 'utf8').then(JSON.parse),
     readFile(new URL('../src/data/skills/skill-evidence.json', import.meta.url), 'utf8').then(JSON.parse),
   ]);
   for (const id of ['cognitive', 'creative', 'technical', 'physical', 'interpersonal', 'organizational', 'personal', 'practical-life']) assert.ok(skills.some((item) => item.domainId === id));
@@ -134,6 +135,14 @@ test('keeps first-version content boundaries in source data', async () => {
   const openSourceEvidence = skillEvidence.find((item) => item.skillId === 'open-source-customisation');
   assert.match(openSourceEvidence.description.en, /French visa appointment workflow/);
   assert.doesNotMatch(openSourceEvidence.description.en, /bypass|circumvent|guarantee/i);
+  const thesis = experiences.find((item) => item.id === 'undergraduate-thesis');
+  assert.equal(thesis.href, '/research/undergraduate-thesis');
+  for (const skillId of ['academic-research-writing', 'data-analysis-visualization', 'sustainable-fashion-industry-research', 'engineering-quantitative-coursework']) {
+    const evidence = skillEvidence.find((item) => item.skillId === skillId);
+    assert.equal(evidence.experienceId, 'undergraduate-thesis');
+    assert.ok(evidence.linkText.zh);
+    assert.ok(evidence.linkText.en);
+  }
 });
 
 test('validates the production skills manifest', async () => {

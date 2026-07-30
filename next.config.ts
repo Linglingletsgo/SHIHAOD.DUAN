@@ -25,6 +25,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: '/pdfs/undergraduate-thesis-embodied-carbon.pdf',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'noindex, noarchive',
+          },
+        ],
+      },
     ];
   },
 };
