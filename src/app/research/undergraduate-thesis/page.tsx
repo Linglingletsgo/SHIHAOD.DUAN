@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-
-const pdfUrl = '/pdfs/undergraduate-thesis-embodied-carbon.pdf';
+import ThesisPdfPreview from './ThesisPdfPreview';
 
 export const metadata: Metadata = {
   title: 'Undergraduate Thesis | Shihao D. Duan',
@@ -37,31 +36,12 @@ export default function UndergraduateThesisPage() {
           <p className="mt-4 max-w-3xl leading-7 text-zinc-400">
             本科毕业论文使用投入产出分析核算中国纺织产业贸易隐含碳并研究其影响因素，结合了产业可持续研究、定量分析、数据处理与可视化。
           </p>
+          <p className="mt-4 font-mono text-sm text-zinc-500">
+            Available as the Chinese original and an English translation. / 提供中文原版与英文翻译版。
+          </p>
         </header>
 
-        <div className="mb-5 flex justify-end">
-          <a
-            href={pdfUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="font-mono text-sm text-zinc-400 underline decoration-zinc-700 underline-offset-4 transition-colors hover:text-white"
-          >
-            Open PDF / 打开 PDF
-          </a>
-        </div>
-
-        <object
-          data={`${pdfUrl}#view=FitH`}
-          type="application/pdf"
-          className="h-[75vh] min-h-[640px] w-full border border-zinc-800 bg-zinc-950"
-        >
-          <p className="p-8 text-center text-zinc-400">
-            PDF preview is unavailable in this browser.{' '}
-            <a href={pdfUrl} className="underline underline-offset-4">
-              Open the PDF directly.
-            </a>
-          </p>
-        </object>
+        <ThesisPdfPreview />
       </div>
     </main>
   );
