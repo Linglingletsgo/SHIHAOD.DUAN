@@ -265,6 +265,16 @@
 - 会进行渲染。
 - 《幻 — Rapid Mind Evolution》主要体现从 3D 设计、建模到动画和渲染的完整流程。
 
+### Agent 辅助的 Web 3D 生产与优化
+
+- 使用多模态模型分析参考图片并整理建模与材质提示词。
+- 让 Agent 通过 Blender headless Python 脚本执行建模、材质制作和资产输出。
+- 将输出的 GLB 模型用于 Three.js 网页。
+- 设计并使用 `glb-web-optimization` skill，对 GLB 资产执行面向 Web 的优化。
+- 使用 Meshopt geometry compression 和 KTX2 texture 等方式，在尽量保持视觉效果的前提下降低模型体积和加载成本。
+- 在 Three.js 中烘焙粒子化效果，减少运行时计算和加载负担。
+- 曾把约 400 MB 的 GLB 模型优化并拆分为多个可同步加载的独立模型文件，总体积约 80 MB。
+
 ### 3D 扫描、打印与生产判断
 
 - 会进行 3D 扫描。
@@ -331,6 +341,13 @@
 - 会使用不同软件的 MCP。
 - 会将 MCP、Zotero、本地 Wiki 和 wiki-agent 组合使用。
 
+### Figma、MCP 与设计到代码
+
+- 通过 Agent 和 MCP 初始化 Figma 项目或设计环境。
+- 人工在 Figma 中完成视觉设计与判断。
+- 使用 Agent 读取 Figma MCP 中的设计信息并进行视觉还原。
+- 能够把视觉设计、组件结构与代码实现组织为统一工作流，减少设计稿与前端实现之间的偏差。
+
 ### AIGC
 
 - 会进行 AIGC 创作。
@@ -365,6 +382,14 @@
 - 个人网站由本人搭建。
 - 有多个网页设计案例。
 - 相关技术项目和工具可以在 GitHub 查看。
+
+### Agent 驱动的全栈开发与验证
+
+- 使用 Agent loop 与 browser-use 进行大型商业网页平台的自动化功能开发和浏览器验证，作为反复人工 UAT 的自动化替代方案。
+- 工作范围覆盖前端、后端、数据库与部署。
+- 使用 Supabase 作为数据库与后端服务。
+- 使用 Playwright 或 Chrome 内核执行浏览器自动化、功能检查和流程回归。
+- 结合 GitHub 与 Vercel 进行版本管理、部署和持续迭代。
 
 ### GitHub 与开源项目
 
@@ -435,6 +460,16 @@
 - 会搭建 VPS。
 - 会在 VPS 上部署 VPN 或安全远程访问服务。
 - 能够配置家庭网络服务与远程访问。
+- 能够初始化 VPS，并通过 Agent 管理服务部署与配置。
+- 在 VPS 上部署过 Hysteria 2 节点并发布订阅链接。
+- 使用 Tailscale 连接家庭设备与 VPS，并按需要选择住宅网络出口或服务器网络出口。
+
+### 实时 AI 艺术装置后端
+
+- 在 VPS 上部署过面向艺术装置的 AI 后端服务。
+- 使用 Playwright 与 Chrome 内核维护远程浏览器会话，并采集公开或已获授权的 Instagram 图片。
+- 将图像采集、视觉分析、AIGC 模型和结果输出连接为自动化链路。
+- 整体链路可在约 40 秒内把结果输出到 ESP32。
 
 ### NAS、影视库与自动化
 
@@ -561,8 +596,14 @@
 - DaVinci Resolve
 - DaVinci Resolve Project Server
 - SurveyJS
+- Figma
 - Zed
 - Codex
+- Playwright
+- Chrome
+- browser-use
+- Meshopt
+- KTX2
 - Zotero
 - wiki-agent
 - Git
@@ -600,6 +641,8 @@
 
 - Linux
 - VPS
+- Hysteria 2
+- Tailscale
 - NAS
 - 软路由
 - 虚拟机
@@ -611,6 +654,7 @@
 
 - GitHub
 - Vercel
+- Supabase
 - 个人域名
 
 ## 18. 仍待后续补充的内容

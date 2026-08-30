@@ -46,5 +46,10 @@
   {"skillId":"interactive-stage-systems","disciplineIds":["music-sound","creative-technology"]},
   {"skillId":"automated-web-archive","disciplineIds":["ai-web-software","creative-technology"]},
   {"skillId":"ai-academic-research-system","disciplineIds":["ai-web-software","research-sustainability"]},
-  {"skillId":"structural-fashion-development","disciplineIds":["fashion-textiles","creative-technology"]}
+  {"skillId":"structural-fashion-development","disciplineIds":["fashion-textiles","creative-technology"]},
+  {"skillId":"design-code-integration","disciplineIds":["ai-web-software","creative-technology"]},
+  {"skillId":"web-3d-asset-optimization","disciplineIds":["creative-technology","ai-web-software"]},
+  {"skillId":"agentic-full-stack-development","disciplineIds":["ai-web-software"]},
+  {"skillId":"vps-network-orchestration","disciplineIds":["computing-infrastructure","ai-web-software"]},
+  {"skillId":"real-time-ai-installation-infrastructure","disciplineIds":["creative-technology","ai-web-software","computing-infrastructure"]}
 ]

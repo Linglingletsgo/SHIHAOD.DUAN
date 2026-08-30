@@ -1,0 +1,7 @@
+interface:
+  display_name: "Curate Skills Inventory"
+  short_description: "Turn spoken notes into the bilingual Skills database"
+  default_prompt: "Use $curate-skills-inventory to organise my latest spoken capability notes and add the approved material to the Skills database."
+
+policy:
+  allow_implicit_invocation: true

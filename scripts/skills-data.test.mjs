@@ -115,9 +115,11 @@ test('keeps first-version content boundaries in source data', async () => {
   for (const id of ['cognitive', 'creative', 'technical', 'physical', 'interpersonal', 'organizational', 'personal', 'practical-life']) assert.ok(skills.some((item) => item.domainId === id));
   assert.ok(tools.every((item) => !/Veo 3\.1/i.test(item.name)));
   for (const id of ['zed', 'codex']) assert.ok(tools.some((item) => item.id === id));
+  for (const id of ['figma', 'playwright', 'browser-use', 'supabase', 'meshopt', 'ktx2', 'tailscale', 'hysteria2']) assert.ok(tools.some((item) => item.id === id));
   assert.ok(knowledge.some((item) => item.id === 'dj-fundamentals'));
   assert.ok(skills.every((item) => item.id !== 'dj-performance'));
   for (const id of ['academic-research-writing', 'engineering-quantitative-coursework', 'fashion-engineering-education', 'art-theory-criticism']) assert.ok(skills.some((item) => item.id === id));
+  for (const id of ['design-code-integration', 'web-3d-asset-optimization', 'agentic-full-stack-development', 'vps-network-orchestration', 'real-time-ai-installation-infrastructure']) assert.ok(skills.some((item) => item.id === id));
   const artTheory = skills.find((item) => item.id === 'art-theory-criticism');
   assert.equal(artTheory.name.en, 'Artistic Practice, Theory and Criticism');
   assert.match(artTheory.definition.zh, /^以艺术创作为核心/);
@@ -137,6 +139,12 @@ test('keeps first-version content boundaries in source data', async () => {
   assert.doesNotMatch(openSourceEvidence.description.en, /bypass|circumvent|guarantee/i);
   const thesis = experiences.find((item) => item.id === 'undergraduate-thesis');
   assert.equal(thesis.href, '/research/undergraduate-thesis');
+  const web3dEvidence = skillEvidence.find((item) => item.skillId === 'web-3d-asset-optimization');
+  assert.match(web3dEvidence.description.en, /400 MB/);
+  assert.match(web3dEvidence.description.en, /80 MB/);
+  const installationEvidence = skillEvidence.find((item) => item.skillId === 'real-time-ai-installation-infrastructure');
+  assert.match(installationEvidence.description.en, /40 seconds/);
+  assert.match(installationEvidence.description.en, /public or authorised Instagram images/);
   for (const skillId of ['academic-research-writing', 'data-analysis-visualization', 'sustainable-fashion-industry-research', 'engineering-quantitative-coursework']) {
     const evidence = skillEvidence.find((item) => item.skillId === skillId);
     assert.equal(evidence.experienceId, 'undergraduate-thesis');
