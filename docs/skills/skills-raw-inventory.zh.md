@@ -273,7 +273,7 @@
 - 设计并使用 `glb-web-optimization` skill，对 GLB 资产执行面向 Web 的优化。
 - 使用 Meshopt geometry compression 和 KTX2 texture 等方式，在尽量保持视觉效果的前提下降低模型体积和加载成本。
 - 在 Three.js 中烘焙粒子化效果，减少运行时计算和加载负担。
-- 曾把约 400 MB 的 GLB 模型优化并拆分为多个可同步加载的独立模型文件，总体积约 80 MB。
+- 曾把约 400 MB 的 GLB 模型优化并拆分为多个可同步加载的独立模型文件，总体积约 15 MB。
 
 ### 3D 扫描、打印与生产判断
 

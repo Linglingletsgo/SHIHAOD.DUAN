@@ -141,7 +141,7 @@ test('keeps first-version content boundaries in source data', async () => {
   assert.equal(thesis.href, '/research/undergraduate-thesis');
   const web3dEvidence = skillEvidence.find((item) => item.skillId === 'web-3d-asset-optimization');
   assert.match(web3dEvidence.description.en, /400 MB/);
-  assert.match(web3dEvidence.description.en, /80 MB/);
+  assert.match(web3dEvidence.description.en, /15 MB/);
   const installationEvidence = skillEvidence.find((item) => item.skillId === 'real-time-ai-installation-infrastructure');
   assert.match(installationEvidence.description.en, /40 seconds/);
   assert.match(installationEvidence.description.en, /public or authorised Instagram images/);
