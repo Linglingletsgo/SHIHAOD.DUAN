@@ -1,12 +1,7 @@
-## 所有资源仅供学习参考，禁止商业使用。
-## All resources are for learning reference only and commercial use is prohibited.
+# Creative Statement
 
-www.dominicduan.com
+All content and resources in this project are for learning and reference only. Commercial use is prohibited.
 
-Instagram: moling025
+Developed with Laura Korinth, research participant and collaborating artist.
 
-CloudMusic: 张嗣泳
-
-Email: lingonthebeat@gmail.com
-
-TheRedNote：@Linglingletsgo
+[Research, design and production by Dominic Duan.](https://dominicduan.com/)
